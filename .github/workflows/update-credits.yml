@@ -5,15 +5,16 @@ on:
   schedule:
     - cron: 0 0 * * 0
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   get_credits:
     runs-on: ubuntu-latest
-    # Hey there fork dev! If you like to include your own contributors in this then you can probably just change this to your own repo
-    # Do this in dump_github_contributors.ps1 too into your own repo
-    if: github.repository == 'space-wizards/space-station-14'
 
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v6
         with:
           ref: master
 
@@ -21,6 +22,7 @@ jobs:
         shell: pwsh
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          CONTENT_REPOSITORY: ${{ github.repository }}
         run: Tools/dump_github_contributors.ps1 > Resources/Credits/GitHub.txt
 
       # TODO
@@ -45,7 +47,7 @@ jobs:
         run: echo "NOW=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_ENV
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v7
         with:
           commit-message: Update Credits
           title: Update Credits
