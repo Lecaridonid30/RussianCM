@@ -541,12 +541,12 @@ class MistralClient:
     def generate_changelog(self, pr_list: list[PRInfo]) -> ChangelogResult:
         """Отправляет PR в Mistral и получает структурированный changelog."""
         pr_blocks = "\n".join(build_pr_data(pr) for pr in pr_list)
-        user_prompt = cfg.GEMINI_USER_PROMPT_TEMPLATE.format(pr_data=pr_blocks)
+        user_prompt = cfg.MISTRAL_USER_PROMPT_TEMPLATE.format(pr_data=pr_blocks)
 
         payload = {
             "model": cfg.MISTRAL_MODEL,
             "messages": [
-                {"role": "system", "content": cfg.GEMINI_SYSTEM_PROMPT},
+                {"role": "system", "content": cfg.MISTRAL_SYSTEM_PROMPT},
                 {"role": "user", "content": user_prompt},
             ],
             "temperature": 0.3,
