@@ -171,7 +171,7 @@ public sealed class CMUMedicalExamineSystem : EntitySystem
             _                                              => null,
         };
 
-    return key != null ? Loc.GetString(key) : type.ToString();
+        return key != null ? Loc.GetString(key) : type.ToString();
     }
 
     private static int BodyPartSortOrder(BodyPartType type, BodyPartSymmetry symmetry)
