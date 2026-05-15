@@ -408,6 +408,7 @@ namespace Content.Client.Stylesheets
             var uavOsdStack = new[]
             {
                 "/Fonts/UAVOSD/UAV-OSD-Sans-Mono.ttf",
+                "/Fonts/NotoSans/NotoSans-Regular.ttf",
                 "/Fonts/NotoSans/NotoSansSymbols-Regular.ttf",
                 "/Fonts/NotoSans/NotoSansSymbols2-Regular.ttf"
             };
