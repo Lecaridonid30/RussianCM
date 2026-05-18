@@ -7,10 +7,10 @@ rank-RMCRankCMBMarshal = Маршал БКМ
 rank-RMCRankCMBInvestigativeSynthetic = Следственный синтетик БКМ
   .prefix = Синт. БКМ
 
-rank-RMCRankCMBRiotControlSynthetic = Синтетик БКМпо контролю беспорядков
+rank-RMCRankCMBRiotControlSynthetic = Синтетик БКМ по контролю беспорядков
   .prefix = Синт. БКМ
 
-rank-RMCRankCMBRiotControlOfficer = Офицер БКМпо контролю беспорядков
+rank-RMCRankCMBRiotControlOfficer = Офицер БКМ по контролю беспорядков
   .prefix = Оф. БКМ
 
 rank-RMCRankCMBMedicalTechnician = Медицинский техник БКМ
@@ -19,8 +19,8 @@ rank-RMCRankCMBMedicalTechnician = Медицинский техник БКМ
 rank-RMCRankCMBBreachingTechnician = Техник БКМ по прорыву
   .prefix = Тех. БКМ
 
-rank-RMCRankCMBSWATSpecialist = Специалист ОМОН БКМ
-  .prefix = ОМОН БКМ
+rank-RMCRankCMBSWATSpecialist = Специалист спецназа БКМ
+  .prefix = Спец. БКМ
 
 rank-RMCRankICBAgent = Агент БКМ
   .prefix = Агент БКМ
