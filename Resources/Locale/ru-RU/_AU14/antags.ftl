@@ -74,5 +74,5 @@ ent-MindRoleCannibal-desc = Ролевая сущность разума
 ent-MindRoleSerialKiller-name = Роль Серийного Убийцы
 ent-MindRoleSerialKiller-desc = Ролевая сущность разума
 
-antag-category-colony-antags = Антагонисты колонии
-antag-category-prometheus-antags = Антагонисты Прометея
+roles-antag-category-colony = Антагонисты колонии
+roles-antag-category-prometheus = Антагонисты Прометея

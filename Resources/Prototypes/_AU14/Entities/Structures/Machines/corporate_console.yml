@@ -31,6 +31,9 @@
   - type: ContainerContainer
     containers:
       CashSlot: !type:ContainerSlot {}
+  - type: ActivatableUIRequiresAccess
+  - type: AccessReader
+    access: [["AU14AccessCorporateWEYULiaison"], ["AU14AccessCorporateWEYU"]]
 
 # Standard Corporate Console — for use in corporate offices
 - type: entity
@@ -48,6 +51,3 @@
       WYPMCParty: 12500 #RuCM change
       WYHT: 8000 #RuCM change
       IPIESynth: 5000 #RuCM change
-  - type: AccessReader
-    access: [ [ "CMAccessCorp" ] ]
-

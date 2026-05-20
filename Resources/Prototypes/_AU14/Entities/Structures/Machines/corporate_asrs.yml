@@ -63,6 +63,9 @@
       - cost: 1500
         crate: AU14CrateM39B2Ammo
       #RuCM change end
+  - type: ActivatableUIRequiresAccess
+  - type: AccessReader
+    access: [["AU14AccessCorporateWEYULiaison"], ["AU14AccessCorporateWEYU"]]
 
 # Corporate ASRS Elevator
 - type: entity
@@ -74,4 +77,3 @@
   components:
   - type: RequisitionsElevator
     faction: corporate
-
