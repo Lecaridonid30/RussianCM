@@ -189,7 +189,7 @@ namespace Content.Server.AU14.Round
 
                         var vote = new VoteOptions
                         {
-                            Title = "Select Planet",
+                            Title = Loc.GetString("au14-vote-select-planet-title"), // RuMC edit
                             Options = options,
                             Duration = TimeSpan.FromSeconds(30),
                         };
@@ -422,7 +422,7 @@ namespace Content.Server.AU14.Round
 
                         var voteopt = new VoteOptions
                         {
-                            Title = "Govfor Vote",
+                            Title = Loc.GetString("au14-vote-govfor-title"), // RuMC edit
                             Options = optionsplatoons,
                             Duration = duration
                         };
@@ -454,7 +454,7 @@ namespace Content.Server.AU14.Round
                                         {
 
                                             StartShipVote(winnerId.PossibleShips,
-                                                "Govfor Ship Vote",
+                                                Loc.GetString("au14-vote-govfor-ship-title"), // RuMC edit
                                                 shipId => _selectedGovforShip = shipId);
                                         });
                                 }
@@ -473,7 +473,7 @@ namespace Content.Server.AU14.Round
 
                         var voteopt = new VoteOptions
                         {
-                            Title = "Opfor Vote",
+                            Title = Loc.GetString("au14-vote-opfor-title"),
                             Options = optionsplatoons,
                             Duration = duration
                         };
@@ -504,7 +504,7 @@ namespace Content.Server.AU14.Round
                                         () =>
                                         {
                                             StartShipVote(winnerId.PossibleShips,
-                                                "Opfor Ship Vote",
+                                                Loc.GetString("au14-vote-opfor-ship-title"), // RuMC edit
                                                 shipId => _selectedOpforShip = shipId);
                                         });
                                 }
