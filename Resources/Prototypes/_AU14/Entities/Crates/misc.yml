@@ -346,6 +346,17 @@
     - id: CMMagazineSMGM63
       amount: 5
 
+- type: entity
+  parent: RMCCrateAmmo
+  id: AU14CratePK7Ammo
+  name: PK7 magazine crate (x4)
+  description: A crate containing four PK7 magazines.
+  components:
+  - type: StorageFill
+    contents:
+    - id: RMCMagazinePistolPK7
+      amount: 4
+
 # We-Yu Armor & Additions Crates
 
 - type: entity
