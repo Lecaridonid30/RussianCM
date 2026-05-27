@@ -281,9 +281,9 @@ binds:
   type: State
   key: R
   mod1: Shift
-- function: FlipObject
-  type: State
-  key: F
+# - function: FlipObject RuMC edit
+#   type: State
+#   key: F
 - function: TextCursorLeft
   type: State
   key: Left
