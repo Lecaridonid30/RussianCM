@@ -312,7 +312,8 @@ namespace Content.Client.ContextMenu.UI
 
             // remove the element
             var parent = element.ParentMenu?.ParentElement;
-            element.Orphan();
+            if (!element.Disposed) // RuMC edit
+                element.Orphan();
             Elements.Remove(entity);
 
             // update any parent elements
