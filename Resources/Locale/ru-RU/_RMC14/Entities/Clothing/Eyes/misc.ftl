@@ -1,1 +1,1 @@
-ent-RMCEyepatchWhite = наглазник
+ent-RMCEyepatchWhite = повязка на глаз

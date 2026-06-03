@@ -20,19 +20,18 @@
         - AU14SquadVAIPO
     - type: Skills
       skills:
-        RMCSkillCqc: 5
-        RMCSkillEngineer: 4
-        RMCSkillConstruction: 3
+        RMCSkillCqc: 1
+        RMCSkillEngineer: 1
+        RMCSkillConstruction: 1
         RMCSkillFirearms: 2
         RMCSkillMedical: 3
-        RMCSkillSurgery: 3
+        RMCSkillSurgery: 2
         RMCSkillMeleeWeapons: 1
         RMCSkillPolice: 2
-        RMCSkillFireman: 5
-        RMCSkillPowerLoader: 2
+        RMCSkillFireman: 2
         RMCSkillVehicles: 2
         RMCSkillJtac: 1
-        RMCSkillEndurance: 1
+        RMCSkillEndurance: 4
     - type: EquipEntityPreset
       preset: AU14VAIBasePreset
     - type: JobPrefix
@@ -44,7 +43,7 @@
   id: AU14GearVAIMedic
   equipment:
     jumpsuit: AU14JumpsuitTShirtWhiteVAIWebbingSurgical
-    pocket1: RMCPouchMedkitFillAdvanced
+    pocket1: AU14PouchIFAKFill
     pocket2: AU14PouchMagazineLargeFilledMAR40
     suitstorage: AU14WeaponRifleMAR30Tactical
     eyes: RMCGlassesMedicalHUDGlasses
@@ -59,6 +58,13 @@
     - RMCPillCanisterIron
     - CMPillCanisterBicaridine
     - CMPillCanisterKelotane
+    - CMUPlainGauze10
+    - CMUPlainTraumaDressing10
+    - CMUCoagulantPowder
+    - CMUAntiseptic
+    - CMUBurnGel
+    - CMUTissueSealant
+    - CMUTraumaFoam
     - CMEpinephrineAutoInjector
     - AU14NaloxoneAutoInjector
     - CMHealthAnalyzer

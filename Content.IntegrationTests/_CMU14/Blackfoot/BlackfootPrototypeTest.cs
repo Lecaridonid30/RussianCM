@@ -1,19 +1,28 @@
 using System.Linq;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Numerics;
 using Content.Shared._CMU14.Blackfoot;
 using Content.Shared._RMC14.Vehicle;
 using Content.Shared._RMC14.Weapons.Ranged.Ammo.BulletBox;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Item;
 using Content.Shared.Movement.Pulling.Components;
+using Content.Shared.Physics;
 using Content.Shared.UserInterface;
 using Content.Shared.Vehicle;
 using Content.Shared.Vehicle.Components;
+using Robust.Shared.ContentPack;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Maths;
+using Robust.Shared.Physics;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 using Robust.UnitTesting;
+using YamlDotNet.RepresentationModel;
 
 namespace Content.IntegrationTests._CMU14.Blackfoot;
 
@@ -30,6 +39,7 @@ public sealed class BlackfootPrototypeTest
     private static readonly EntProtoId FlightComputerId = "CMUBlackfootFlightComputer";
     private static readonly EntProtoId PadLightId = "CMUBlackfootLandingPadLight";
     private static readonly EntProtoId PadLightOnId = "CMUBlackfootLandingPadLightOn";
+    private static readonly EntProtoId ShadowId = "CMUBlackfootShadow";
     private static readonly EntProtoId FuelPumpCrateId = "CMUBlackfootFuelPumpCrate";
     private static readonly EntProtoId FlightComputerCrateId = "CMUBlackfootFlightComputerCrate";
     private static readonly EntProtoId TugId = "CMUBlackfootAerospaceTug";
@@ -76,6 +86,8 @@ public sealed class BlackfootPrototypeTest
                 Assert.That(prototypes.TryIndex<EntityPrototype>(variant.Id, out var proto), Is.True);
                 Assert.That(proto!.TryGetComponent<BlackfootFlightComponent>(out var flight, factory), Is.True, variantName);
                 Assert.That(flight!.State, Is.EqualTo(BlackfootFlightState.Stowed), variantName);
+                Assert.That(flight.VTOLSpeedMultiplier, Is.GreaterThan(1f), variantName);
+                Assert.That(flight.FlightSpeedMultiplier, Is.GreaterThan(flight.VTOLSpeedMultiplier), variantName);
                 Assert.That(
                     flight.FootprintOffsets,
                     Is.EquivalentTo(new[]
@@ -89,6 +101,11 @@ public sealed class BlackfootPrototypeTest
                         new Vector2i(0, -1),
                     }),
                     variantName);
+
+                Assert.That(proto.TryGetComponent<BlackfootFuelPowerComponent>(out var fuel, factory), Is.True, variantName);
+                Assert.That(fuel!.FuelLeakDrain, Is.GreaterThan(0f), variantName);
+
+                AssertBlackfootXenoProjectileTarget(proto, factory, variantName);
 
                 Assert.That(proto.TryGetComponent<VehicleWeaponsComponent>(out _, factory), Is.True, variantName);
                 Assert.That(proto.TryGetComponent<VehicleEnterComponent>(out var enter, factory), Is.True, variantName);
@@ -175,6 +192,8 @@ public sealed class BlackfootPrototypeTest
             Assert.That(padLightOnProto!.TryGetComponent<BlackfootLandingPadLightComponent>(out var padLightOn, factory), Is.True);
             Assert.That(padLightOn!.State, Is.EqualTo(BlackfootLandingPadLightState.Servicing));
 
+            AssertBlackfootShadowVisualOnly(prototypes, factory);
+
             AssertDeployable(prototypes, factory, FoldedLandingPadId, LandingPadId);
             AssertDeployable(prototypes, factory, FuelPumpCrateId, FuelPumpId, BlackfootLandingPadAttachment.FuelPump);
             AssertDeployable(prototypes, factory, FlightComputerCrateId, FlightComputerId, BlackfootLandingPadAttachment.FlightComputer);
@@ -187,6 +206,87 @@ public sealed class BlackfootPrototypeTest
         });
 
         await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task DoorGunInteriorPassengerSeatsStayBesidePilot()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+
+        await server.WaitAssertion(() =>
+        {
+            var resources = server.ResolveDependency<IResourceManager>();
+            var (passengerSeats, pilot, m866) = ReadDoorGunSeatLayout(resources);
+
+            Assert.That(pilot, Is.Not.Null);
+            Assert.That(m866, Is.Not.Null);
+            Assert.That(passengerSeats, Has.Count.EqualTo(4));
+            Assert.That(passengerSeats.All(pos => pos.Y < m866!.Value.Y - 1f), Is.True);
+            Assert.That(passengerSeats.All(pos => Vector2.Distance(pos, pilot!.Value) < 2f), Is.True);
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    private static (List<Vector2> PassengerSeats, Vector2? Pilot, Vector2? M866) ReadDoorGunSeatLayout(IResourceManager resources)
+    {
+        using var file = resources.ContentFileRead(new ResPath("/Maps/_CMU14/Vehicles/Blackfoot/blackfoot_doorgun.yml"));
+        using var reader = new StreamReader(file);
+        var yamlStream = new YamlStream();
+        yamlStream.Load(reader);
+
+        var root = yamlStream.Documents[0].RootNode;
+        var yamlEntities = (YamlSequenceNode) root["entities"];
+        var passengerSeats = new List<Vector2>();
+        Vector2? pilot = null;
+        Vector2? m866 = null;
+
+        foreach (var group in yamlEntities.Cast<YamlMappingNode>())
+        {
+            var proto = group["proto"].AsString();
+            if (proto != "CMUSeatBlackfootPassenger" &&
+                proto != "CMUSeatBlackfootPilot" &&
+                proto != "CMUSeatBlackfootDoorGunner")
+                continue;
+
+            foreach (var entity in ((YamlSequenceNode) group["entities"]).Cast<YamlMappingNode>())
+            {
+                var position = ReadEntityPosition(entity);
+                if (proto == "CMUSeatBlackfootPassenger")
+                {
+                    passengerSeats.Add(position);
+                    continue;
+                }
+
+                if (proto == "CMUSeatBlackfootPilot")
+                    pilot = position;
+                else
+                    m866 = position;
+            }
+        }
+
+        return (passengerSeats, pilot, m866);
+    }
+
+    private static Vector2 ReadEntityPosition(YamlMappingNode entity)
+    {
+        var components = (YamlSequenceNode) entity["components"];
+        foreach (var component in components.Cast<YamlMappingNode>())
+        {
+            if (component["type"].AsString() != "Transform")
+                continue;
+
+            var pos = component["pos"].AsString();
+            var coordinates = pos.Split(',');
+            Assert.That(coordinates, Has.Length.EqualTo(2));
+            return new Vector2(
+                float.Parse(coordinates[0], CultureInfo.InvariantCulture),
+                float.Parse(coordinates[1], CultureInfo.InvariantCulture));
+        }
+
+        Assert.Fail("Seat entity has no Transform position.");
+        return default;
     }
 
     private static void AssertDeployable(
@@ -249,6 +349,26 @@ public sealed class BlackfootPrototypeTest
     {
         Assert.That(prototypes.TryIndex<EntityPrototype>(id, out var proto), Is.True, id.ToString());
         Assert.That(proto!.TryGetComponent<ItemComponent>(out _, factory), Is.False, id.ToString());
+    }
+
+    private static void AssertBlackfootXenoProjectileTarget(
+        EntityPrototype proto,
+        IComponentFactory factory,
+        string context)
+    {
+        Assert.That(proto.TryGetComponent<FixturesComponent>(out var fixtures, factory), Is.True, context);
+        Assert.That(fixtures!.Fixtures.Values.Any(fixture =>
+            (fixture.CollisionLayer & (int) CollisionGroup.XenoProjectileImpassable) != 0), Is.True, context);
+    }
+
+    private static void AssertBlackfootShadowVisualOnly(
+        IPrototypeManager prototypes,
+        IComponentFactory factory)
+    {
+        Assert.That(prototypes.TryIndex<EntityPrototype>(ShadowId, out var proto), Is.True);
+        Assert.That(proto!.TryGetComponent<DamageableComponent>(out _, factory), Is.False);
+        Assert.That(proto.TryGetComponent<RequireProjectileTargetComponent>(out _, factory), Is.False);
+        Assert.That(proto.TryGetComponent<FixturesComponent>(out _, factory), Is.False);
     }
 
     private static void AssertEntryPoint(VehicleEntryPoint entry, Vector2 offset, Vector2 interiorCoords, string context)

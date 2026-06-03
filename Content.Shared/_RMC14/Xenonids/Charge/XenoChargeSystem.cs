@@ -31,7 +31,9 @@ using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Map;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Physics;
@@ -106,6 +108,9 @@ public sealed partial class XenoChargeSystem : EntitySystem
         SubscribeLocalEvent<XenoChargeComponent, XenoChargeDoAfterEvent>(OnXenoChargeDoAfterEvent);
         SubscribeLocalEvent<XenoChargeComponent, StopThrowEvent>(OnXenoChargeStop);
         SubscribeLocalEvent<XenoChargeComponent, PreventCollideEvent>(OnXenoChargePreventCollide);
+
+        SubscribeLocalEvent<ChargeFlungComponent, ThrowDoHitEvent>(OnChargeFlungHit);
+        SubscribeLocalEvent<ChargeFlungComponent, StopThrowEvent>(OnChargeFlungStop);
 
         SubscribeLocalEvent<XenoToggleChargingComponent, XenoToggleChargingActionEvent>(OnXenoToggleChargingAction);
 
@@ -343,7 +348,7 @@ public sealed partial class XenoChargeSystem : EntitySystem
             Hidden = true,
         };
 
-        _stun.TrySlowdown(xeno, TimeSpan.FromSeconds(1.75f), false, 0f, 0f);
+        _stun.TrySlowdown(xeno, TimeSpan.FromSeconds(0.6f), false, 0f, 0f);
         _doAfter.TryStartDoAfter(doAfter);
     }
 
@@ -367,8 +372,6 @@ public sealed partial class XenoChargeSystem : EntitySystem
 
     private void OnXenoChargeHit(Entity<XenoChargeComponent> xeno, ref ThrowDoHitEvent args)
     {
-        // TODO RMC14 lag compensation
-        // TODO RMC14 allow charge to continue if pass is true
         var targetId = args.Target;
         if (_mobState.IsDead(targetId))
             return;
@@ -384,6 +387,10 @@ public sealed partial class XenoChargeSystem : EntitySystem
             xeno.Comp.AlreadyHit.Remove(targetId);
             return;
         }
+
+        // Capture charge direction before StopCrusherCharge nulls it.
+        var savedChargeDir = xeno.Comp.Charge?.Normalized();
+        var origin = _transform.GetMapCoordinates(xeno);
 
         StopCrusherCharge(xeno);
 
@@ -422,10 +429,66 @@ public sealed partial class XenoChargeSystem : EntitySystem
 
         _rmcPulling.TryStopAllPullsFromAndOn(targetId);
 
-        var origin = _transform.GetMapCoordinates(xeno);
+        var distanceTraveled = xeno.Comp.ChargeOrigin != null
+            ? (origin.Position - xeno.Comp.ChargeOrigin.Value).Length()
+            : 0f;
+        var ratio = Math.Clamp(distanceTraveled / xeno.Comp.Range, 0f, 1f);
+        var knockback = xeno.Comp.MinKnockback + ratio * (xeno.Comp.MaxKnockback - xeno.Comp.MinKnockback);
 
         _stun.TryParalyze(targetId, xeno.Comp.StunTime, true);
-        _sizeStun.KnockBack(targetId, origin, 3, 3, knockBackSpeed: 15);
+        _rmcObstacleSlamming.ApplyBonuses(targetId, TimeSpan.FromSeconds(1.5), TimeSpan.FromSeconds(3));
+        EnsureComp<ChargeFlungComponent>(targetId);
+
+        // Fling the target along the saved charge direction.
+        var targetPos = _transform.GetMapCoordinates(targetId);
+        var chargeDir = savedChargeDir ?? (targetPos.Position - origin.Position).Normalized();
+        var flingVec = chargeDir * knockback;
+
+        if (TryComp(targetId, out PhysicsComponent? targetPhysics))
+        {
+            _physics.SetLinearVelocity(targetId, Vector2.Zero, body: targetPhysics);
+            _physics.SetAngularVelocity(targetId, 0f, body: targetPhysics);
+        }
+
+        _throwing.TryThrow(targetId, flingVec, 15, animated: false, playSound: false, compensateFriction: true);
+    }
+
+    private void OnChargeFlungHit(Entity<ChargeFlungComponent> ent, ref ThrowDoHitEvent args)
+    {
+        var target = args.Target;
+
+        if (!HasComp<MobStateComponent>(target))
+            return;
+
+        if (_mobState.IsDead(target))
+            return;
+
+        // Don't collide with the crusher that flung us.
+        if (HasComp<XenoChargeComponent>(target))
+            return;
+
+        // Don't collide with same-hive xenos.
+        if (_xenoHive.FromSameHive(ent.Owner, target))
+            return;
+
+        // Damage and knockdown the marine in the path.
+        _damageable.TryChangeDamage(target, ent.Comp.CollisionDamage, origin: ent);
+
+        var filter = Filter.Pvs(target, entityManager: EntityManager);
+        _colorFlash.RaiseEffect(Color.Red, new List<EntityUid> { target }, filter);
+
+        _stun.TryParalyze(target, ent.Comp.KnockdownTime, true);
+        _slow.TrySlowdown(target, TimeSpan.FromSeconds(1.5));
+
+        if (_net.IsServer)
+            _audio.PlayPvs(new SoundCollectionSpecifier("Punch"), target);
+
+        // Don't stop. Keep going through mobs until hitting a wall or end of range.
+    }
+
+    private void OnChargeFlungStop(Entity<ChargeFlungComponent> ent, ref StopThrowEvent args)
+    {
+        RemCompDeferred<ChargeFlungComponent>(ent);
     }
 
     private void OnXenoChargePreventCollide(Entity<XenoChargeComponent> xeno, ref PreventCollideEvent args)
@@ -436,17 +499,27 @@ public sealed partial class XenoChargeSystem : EntitySystem
         if (TerminatingOrDeleted(args.OtherEntity))
             return;
 
-        if (!TryComp(args.OtherEntity, out XenoCrusherChargableComponent? crush))
+        // Chargable entities with instant destroy and pass-through: destroy and pass.
+        if (TryComp(args.OtherEntity, out XenoCrusherChargableComponent? crush))
+        {
+            if (crush.InstantDestroy && crush.PassOnDestroy)
+            {
+                if (_net.IsServer)
+                    _destruct.DestroyEntity(args.OtherEntity);
+                else if (_net.IsClient)
+                    _transform.DetachEntity(args.OtherEntity, Transform(args.OtherEntity));
+
+                args.Cancelled = true;
+            }
+
+            return;
+        }
+
+        // Mobs block the charge (handled by OnXenoChargeHit).
+        if (HasComp<MobStateComponent>(args.OtherEntity))
             return;
 
-        if (!crush.InstantDestroy || !crush.PassOnDestroy)
-            return;
-
-        if (_net.IsServer)
-            _destruct.DestroyEntity(args.OtherEntity);
-        else if (_net.IsClient)
-            _transform.DetachEntity(args.OtherEntity, Transform(args.OtherEntity));
-
+        // Everything else (chairs, grass, etc.) is passed through.
         args.Cancelled = true;
     }
 
@@ -459,10 +532,34 @@ public sealed partial class XenoChargeSystem : EntitySystem
 
         var coordinates = GetCoordinates(args.Coordinates);
         var origin = _transform.GetMapCoordinates(xeno);
-        var diff = _transform.ToMapCoordinates(coordinates).Position - origin.Position;
+        var targetMap = _transform.ToMapCoordinates(coordinates);
+        var diff = targetMap.Position - origin.Position;
+
+        // Find the closest valid mob target near the click position.
+        xeno.Comp.PrimaryTarget = null;
+        float closestDist = float.MaxValue;
+        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(targetMap, 2f))
+        {
+            if (!_xeno.CanAbilityAttackTarget(xeno, mob))
+                continue;
+
+            if (_mobState.IsDead(mob))
+                continue;
+
+            var mobMap = _transform.GetMapCoordinates(mob);
+            var dist = (mobMap.Position - targetMap.Position).Length();
+            if (dist < closestDist)
+            {
+                closestDist = dist;
+                xeno.Comp.PrimaryTarget = mob;
+            }
+        }
         var length = diff.Length();
+        var minRange = 2f;
         if (length > xeno.Comp.Range)
             diff = diff.Normalized() * xeno.Comp.Range;
+        else if (length < minRange)
+            diff = diff.Normalized() * minRange;
         else
             diff = diff.Normalized() * MathF.Ceiling(length);
 
@@ -504,6 +601,7 @@ public sealed partial class XenoChargeSystem : EntitySystem
         }
 
         xeno.Comp.Charge = diff;
+        xeno.Comp.ChargeOrigin = origin.Position;
         Dirty(xeno);
 
         EnsureComp<XenoChargingComponent>(xeno);

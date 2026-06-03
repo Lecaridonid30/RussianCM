@@ -794,7 +794,7 @@
   description: An automated supply rack hooked up to a big storage of various firearms, ammunitions, explosives, load carrying equipment and other miscellaneous items.
   components:
   - type: AccessReader
-    access: [ ["AU14AccessGovforReq"] ]
+    access: [["AU14AccessGovforReq"], ["AU14AccessOpforReq"]] # RuMC edit
   - type: Sprite
     sprite: _RMC14/Structures/Machines/VendingMachines/ColMarTech/requisitions_wall/guns.rsi
   - type: CMAutomatedVendor
@@ -941,8 +941,10 @@
         amount: 4
       - id: RMCFulton20
         amount: 4
-      - id: RMCSentryLaptop
+      - id: AU14ProdigyLaptop
         amount: 4
+      - id: AU14SynthResetKeyProdigy
+        amount: 2
     - name: RTO Packs
       entries:
       - id: AU14BackpackRTOPackGray

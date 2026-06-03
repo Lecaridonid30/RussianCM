@@ -331,13 +331,13 @@
         amount: 1
     - name: Engineering Supplies
       entries:
-      - id: CMSandbagEmpty25
+      - id: CMSandbagEmpty50
         recommended: true
-        amount: 60
+        amount: 5
       - id: BarbedWire15
-        amount: 6
+        amount: 4
       - id: CMSheetMetal50
-        amount: 3
+        amount: 1
       - id: CMSheetPlasteel50
         amount: 1
       - id: RMCBoxMagazinePowerCellsHighFilled
@@ -345,7 +345,7 @@
       - id: RMCEngineerKit
         amount: 1
       - id: RMCPowerCellHigh
-        amount: 5
+        amount: 2
       - id: RMCCableCoil
         amount: 15
     - name: Flares and lights
@@ -381,9 +381,9 @@
         amount: 8
       - id: BedrollFolded
         amount: 20
-      - id: RMCGuidebookSOP
+      - id: AU14GuidebookSOP
         amount: 3
-      - id: RMCGuidebookLawMarine
+      - id: AU14GuidebookLawMarine
         amount: 3
 
 #corpsman
@@ -436,6 +436,40 @@
         amount: 60
       - id: CMOintment10
         amount: 60
+      - id: CMUPlainGauze10
+        amount: 60
+      - id: CMUPlainTraumaDressing10
+        amount: 40
+      - id: CMUCoagulantPowder
+        amount: 30
+      - id: CMUAntiseptic
+        amount: 30
+      - id: CMUBurnGel
+        amount: 30
+      - id: CMUTissueSealant
+        amount: 30
+      - id: CMUTraumaFoam
+        amount: 30
+      - id: CMUHemostaticGauze6
+        amount: 30
+      - id: CMUAntisepticGauze6
+        amount: 30
+      - id: CMUBurnGelGauze6
+        amount: 30
+      - id: CMUSealingGauze6
+        amount: 30
+      - id: CMUCompressionGauze6
+        amount: 30
+      - id: CMUHemostaticTraumaDressing4
+        amount: 20
+      - id: CMUAntisepticTraumaDressing4
+        amount: 20
+      - id: CMUBurnTraumaDressing4
+        amount: 20
+      - id: CMUSealingTraumaDressing4
+        amount: 20
+      - id: CMUCompressionTraumaDressing4
+        amount: 20
       - id: CMBurnKit10
         amount: 30
       - id: CMTraumaKit10
@@ -1156,7 +1190,7 @@
   description: An automated supply rack hooked up to a big storage of various firearms, ammunitions, explosives, load carrying equipment and other miscellaneous items.
   components:
   - type: AccessReader
-    access: [ ["AU14AccessGovforReq"] ]
+    access: [["AU14AccessGovforReq"], ["AU14AccessOpforReq"]] # RuMC edit
   - type: Sprite
     sprite: _RMC14/Structures/Machines/VendingMachines/ColMarTech/requisitions_wall/guns.rsi
   - type: CMAutomatedVendor

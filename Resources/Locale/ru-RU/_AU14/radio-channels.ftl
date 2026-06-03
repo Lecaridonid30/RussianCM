@@ -48,17 +48,17 @@ chat-radio-clf = КОФ
 
 chat-radio-govforcommand = КМД
 
-chat-radio-govforalpha = АЛЬФА
+chat-radio-govforbravo = Браво
 
 chat-radio-govforjtac = СКАТ
 
-chat-radio-govformp = МИЛП
+chat-radio-mob = Семья
 
-chat-radio-opforhighcommand = ХИКМД
+chat-radio-alert = Оповещение колонии
 
-chat-radio-opforalpha = СИЭР
+chat-radio-uppsof = ССО СПН
 
-chat-radio-opformp = КНТР
+chat-radio-uasof = ССО США
 
 chat-radio-CLF = КЛФ
 

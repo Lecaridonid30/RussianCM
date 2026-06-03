@@ -31,6 +31,9 @@
   - type: AttachableWieldDelayMods
     modifiers:
     - delay: 0.4
+  - type: AttachableSizeMods # RuMC edit
+    modifiers:
+    - size: 1
 
 - type: entity
   parent: RMCAttachmentExtendedBarrel

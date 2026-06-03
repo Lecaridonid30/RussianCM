@@ -1,12 +1,12 @@
-ent-RMCUniformBase = токарный станок-категория-одежда
+ent-RMCUniformBase = базовая форма
 
-ent-RMCFoldableUniformBase = токарный станок-категория-одежда
+ent-RMCFoldableUniformBase = базовая складная форма
 
-ent-RMCAlternateFoldableUniformBase = токарный станок-категория-одежда
+ent-RMCAlternateFoldableUniformBase = базовая складная форма
+    .suffix = Альтернативная
 
-ent-RMCUniformSuitCoordsBase = токарный станок-категория-одежда
+ent-RMCUniformSuitCoordsBase = базовая форма с координатами
 
-ent-RMCArmoredUniformBase = токарный станок-категория-одежда
+ent-RMCArmoredUniformBase = базовая бронированная форма
 
-ent-RMCMarineUniformBase = токарный станок-категория-одежда
-
+ent-RMCMarineUniformBase = базовая форма морпеха

@@ -9,6 +9,30 @@
   - type: Storage
     grid:
     - 0,0,25,1 #13 slots
+    whitelist:
+      tags:
+      - DiscreteHealthAnalyzer
+      - Dropper
+      - Pill
+      - Bottle
+      - Syringe
+      - PillCanister
+      - CMTraumaKit
+      - CMBurnKit
+      - CMOintment
+      - Brutepack
+      - CMBloodPack
+      - CMUSplintItem
+      - RMCPenlight
+      - CMAutoInjector
+      - CMFireExtinguisherPortable
+      - RMCSyringeCase
+      - CMSurgicalLine
+      - CMSynthGraft
+      - PillPacket
+      - Hypospray
+      - CMUSplintItem
+      - HemostaticGauzePacket
 
 - type: entity
   parent: AU14PouchMedicalProdigy
@@ -18,20 +42,13 @@
   components:
   - type: StorageFill
     contents:
-    - id: CMHealthAnalyzer
-    - id: CMTraumaKit10
-    - id: CMBurnKit10
-    - id: CMBloodPackFull
-    - id: CMSynthGraft
-    - id: CMSurgicalLine
-    - id: CMSurgicalCaseFilled
-    - id: AU14CMDefibrillator
-    - id: CMPortableSurgicalBedSpawnFolded
+    - id: CMUPlainGauze10
     - id: AU14Tourniquet
-    - id: CMUCastItem
+    - id: AU14PacketPillsTramadol
+    - id: CMUHemostaticGauze6
+    - id: CMUBurnGelGauze6
     - id: CMUSplintItem
     - id: CMUSplintItem
-      # splint
 
 - type: entity
   parent: RMCPouchMagazineLargePMC
@@ -112,10 +129,10 @@
       - CMSynthGraft
       - PillPacket
       - Hypospray
+      - HemostaticGauzePacket
       components:
       - Hypospray
       - CMUSplintItem
-      - SpawnItemsOnUse
 
 - type: entity
   parent: AU14PouchIFAKProdigy
@@ -124,10 +141,10 @@
   components:
   - type: StorageFill
     contents:
-    - id: AU14HemostaticGauzePacket
+    - id: CMUPlainGauze10
     - id: AU14Tourniquet
-    - id: CMPacketPillsTricordrazine
     - id: AU14PacketPillsTramadol
+    - id: CMUHemostaticGauze6
+    - id: CMUBurnGelGauze6
     - id: CMUSplintItem
-    - id: CMBicaridineAutoInjector
-    - id: CMKelotaneAutoInjector
+    - id: CMUSplintItem

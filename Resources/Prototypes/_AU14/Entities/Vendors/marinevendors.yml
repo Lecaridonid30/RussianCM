@@ -310,6 +310,40 @@
         amount: 60
       - id: CMOintment10
         amount: 60
+      - id: CMUPlainGauze10
+        amount: 60
+      - id: CMUPlainTraumaDressing10
+        amount: 40
+      - id: CMUCoagulantPowder
+        amount: 30
+      - id: CMUAntiseptic
+        amount: 30
+      - id: CMUBurnGel
+        amount: 30
+      - id: CMUTissueSealant
+        amount: 30
+      - id: CMUTraumaFoam
+        amount: 30
+      - id: CMUHemostaticGauze6
+        amount: 30
+      - id: CMUAntisepticGauze6
+        amount: 30
+      - id: CMUBurnGelGauze6
+        amount: 30
+      - id: CMUSealingGauze6
+        amount: 30
+      - id: CMUCompressionGauze6
+        amount: 30
+      - id: CMUHemostaticTraumaDressing4
+        amount: 20
+      - id: CMUAntisepticTraumaDressing4
+        amount: 20
+      - id: CMUBurnTraumaDressing4
+        amount: 20
+      - id: CMUSealingTraumaDressing4
+        amount: 20
+      - id: CMUCompressionTraumaDressing4
+        amount: 20
       - id: CMBurnKit10
         amount: 30
       - id: CMTraumaKit10
@@ -917,13 +951,13 @@
         amount: 1
     - name: Engineering Supplies
       entries:
-      - id: CMSandbagEmpty25
+      - id: CMSandbagEmpty50
         recommended: true
-        amount: 60
+        amount: 5
       - id: BarbedWire15
-        amount: 6
+        amount: 4
       - id: CMSheetMetal50
-        amount: 3
+        amount: 2
       - id: CMSheetPlasteel50
         amount: 1
       - id: RMCBoxMagazinePowerCellsHighFilled
@@ -931,7 +965,7 @@
       - id: RMCEngineerKit
         amount: 1
       - id: RMCPowerCellHigh
-        amount: 5
+        amount: 2
       - id: RMCCableCoil
         amount: 15
     - name: Flares and lights
@@ -990,10 +1024,7 @@
     - name: RTO Backpack
       choices: { RTOBackpack: 1 }
       entries:
-      - id: AU14BackpackRTOPackJungle
-      - id: AU14BackpackRTOPackDesert
-      - id: AU14BackpackRTOPackGray
-      - id: AU14BackpackRTOPackBlack
+      - id: RMCBackpackRTO
     - name: Equipment
       takeAll: CMStandard
       entries:
@@ -1135,7 +1166,7 @@
   parent: CMVendorBundleRiflemanApparel
   id: AU14VendorBundleCombatTechnicianEssentials
   name: essential engineer set
-  description: Contains 50 metal, 40 plasteel, 25 sandbags, a high-capacity power cell, a light replacer, a welding visor, and a nailgun.
+  description: Contains 50 metal, 50 plasteel, 50 sandbags, a high-capacity power cell, a light replacer, a welding visor, and a nailgun.
   components:
   - type: Sprite
     sprite: _RMC14/Objects/Tools/wrench.rsi
@@ -1143,9 +1174,11 @@
   - type: CMVendorBundle
     bundle:
     - RMCExplosivePlastic
-    - CMSandbagEmpty25
+    - RMCEngineerKit
+    - CMSandbagEmpty50
+    - RMCPlankWood
     - CMSheetMetal50
-    - CMSheetPlasteel40
+    - CMSheetPlasteel50
     - RMCPowerCellHigh
     - RMCLightReplacer
     - CMAPCElectronics
@@ -1188,8 +1221,9 @@
   components:
   - type: Sprite
     sprite: _AU14/Structures/Vendors/assortedequipment.rsi
+  - type: AccessReader
+    access: [["AU14AccessGovforSecurity" ], [ "AU14AccessOpforSecurity" ]]
   - type: CMAutomatedVendor
-    jobs: [ AU14JobGOVFORMilitaryPoliceMan, AU14JobMilitaryPoliceBase ]
     sections:
     - name: Standard Equipment
       takeAll: CMStandard
@@ -1197,8 +1231,8 @@
       - id: CMGlassesSecurity
       - id: CMBeltSecurityMPFilled
       - id: RMCBoxZiptie
-      - id: RMCGuidebookLawMarine
-      - id: RMCGuidebookSOP
+      - id: AU14GuidebookLawMarine
+      - id: AU14GuidebookSOP
       - id: AU14Scissors
     - name: Uniform
       choices: { AU14Uniform: 1 }
@@ -1242,7 +1276,7 @@
   description: An automated supply rack hooked up to a big storage of various firearms, ammunitions, explosives, load carrying equipment and other miscellaneous items.
   components:
   - type: AccessReader
-    access: [ ["AU14AccessGovforReq"] ]
+    access: [["AU14AccessGovforReq"], ["AU14AccessOpforReq"]] # RuMC edit
   - type: Sprite
     sprite: _RMC14/Structures/Machines/VendingMachines/ColMarTech/requisitions_wall/guns.rsi
   - type: CMAutomatedVendor
@@ -1287,6 +1321,8 @@
         amount: 200
       - id: CMMagazineRifleM54CMK1AP
         amount: 15
+      - id: CMMagazineRifleM54CMK1Tracer
+        amount: 5
       - id: CMMagazineSMGM63
         amount: 200
       - id: CMMagazineSMGM63AP
@@ -1309,8 +1345,6 @@
         amount: 10
       - id: RMCMagazineRifleM54CWP
         amount: 5
-      - id: RMCMagazineRifleM54CHEAPEmpty
-        amount: 0
       - id: RMCBoxShotgunBuckshot
         amount: 20
       - id: RMCBoxShotgunFlechette

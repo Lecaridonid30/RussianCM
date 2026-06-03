@@ -5,6 +5,8 @@
   description: A German design, this was one of the most widely used submachine guns in the world. Modernized design for limited use by colonial security and Office of the Colony Marshals.
   suffix: Filled
   components:
+  - type: Item # RuMC edit
+    size: Normal
   - type: Sprite
     sprite: _RMC14/Objects/Weapons/Guns/SMGs/mp5alt.rsi
     layers:

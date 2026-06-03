@@ -315,4 +315,59 @@ au14-prodigyparty-greeting = You are a part of "Prodigy Armed Repair Team" (PART
 
     Prodigy Security - Repairing Our World
 
-    You are HOSTILE to all WeYu units
+    You are neutral to all WeYu units
+
+au14-prodigyextract-description = You are a Extraction Ship team called in by a Prodigy 3rd Party! Use your ship to get your Contractors out of there!
+
+au14-prodigyextract-greeting = You are a part of "Prodigy Extraction Team" (PET)
+
+    You were called for an extraction mission in the area, follow your orders.
+
+    Protecting your calling team and extracting them is your top priority
+
+    Prodigy Security - Repairing Our World
+
+    You are neutral to all WeYu units
+
+au14-prodigyhazard-description = You are a Hazard Response Team called in for a special mission involving a Chemical, Biological, Ultraviolet, Radiological, and Nuclear tasking.
+
+au14-prodigyhazard-greeting = You are a part of "Prodigy Hazard Response Team" (HRT)
+
+    You were called for special mission involving a Chemical, Biological, Ultraviolet, Radiological, and Nuclear tasking.
+
+    Completing your mission is your top priority.
+
+    Prodigy Security - Repairing Our World
+
+    You are neutral to all WeYu units
+
+au14-prodigyrescue-description = You are a Search and Rescue team in the local area that responded to a distress signal in the local area, find out who needs help.
+
+au14-prodigyrescue-greeting = You are a part of "Prodigy Tactical Advanced Search Squad" (TARS)
+
+    You are a Search and Rescue team in the local area that responded to a distress signal in the local area, find out who needs help.
+
+    Completing your mission is your top priority.
+
+    Prodigy Security - Repairing Our World
+
+    You are neutral to all WeYu units
+
+au14-job-name-msg-commander = Commander
+au14-job-name-msg-watchstander = Watch Stander
+au14-job-prefix-msg-watchstander = WS
+au14-job-description-msg = You are a part of Marine Security Guard. You were called to ensure safety of UA Embassy in the colony.
+
+au14-job-greeting-msg = You are a part of Marine Security Guard.
+    You were called to ensure safety of UA Embassy on the colony.
+    You are NOT a part of GOVFOR nor hostile to them.
+
+au14-wysurv-greeting = Everything has gone wrong, this is a complete disaster.
+
+    Ensure your survival at all costs, the knowledge you posess was paid for with many lifes.
+
+    Company's profit is your goal.
+
+    Weyland-Yutani - building better worlds.
+
+au14-wysurv-description = You are whats left of the local Weyland-Yutani employees. Survive and ensure your knowledge reaches the company.

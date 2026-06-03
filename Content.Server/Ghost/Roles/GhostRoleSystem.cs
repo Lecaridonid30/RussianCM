@@ -4,7 +4,9 @@ using Content.Server.Access.Systems;
 using Content.Server.IdentityManagement;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
+using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
+using Content.Server.Players.JobWhitelist;
 using Content.Server.Preferences.Managers;
 using Content.Server.EUI;
 using Content.Server.Ghost.Roles.Components;
@@ -60,12 +62,13 @@ public sealed partial class GhostRoleSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
-    [Dependency] private Content.Server.GameTicking.GameTicker _gameTicker = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private IServerPreferencesManager _preferences = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private IdCardSystem _idCard = default!;
     [Dependency] private IdentitySystem _identity = default!;
     [Dependency] private IBanManager _banManager = default!;
+    [Dependency] private JobWhitelistManager _jobWhitelist = default!;
 
     private uint _nextRoleIdentifier;
     private bool _needsUpdateGhostRoleCount = true;
@@ -320,6 +323,10 @@ public sealed partial class GhostRoleSystem : EntitySystem
         if (jobBans == null || jobBans.Contains(job))
             return false;
 
+        // Check job whitelist
+        if (!_jobWhitelist.IsAllowed(player, job))
+            return false;
+
         var ev = new IsJobAllowedEvent(player, job);
         RaiseLocalEvent(ref ev);
         return !ev.Cancelled;
@@ -360,7 +367,7 @@ public sealed partial class GhostRoleSystem : EntitySystem
     {
         if (args.NewStatus == SessionStatus.InGame)
         {
-            var response = new GhostUpdateGhostRoleCountEvent(_ghostRoles.Count);
+            var response = new GhostUpdateGhostRoleCountEvent(GetGhostRoleCount());
             RaiseNetworkEvent(response, args.Session.Channel);
         }
         else
@@ -372,6 +379,12 @@ public sealed partial class GhostRoleSystem : EntitySystem
 
     public void RegisterGhostRole(Entity<GhostRoleComponent> role)
     {
+        if (!CanTakeGhost(role.Owner, role.Comp))
+        {
+            UnregisterGhostRole(role);
+            return;
+        }
+
         if (_ghostRoles.ContainsValue(role))
             return;
 
@@ -633,9 +646,21 @@ public sealed partial class GhostRoleSystem : EntitySystem
         // Sessions in the lobby may not have ContentData or an attached entity; don't require them.
         // After taking a ghost role, the player cannot return to the original body, so wipe the player's current mind
         if (_mindSystem.TryGetMind(player.UserId, out _, out var mind) && !mind.IsVisitingEntity)
-            _mindSystem.WipeMind(player);
+        {
+            if (mind.OwnedEntity is { Valid: true } owned && HasComp<GhostComponent>(owned))
+                QueueDel(owned);
 
-        var characterName = GetGhostRoleCharacterName(player, mob);
+            _mindSystem.WipeMind(player);
+        }
+
+        string characterName;
+        // if (role.JobProto is { } jobId // RuMC edit
+        //         && _prototype.TryIndex(jobId, out JobPrototype? jobProto)
+        //         && !jobProto.UsePlayerProfile)
+        //     characterName = Comp<MetaDataComponent>(mob).EntityName;
+        // else
+        //     characterName = GetGhostRoleCharacterName(player, mob);
+        characterName = Comp<MetaDataComponent>(mob).EntityName;
         var newMind = _mindSystem.CreateMind(player.UserId, characterName);
 
         Log.Debug($"GhostRoleInternalCreateMindAndTransfer: created mind {newMind.Owner} for player {player.Name} (user {player.UserId}) targeting mob {mob}");
@@ -654,6 +679,7 @@ public sealed partial class GhostRoleSystem : EntitySystem
             markerRole.Value.Comp2.Name = role.RoleName;
     }
 
+    /* // RuMC edit
     private string GetGhostRoleCharacterName(ICommonSession player, EntityUid mob)
     {
         if (TryApplyPlayerProfileName(player, mob, out var characterName))
@@ -684,6 +710,7 @@ public sealed partial class GhostRoleSystem : EntitySystem
         _identity.QueueIdentityUpdate(mob);
         return true;
     }
+    */
 
     /// <summary>
     /// Returns the number of available ghost roles.
@@ -691,7 +718,11 @@ public sealed partial class GhostRoleSystem : EntitySystem
     public int GetGhostRoleCount()
     {
         var metaQuery = GetEntityQuery<MetaDataComponent>();
-        return _ghostRoles.Count(pair => metaQuery.CompOrNull(pair.Value.Owner)?.EntityPaused == false);
+        return _ghostRoles.Count(pair =>
+            metaQuery.TryComp(pair.Value.Owner, out var meta) &&
+            !meta.EntityPaused &&
+            !pair.Value.Comp.Taken &&
+            !IsControlledGhostRole(pair.Value.Owner));
     }
 
     /// <summary>
@@ -716,6 +747,12 @@ public sealed partial class GhostRoleSystem : EntitySystem
         foreach (var (id, (uid, role)) in _ghostRoles)
         {
             if (!metaQuery.TryComp(uid, out var meta))
+            {
+                _ghostRolesToRemove.Add(id);
+                continue;
+            }
+
+            if (role.Taken || IsControlledGhostRole(uid))
             {
                 _ghostRolesToRemove.Add(id);
                 continue;
@@ -915,7 +952,14 @@ public sealed partial class GhostRoleSystem : EntitySystem
     {
         return Resolve(uid, ref component, false) &&
                !component.Taken &&
-               !MetaData(uid).EntityPaused;
+               !MetaData(uid).EntityPaused &&
+               !IsControlledGhostRole(uid);
+    }
+
+    private bool IsControlledGhostRole(EntityUid uid)
+    {
+        return HasComp<ActorComponent>(uid) ||
+               TryComp(uid, out MindContainerComponent? mind) && mind.HasMind;
     }
 
     private void OnTakeoverTakeRole(EntityUid uid, GhostTakeoverAvailableComponent component, ref TakeGhostRoleEvent args)

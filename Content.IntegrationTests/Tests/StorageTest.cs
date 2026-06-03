@@ -10,6 +10,7 @@ using Content.Shared.Storage.Components;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Whitelist; // RMC14
 using Robust.Shared.GameObjects;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests
@@ -17,6 +18,12 @@ namespace Content.IntegrationTests.Tests
     [TestFixture]
     public sealed class StorageTest
     {
+        private static readonly EntProtoId InfantryIfak = "AU14PouchIFAK";
+        private static readonly EntProtoId InfantryIfakFill = "AU14PouchIFAKFill";
+        private static readonly EntProtoId MedicalPouch = "RMCPouchMedical";
+        private static readonly EntProtoId InfantryIfakTramadolPacket = "AU14PacketPillsTramadol";
+        private static readonly EntProtoId EpinephrineAutoInjector = "CMEpinephrineAutoInjector";
+
         /// <summary>
         /// Can an item store more than itself weighs.
         /// In an ideal world this test wouldn't need to exist because sizes would be recursive.
@@ -75,6 +82,84 @@ namespace Content.IntegrationTests.Tests
                     }
                 });
             });
+            await pair.CleanReturnAsync();
+        }
+
+        [Test]
+        public async Task TestHemostaticGauzePacketFitsProdigyIfak()
+        {
+            await using var pair = await PoolManager.GetServerClient();
+            var server = pair.Server;
+
+            var testMap = await pair.CreateTestMap();
+            var coords = testMap.GridCoords;
+            var entMan = server.EntMan;
+            var storageSystem = server.System<SharedStorageSystem>();
+            var mapSystem = server.System<SharedMapSystem>();
+
+            await server.WaitAssertion(() =>
+            {
+                var pouch = entMan.SpawnEntity("AU14PouchIFAKProdigy", coords);
+                var packet = entMan.SpawnEntity("AU14HemostaticGauzePacket", coords);
+
+                Assert.That(storageSystem.CanInsert(pouch, packet, null, out var reason), Is.True, reason);
+
+                entMan.DeleteEntity(packet);
+                entMan.DeleteEntity(pouch);
+                mapSystem.DeleteMap(testMap.MapId);
+            });
+
+            await pair.CleanReturnAsync();
+        }
+
+        [Test]
+        public async Task TestNormalInfantryIfakUsesTramadolPacketInsteadOfEpinephrine()
+        {
+            await using var pair = await PoolManager.GetServerClient();
+            var server = pair.Server;
+
+            await server.WaitAssertion(() =>
+            {
+                var protoManager = server.ResolveDependency<IPrototypeManager>();
+                var factory = server.EntMan.ComponentFactory;
+
+                Assert.That(protoManager.TryIndex<EntityPrototype>(InfantryIfakFill, out var ifak), Is.True);
+                Assert.That(ifak!.TryGetComponent<StorageFillComponent>(out var fill, factory), Is.True);
+
+                var contents = fill!.Contents
+                    .Where(entry => entry.PrototypeId != null)
+                    .Select(entry => entry.PrototypeId!.Value)
+                    .ToList();
+
+                Assert.Multiple(() =>
+                {
+                    Assert.That(contents, Does.Contain(InfantryIfakTramadolPacket));
+                    Assert.That(contents, Does.Not.Contain(EpinephrineAutoInjector));
+                });
+            });
+
+            await pair.CleanReturnAsync();
+        }
+
+        [Test]
+        public async Task TestMedicalPouchMatchesInfantryIfakStorageSpace()
+        {
+            await using var pair = await PoolManager.GetServerClient();
+            var server = pair.Server;
+
+            await server.WaitAssertion(() =>
+            {
+                var protoManager = server.ResolveDependency<IPrototypeManager>();
+                var factory = server.EntMan.ComponentFactory;
+
+                Assert.That(protoManager.TryIndex<EntityPrototype>(InfantryIfak, out var ifak), Is.True);
+                Assert.That(protoManager.TryIndex<EntityPrototype>(MedicalPouch, out var medical), Is.True);
+                Assert.That(ifak!.TryGetComponent<StorageComponent>(out var ifakStorage, factory), Is.True);
+                Assert.That(medical!.TryGetComponent<StorageComponent>(out var medicalStorage, factory), Is.True);
+
+                Assert.That(medicalStorage!.Grid.GetArea(), Is.EqualTo(ifakStorage!.Grid.GetArea()));
+            });
+
             await pair.CleanReturnAsync();
         }
 

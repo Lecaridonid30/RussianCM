@@ -28,13 +28,12 @@
     components:
     - type: Skills
       skills:
-        RMCSkillEndurance: 1
+        RMCSkillEndurance: 3
         RMCSkillFirearms: 2
         RMCSkillConstruction: 2
-        RMCSkillEngineer: 3
-        RMCSkillFireman: 1
-        RMCSkillVehicles: 1
-        RMCSkillPolice: 1
+        RMCSkillEngineer: 2
+        RMCSkillFireman: 2
+        RMCSkillPolice: 2
     - type: JobPrefix
       prefix: au14-job-prefix-AU14JobGOVFORSquadRiflemanWYPMC
     - type: TacticalMapIcon
@@ -242,7 +241,7 @@
     gloves: AU14PVEHandsInsulatedBlackMarine
     belt: RMCMK80BeltPMCFilled
     pocket1: RMCPouchMagazineLargePMC
-    pocket2: RMCPouchFirstAidPMCFill
+    pocket2: AU14PouchIFAKFill
     back: RMCSatchelLightpackWeYa
     ears: RMCHeadsetDistressWeYa
     suitstorage: RMCWeaponRifleM54C2
@@ -252,8 +251,6 @@
     - CMMagazineRifleM54CAP
     - CMMagazineRifleM54CAP
     - CMMagazineRifleM54CAP
-    pocket2:
-    - AU14Tourniquet
     back:
     - RMCMREWeYa
     - CMCanteen
@@ -275,8 +272,6 @@
     - CMMagazineSMGM63AP
     - CMMagazineSMGM63AP
     - CMMagazineSMGM63AP
-    pocket2:
-    - AU14Tourniquet
     back:
     - RMCMREWeYa
     - CMCanteen
@@ -297,8 +292,6 @@
     - RMCMagazineRifleSSG45AP
     - RMCMagazineRifleSSG45AP
     - RMCMagazineRifleSSG45AP
-    pocket2:
-    - AU14Tourniquet
     back:
     - RMCMREWeYa
     - CMCanteen
@@ -321,8 +314,6 @@
     - CMMagazineSniperM96S
     - CMMagazineSniperM96S
     - CMMagazineSniperM96S
-    pocket2:
-    - AU14Tourniquet
     back:
     - RMCMREWeYa
     - CMCanteen

@@ -43,6 +43,8 @@ public sealed partial class JobPrototype : IInheritingPrototype, ICMSpecific
     [DataField]
     public string? SpawnMenuRoleName;
 
+    public string? LocalizedSpawnMenuRoleName => SpawnMenuRoleName; // RuMC edit
+
     [DataField]
     public string? NewToJobInfo;
 
@@ -89,4 +91,17 @@ public sealed partial class JobPrototype : IInheritingPrototype, ICMSpecific
     /// </summary>
     [DataField]
     public Dictionary<CamouflageType, ProtoId<StartingGearPrototype>>? CamouflageStartingGear;
+
+    /// <summary>
+    /// If the mob (e.g. working-joe) should receive a name change and appearance from the loadout.
+    /// </summary>
+    [DataField]
+    public bool UsePlayerProfile = true;
+
+    /// <summary>
+    /// If we would like to grab the AddComponentSpecials from the parent prototypes.
+    /// Used for military job/factions to reduce bloat.
+    /// </summary>
+    [DataField]
+    public bool InheritAddComponentSpecials = false;
 }

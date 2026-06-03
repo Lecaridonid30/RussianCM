@@ -16,17 +16,26 @@ rank-RMCRankMajor = Майор
 rank-RMCRankCaptain = Капитан
   .prefix = Кап.
 
-rank-RMCRankFirstLT = Старший лейтенант
-  .prefix = Ст. Лейт.
+rank-RMCRankFirstLT = Первый лейтенант
+  .prefix = 1-й Лейт.
 
-rank-RMCRankSecondLT = Лейтенант
-  .prefix = Лейт.
+rank-RMCRankSecondLT = Второй лейтенант
+  .prefix = 2-й Лейт.
 
-rank-RMCRankChiefWarrantOfficer = Старший прапорщик
-  .prefix = Ст. Прап.
+rank-RMCRankChiefWarrantOfficer5 = Старший уоррент-офицер 5-го класса
+  .prefix = СУО5
 
-rank-RMCRankWarrantOfficer = Прапорщик
-  .prefix = Прап.
+rank-RMCRankChiefWarrantOfficer4 = Старший уоррент-офицер 4-го класса
+  .prefix = СУО4
+
+rank-RMCRankChiefWarrantOfficer3 = Старший уоррент-офицер 3-го класса
+  .prefix = СУО3
+
+rank-RMCRankChiefWarrantOfficer = Старший уоррент-офицер 2-го класса
+  .prefix = СУО2
+
+rank-RMCRankWarrantOfficer = Уоррент-офицер
+  .prefix = УО
 
 rank-RMCRankSergeantMajor = Сержант-майор
   .prefix = Серж-майор
@@ -35,7 +44,7 @@ rank-RMCRankMasterGunnerySergeant = Старший комендор-сержан
   .prefix = Ст. Ком-серж
 
 rank-RMCRankFirstSergeant = Первый сержант
-  .prefix = 1-ый Серж.
+  .prefix = 1-й Серж.
 
 rank-RMCRankMasterSergeant = Мастер-сержант
   .prefix = Маст-Серж.
@@ -52,13 +61,13 @@ rank-RMCRankSergeant = Сержант
 rank-RMCRankCorporal = Капрал
   .prefix = Капр.
 
-rank-RMCRankLanceCorporal = Младший Капрал
+rank-RMCRankLanceCorporal = Младший капрал
   .prefix = Мл. Капр.
 
 rank-RMCRankPrivateFirstClass = Рядовой первого класса
   .prefix = Ряд. 1кл.
 
-ent-RMCRankPrivate = Рядовой
+rank-RMCRankPrivate = Рядовой
   .prefix = Ряд.
 
 rank-RMCRankRecruit = Рекрут
