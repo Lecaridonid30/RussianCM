@@ -18,6 +18,7 @@ public sealed partial class ViewportUIController : UIController
     [Dependency] private IConfigurationManager _configurationManager = default!;
     public static readonly Vector2i ViewportSize = (EyeManager.PixelsPerMeter * 21, EyeManager.PixelsPerMeter * 15);
     public const int ViewportHeight = 15;
+    private Vector2i? _lastViewportPixelSize;
     private MainViewport? Viewport => UIManager.ActiveScreen?.GetWidget<MainViewport>();
 
     public override void Initialize()
@@ -50,7 +51,7 @@ public sealed partial class ViewportUIController : UIController
 
         if (verticalfit)
         {
-            width = max;
+            width = Math.Max(max, GetVerticalFitViewportWidth());
         }
         else if (width < min || width > max)
         {
@@ -83,6 +84,12 @@ public sealed partial class ViewportUIController : UIController
 
         base.FrameUpdate(e);
 
+        if (_lastViewportPixelSize != Viewport.PixelSize)
+        {
+            _lastViewportPixelSize = Viewport.PixelSize;
+            UpdateViewportRatio();
+        }
+
         Viewport.Viewport.Eye = _eyeManager.CurrentEye;
 
         // verify that the current eye is not "null". Fuck IEyeManager.
@@ -103,5 +110,16 @@ public sealed partial class ViewportUIController : UIController
         // Currently, this shouldn't happen. This likely happened because the main eye was set to null. When this
         // does happen it can create hard to troubleshoot bugs, so lets print some helpful warnings:
         Log.Warning($"Main viewport's eye is in nullspace (main eye is null?). Attached entity: {_entMan.ToPrettyString(ent.Value)}. Entity has eye comp: {eye != null}");
+    }
+
+    private int GetVerticalFitViewportWidth()
+    {
+        if (Viewport == null || Viewport.PixelSize.Y <= 0)
+        {
+            return CCVars.ViewportWidth.DefaultValue;
+        }
+
+        var ratio = Viewport.PixelSize.X / (float) Viewport.PixelSize.Y;
+        return Math.Max(1, (int) MathF.Ceiling(ViewportHeight * ratio));
     }
 }
