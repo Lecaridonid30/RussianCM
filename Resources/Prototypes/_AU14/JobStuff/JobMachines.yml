@@ -139,7 +139,7 @@
   components:
   - type: SubmissionStorage
     rewards:
-      Fruit: 2SteelOre
+      Fruit: 2
   - type: DisposalUnit
     whitelist:
       tags:
