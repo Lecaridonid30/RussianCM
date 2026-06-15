@@ -5,7 +5,7 @@
   name: au14-preset-forceonforce-title
   showInVote: true
   description: au14-preset-forceonforce-description
-  minPlayers: 125
+  minPlayers: 100 # RuMC
   requiresOpforVote: true
   requiresGovforVote: true
   supportedPlanets:
