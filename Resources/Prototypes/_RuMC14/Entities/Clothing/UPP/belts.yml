@@ -1,0 +1,21 @@
+- type: entity
+  parent: CMBeltMarine
+  id: RuMCUPPNavalInfantryBeltGrenade
+  name: PD-54 grenade vest
+  description: A vest designed for 12 grenades, equipped with special fasteners for securely holding grenades from the socialist bloc. It also accommodates flyers.
+  components:
+  - type: Sprite
+    sprite: _RMC14/Objects/Clothing/Belt/grenade.rsi
+  - type: Clothing
+    sprite: _RMC14/Objects/Clothing/Belt/grenade.rsi
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,11,3 # 12 slots
+    whitelist:
+      tags:
+      - Grenade
+      - CMFlare
+  - type: FixedItemSizeStorage
+  - type: ItemCamouflage
+    camouflageVariations: { }
