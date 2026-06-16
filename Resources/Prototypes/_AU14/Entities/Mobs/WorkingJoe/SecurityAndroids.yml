@@ -1,0 +1,17 @@
+- type: entity
+  parent: AU14MobSecurityAndroid
+  id: AU14MobWYSecurityAndroid
+  suffix: AU14, WY
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRoleApplySpecial
+  - type: GhostRole
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    reregister: false
+    name: Security Android (WY)
+    description: au14-job-description-securityandroid
+    job: AU14JobWYSecurityAndroid
+    raffle:
+      settings: short
