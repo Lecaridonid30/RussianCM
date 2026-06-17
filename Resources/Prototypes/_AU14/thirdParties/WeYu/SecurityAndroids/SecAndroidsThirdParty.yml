@@ -1,9 +1,9 @@
 - type: partySpawn
   id: WYAndroidsPartySpawn
   leadersToSpawn:
-    AU14MobSecurityAndroidWY: 1
+    AU14MobWYSecurityAndroid: 1
   gruntsToSpawn:
-    AU14MobSecurityAndroidWY: 2
+    AU14MobWYSMGSecurityAndroid: 2
   scalewithpop: false
   spawnTogether: true
 
@@ -13,7 +13,7 @@
   entrymethod: shuttle
   dropshippath: /Maps/_AU14/ShuttlesDropships/rmc_ert_pmc_shuttle.yml
   weight: 20
-  minplayers: 400
+  minplayers: 400 # admin spawn only
   maxplayers: 400
   GhostsNeeded: 8
   roundstart: false
