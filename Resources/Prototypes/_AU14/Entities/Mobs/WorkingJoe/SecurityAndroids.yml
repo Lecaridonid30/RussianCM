@@ -16,7 +16,7 @@
     raffle:
       settings: short
 - type: Loadout
-    prototypes: [AU14GearWYSecurityAndroid]
+  prototypes: [AU14GearWYSecurityAndroid]
 
 - type: startingGear
   parent: AU14GearSecurityAndroidBase
