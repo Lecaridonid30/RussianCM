@@ -1,14 +1,20 @@
+using System.Linq;
+using Content.Server.Administration;
 using Content.Server.Chat.Systems;
 using Content.Server.Humanoid;
+using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.Ghost;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.IdentityManagement.Components;
+using Content.Shared.Interaction;
 using Content.Shared.Mind;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
+using Robust.Shared.Configuration;
+using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
 using Robust.Shared.Enums;
@@ -23,46 +29,83 @@ public sealed partial class AcquaintanceSystem : EntitySystem
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private HumanoidAppearanceSystem _humanoid = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private QuickDialogSystem _quickDialog = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private IConfigurationManager _configuration = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<GetVerbsEvent<InteractionVerb>>(OnGetInteractionVerbs);
+        SubscribeLocalEvent<GetVerbsEvent<ExamineVerb>>(OnGetExamineVerbs);
     }
 
-    private void OnGetInteractionVerbs(GetVerbsEvent<InteractionVerb> args)
+    private void OnGetExamineVerbs(GetVerbsEvent<ExamineVerb> args)
     {
-        if (args.User == args.Target ||
-            !args.CanAccess ||
-            !args.CanInteract ||
-            !HasComp<HumanoidAppearanceComponent>(args.User) ||
-            !HasComp<HumanoidAppearanceComponent>(args.Target) ||
-            !_mind.TryGetMind(args.User, out _, out _) ||
-            !_mind.TryGetMind(args.Target, out _, out _))
+        if (!CanIntroduceCharacters(args.User, args.Target))
+            return;
+
+        var canIntroduce = args.CanAccess && args.CanInteract;
+        args.Verbs.Add(new ExamineVerb
+        {
+            Text = Loc.GetString("acquaintance-introduce-verb"),
+            Message = Loc.GetString(canIntroduce
+                ? "acquaintance-introduce-verb-description"
+                : "acquaintance-introduce-too-far"),
+            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/bubbles.svg.192dpi.png")),
+            Priority = 20,
+            Disabled = !canIntroduce,
+            CloseMenu = true,
+            Act = () => OpenIntroductionDialog(args.User, args.Target)
+        });
+    }
+
+    private void OpenIntroductionDialog(EntityUid speaker, EntityUid listener)
+    {
+        if (!TryComp(speaker, out ActorComponent? actor) ||
+            !CanIntroduceNow(speaker, listener))
         {
             return;
         }
 
-        args.Verbs.Add(new InteractionVerb
-        {
-            Text = Loc.GetString("acquaintance-introduce-verb"),
-            Message = Loc.GetString("acquaintance-introduce-verb-description"),
-            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/bubbles.svg.192dpi.png")),
-            Priority = 1,
-            Act = () => Introduce(args.User, args.Target)
-        });
+        _quickDialog.OpenDialog(
+            actor.PlayerSession,
+            Loc.GetString("acquaintance-introduce-dialog-title"),
+            Loc.GetString("acquaintance-introduce-dialog-prompt"),
+            (string claimedName) => Introduce(speaker, listener, claimedName),
+            defaultValue: Identity.Name(speaker, EntityManager, speaker).Name);
     }
 
-    public void Introduce(EntityUid speaker, EntityUid listener)
+    private bool CanIntroduceCharacters(EntityUid speaker, EntityUid listener)
     {
-        if (!_mind.TryGetMind(listener, out var listenerMindId, out _))
+        return speaker != listener &&
+               HasComp<HumanoidAppearanceComponent>(speaker) &&
+               HasComp<HumanoidAppearanceComponent>(listener) &&
+               _mind.TryGetMind(speaker, out _, out _) &&
+               _mind.TryGetMind(listener, out _, out _);
+    }
+
+    private bool CanIntroduceNow(EntityUid speaker, EntityUid listener)
+    {
+        return Exists(speaker) &&
+               Exists(listener) &&
+               CanIntroduceCharacters(speaker, listener) &&
+               _interaction.InRangeUnobstructed(speaker, listener);
+    }
+
+    public void Introduce(EntityUid speaker, EntityUid listener, string? claimedName = null)
+    {
+        if (!CanIntroduceNow(speaker, listener) ||
+            !_mind.TryGetMind(listener, out var listenerMindId, out _))
+        {
             return;
+        }
 
         if (!TryComp(listenerMindId, out AcquaintanceComponent? memory))
             memory = EnsureComp<AcquaintanceComponent>(listenerMindId);
 
-        var claimedName = Identity.Name(speaker, EntityManager, listener).Name;
+        claimedName = SanitizeClaimedName(claimedName) ??
+                      Identity.Name(speaker, EntityManager, listener).Name;
         var unknownFace = GetUnknownFaceDescription(speaker);
         var voiceName = GetTransformedVoiceName(speaker);
         var faceVisible = CanSeeFace(speaker);
@@ -86,6 +129,25 @@ public sealed partial class AcquaintanceSystem : EntitySystem
             speaker,
             listener,
             PopupType.Medium);
+    }
+
+    private string? SanitizeClaimedName(string? claimedName)
+    {
+        if (string.IsNullOrWhiteSpace(claimedName))
+            return null;
+
+        var sanitized = new string(claimedName
+            .Where(character => !char.IsControl(character))
+            .ToArray())
+            .Trim();
+
+        if (sanitized.Length == 0)
+            return null;
+
+        var maxLength = _configuration.GetCVar(CCVars.MaxNameLength);
+        return sanitized.Length > maxLength
+            ? sanitized[..maxLength]
+            : sanitized;
     }
 
     public string GetPerceivedFaceName(EntityUid viewer, EntityUid target)

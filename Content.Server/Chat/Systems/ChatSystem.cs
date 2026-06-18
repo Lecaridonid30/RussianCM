@@ -659,7 +659,14 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (checkEmote)
             TryEmoteChatInput(source, action);
-        SendInVoiceRange(ChatChannel.Emotes, action, wrappedMessage, source, range, author);
+        SendInVoiceRange(
+            ChatChannel.Emotes,
+            action,
+            wrappedMessage,
+            source,
+            range,
+            author,
+            visualNameMarkup: nameOverride == null ? name : null);
         if (!hideLog)
             if (name != Name(source))
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Emote from {ToPrettyString(source):user} as {name}: {action}");
@@ -797,7 +804,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         ChatTransmitRange range,
         NetUserId? author = null,
         string? speakerNameMarkup = null,
-        string? transformedVoiceName = null)
+        string? transformedVoiceName = null,
+        string? visualNameMarkup = null)
     {
         foreach (var (session, data) in GetRecipients(source, VoiceRange))
         {
@@ -828,6 +836,14 @@ public sealed partial class ChatSystem : SharedChatSystem
                 var perceivedName = FormattedMessage.EscapeText(
                     _acquaintance.GetPerceivedVoiceName(listener, source, transformedVoiceName));
                 listenerWrappedMessage = ReplaceFirst(listenerWrappedMessage, speakerNameMarkup, perceivedName);
+            }
+            else if (channel == ChatChannel.Emotes &&
+                     visualNameMarkup != null &&
+                     session.AttachedEntity is { Valid: true } emoteViewer)
+            {
+                var perceivedName = FormattedMessage.EscapeText(
+                    _acquaintance.GetPerceivedFaceName(emoteViewer, source));
+                listenerWrappedMessage = ReplaceFirst(listenerWrappedMessage, visualNameMarkup, perceivedName);
             }
 
             _chatManager.ChatMessageToOne(channel, ev.Message, GetYautjaVisibleWrappedMessage(listenerWrappedMessage, source, session), source, ev.EntHideChat, session.Channel, author: author);

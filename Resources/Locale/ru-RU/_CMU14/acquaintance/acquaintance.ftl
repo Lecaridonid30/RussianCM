@@ -1,5 +1,8 @@
 acquaintance-introduce-verb = Представиться
-acquaintance-introduce-verb-description = Назвать этому человеку своё текущее имя.
+acquaintance-introduce-verb-description = Представиться этому человеку под выбранным именем.
+acquaintance-introduce-too-far = Подойдите ближе, чтобы представиться.
+acquaintance-introduce-dialog-title = Представиться
+acquaintance-introduce-dialog-prompt = Каким именем вы представитесь?
 
 acquaintance-introduce-speaker = Вы представляетесь персонажу «{ $target }» как «{ $name }».
 acquaintance-introduce-listener-face = { CAPITALIZE($speaker) } представляется вам как «{ $name }». Вы запоминаете лицо и голос.

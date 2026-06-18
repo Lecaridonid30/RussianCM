@@ -1,5 +1,8 @@
 acquaintance-introduce-verb = Introduce yourself
-acquaintance-introduce-verb-description = Tell this person your current name.
+acquaintance-introduce-verb-description = Introduce yourself to this person under a chosen name.
+acquaintance-introduce-too-far = Move closer to introduce yourself.
+acquaintance-introduce-dialog-title = Introduce yourself
+acquaintance-introduce-dialog-prompt = What name will you use?
 
 acquaintance-introduce-speaker = You introduce yourself to “{ $target }” as “{ $name }”.
 acquaintance-introduce-listener-face = The { $speaker } introduces themselves as “{ $name }”. You remember their face and voice.
