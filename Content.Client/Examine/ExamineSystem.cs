@@ -169,7 +169,13 @@ namespace Content.Client.Examine
             }
             // CMU14 end
 
-            OpenTooltip(player.Value, entity, ev.CenterAtCursor, ev.OpenAtOldTooltip, ev.KnowTarget);
+            OpenTooltip(
+                player.Value,
+                entity,
+                ev.CenterAtCursor,
+                ev.OpenAtOldTooltip,
+                ev.KnowTarget,
+                ev.DisplayName);
             UpdateTooltipInfo(player.Value, entity, ev.Message, ev.Verbs, getVerbs: false);
         }
 
