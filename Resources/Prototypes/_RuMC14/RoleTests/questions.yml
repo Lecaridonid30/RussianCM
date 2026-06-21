@@ -1,167 +1,267 @@
 - type: roleTestQuestionPool
   id: AU14JobCivilianAmbassadorCCA
   job: AU14JobCivilianAmbassadorCCA
-  pool: "job:AU14JobCivilianAmbassadorCCA"
+  pool: "group:cmu-diplomacy"
 - type: roleTestQuestionPool
   id: AU14JobCivilianAmbassadorICSC
   job: AU14JobCivilianAmbassadorICSC
-  pool: "job:AU14JobCivilianAmbassadorICSC"
+  pool: "group:cmu-diplomacy"
 - type: roleTestQuestionPool
   id: AU14JobCivilianAmbassadorTWE
   job: AU14JobCivilianAmbassadorTWE
-  pool: "job:AU14JobCivilianAmbassadorTWE"
+  pool: "group:cmu-diplomacy"
 - type: roleTestQuestionPool
   id: AU14JobCivilianAmbassadorUA
   job: AU14JobCivilianAmbassadorUA
-  pool: "job:AU14JobCivilianAmbassadorUA"
+  pool: "group:cmu-diplomacy"
 - type: roleTestQuestionPool
   id: AU14JobCivilianAmbassadorUPP
   job: AU14JobCivilianAmbassadorUPP
-  pool: "job:AU14JobCivilianAmbassadorUPP"
+  pool: "group:cmu-diplomacy"
 - type: roleTestQuestionPool
   id: AU14JobCivilianColonyAdminAssistant
   job: AU14JobCivilianColonyAdminAssistant
-  pool: "job:AU14JobCivilianColonyAdminAssistant"
+  pool: "group:cmu-administration"
 - type: roleTestQuestionPool
   id: AU14JobCivilianColonyAdministrator
   job: AU14JobCivilianColonyAdministrator
-  pool: "job:AU14JobCivilianColonyAdministrator"
+  pool: "group:cmu-colony-command"
 - type: roleTestQuestionPool
   id: AU14JobCivilianColonySynthetic
   job: AU14JobCivilianColonySynthetic
-  pool: "job:AU14JobCivilianColonySynthetic"
+  pool: "group:cmu-technical"
 - type: roleTestQuestionPool
   id: AU14JobCivilianCorporateAssistant
   job: AU14JobCivilianCorporateAssistant
-  pool: "job:AU14JobCivilianCorporateAssistant"
+  pool: "group:cmu-administration"
 - type: roleTestQuestionPool
   id: AU14JobCivilianCorporateLiaison
   job: AU14JobCivilianCorporateLiaison
-  pool: "job:AU14JobCivilianCorporateLiaison"
+  pool: "group:cmu-diplomacy"
 - type: roleTestQuestionPool
   id: AU14JobCivilianEmergencyResponseOfficer
   job: AU14JobCivilianEmergencyResponseOfficer
-  pool: "job:AU14JobCivilianEmergencyResponseOfficer"
+  pool: "group:cmu-law-enforcement"
 - type: roleTestQuestionPool
   id: AU14JobCivilianEngineer
   job: AU14JobCivilianEngineer
-  pool: "job:AU14JobCivilianEngineer"
+  pool: "group:cmu-technical"
 - type: roleTestQuestionPool
   id: AU14JobCivilianEthicsAndWellnessAdvisor
   job: AU14JobCivilianEthicsAndWellnessAdvisor
-  pool: "job:AU14JobCivilianEthicsAndWellnessAdvisor"
+  pool: "group:cmu-medical"
 - type: roleTestQuestionPool
   id: AU14JobCivilianFoodServiceWorker
   job: AU14JobCivilianFoodServiceWorker
-  pool: "job:AU14JobCivilianFoodServiceWorker"
+  pool: "group:cmu-service-logistics"
 - type: roleTestQuestionPool
   id: AU14JobCivilianForeman
   job: AU14JobCivilianForeman
-  pool: "job:AU14JobCivilianForeman"
+  pool: "group:cmu-colony-command"
 - type: roleTestQuestionPool
   id: AU14JobCivilianFreightSystemsSpecialist
   job: AU14JobCivilianFreightSystemsSpecialist
-  pool: "job:AU14JobCivilianFreightSystemsSpecialist"
+  pool: "group:cmu-service-logistics"
 - type: roleTestQuestionPool
   id: AU14JobCivilianHeadOfEngineering
   job: AU14JobCivilianHeadOfEngineering
-  pool: "job:AU14JobCivilianHeadOfEngineering"
+  pool: "group:cmu-colony-command"
 - type: roleTestQuestionPool
   id: AU14JobCivilianHeadOfService
   job: AU14JobCivilianHeadOfService
-  pool: "job:AU14JobCivilianHeadOfService"
+  pool: "group:cmu-colony-command"
 - type: roleTestQuestionPool
   id: AU14JobCivilianHeadPhysician
   job: AU14JobCivilianHeadPhysician
-  pool: "job:AU14JobCivilianHeadPhysician"
+  pool: "group:cmu-colony-command"
 - type: roleTestQuestionPool
   id: AU14JobCivilianJournalist
   job: AU14JobCivilianJournalist
-  pool: "job:AU14JobCivilianJournalist"
+  pool: "group:cmu-administration"
 - type: roleTestQuestionPool
   id: AU14JobCivilianKellandWarden
   job: AU14JobCivilianKellandWarden
-  pool: "job:AU14JobCivilianKellandWarden"
+  pool: "group:cmu-law-enforcement"
 - type: roleTestQuestionPool
   id: AU14JobCivilianNSPAConstable
   job: AU14JobCivilianNSPAConstable
-  pool: "job:AU14JobCivilianNSPAConstable"
+  pool: "group:cmu-law-enforcement"
 - type: roleTestQuestionPool
   id: AU14JobCivilianNurse
   job: AU14JobCivilianNurse
-  pool: "job:AU14JobCivilianNurse"
+  pool: "group:cmu-medical"
 - type: roleTestQuestionPool
   id: AU14JobCivilianOrbitalArbiter
   job: AU14JobCivilianOrbitalArbiter
-  pool: "job:AU14JobCivilianOrbitalArbiter"
+  pool: "group:cmu-law-enforcement"
 - type: roleTestQuestionPool
   id: AU14JobCivilianOrbitalLawyer
   job: AU14JobCivilianOrbitalLawyer
-  pool: "job:AU14JobCivilianOrbitalLawyer"
+  pool: "group:cmu-law-enforcement"
 - type: roleTestQuestionPool
   id: AU14JobCivilianPhysician
   job: AU14JobCivilianPhysician
-  pool: "job:AU14JobCivilianPhysician"
+  pool: "group:cmu-medical"
 - type: roleTestQuestionPool
   id: AU14JobCivilianPrisoner
   job: AU14JobCivilianPrisoner
-  pool: "job:AU14JobCivilianPrisoner"
+  pool: "group:cmu-prisoner"
 - type: roleTestQuestionPool
   id: AU14JobCivilianScientist
   job: AU14JobCivilianScientist
-  pool: "job:AU14JobCivilianScientist"
+  pool: "group:cmu-technical"
 - type: roleTestQuestionPool
   id: AU14JobCivilianShopkeep
   job: AU14JobCivilianShopkeep
-  pool: "job:AU14JobCivilianShopkeep"
+  pool: "group:cmu-service-logistics"
 - type: roleTestQuestionPool
   id: AU14JobCivilianUSASFRecruiter
   job: AU14JobCivilianUSASFRecruiter
-  pool: "job:AU14JobCivilianUSASFRecruiter"
+  pool: "group:cmu-diplomacy"
 - type: roleTestQuestionPool
   id: AU14JobCivilianWasteManagementSpecialist
   job: AU14JobCivilianWasteManagementSpecialist
-  pool: "job:AU14JobCivilianWasteManagementSpecialist"
+  pool: "group:cmu-service-logistics"
 - type: roleTestQuestionPool
   id: AU14JobCLFGuerilla
   job: AU14JobCLFGuerilla
-  pool: "job:AU14JobCLFGuerilla"
+  pool: "group:cmu-threat"
 - type: roleTestQuestionPool
   id: AU14JobColonyWorkingJoe
   job: AU14JobColonyWorkingJoe
-  pool: "job:AU14JobColonyWorkingJoe"
+  pool: "group:cmu-technical"
 - type: roleTestQuestionPool
-  id: AU14JobGOVFORPlatOP
-  job: AU14JobGOVFORPlatOP
-  pool: "job:AU14JobGOVFORPlatCo"
+  id: AU14JobGOVFORPlatCo
+  job: AU14JobGOVFORPlatCo
+  pool: "group:cmu-military-command"
+- type: roleTestQuestionPool
+  id: AU14JobGOVFORPlatOp
+  job: AU14JobGOVFORPlatOp
+  pool: "group:cmu-military-command"
+- type: roleTestQuestionPool
+  id: AU14JobGOVFORadvisor
+  job: AU14JobGOVFORadvisor
+  pool: "group:cmu-military-command"
+- type: roleTestQuestionPool
+  id: AU14JobGOVFORSectionSergeant
+  job: AU14JobGOVFORSectionSergeant
+  pool: "group:cmu-military-command"
+- type: roleTestQuestionPool
+  id: AU14JobGOVFORSquadSergeant
+  job: AU14JobGOVFORSquadSergeant
+  pool: "group:cmu-military-command"
+- type: roleTestQuestionPool
+  id: AU14JobGOVFORWeaponsSpecialist
+  job: AU14JobGOVFORWeaponsSpecialist
+  pool: "group:cmu-military-command"
+- type: roleTestQuestionPool
+  id: AU14JobGOVFORRadioTelephoneOperator
+  job: AU14JobGOVFORRadioTelephoneOperator
+  pool: "group:cmu-military-command"
+- type: roleTestQuestionPool
+  id: AU14JobGOVFORSquadRifleman
+  job: AU14JobGOVFORSquadRifleman
+  pool: "group:cmu-military-command"
+- type: roleTestQuestionPool
+  id: AU14JobGOVFORSquadAutomaticRifleman
+  job: AU14JobGOVFORSquadAutomaticRifleman
+  pool: "group:cmu-military-command"
+- type: roleTestQuestionPool
+  id: AU14JobGOVFORSquadCombatTech
+  job: AU14JobGOVFORSquadCombatTech
+  pool: "group:cmu-technical"
+- type: roleTestQuestionPool
+  id: AU14JobGOVFORPlatoonCorpsman
+  job: AU14JobGOVFORPlatoonCorpsman
+  pool: "group:cmu-medical"
+- type: roleTestQuestionPool
+  id: AU14JobGOVFORAuxTech
+  job: AU14JobGOVFORAuxTech
+  pool: "group:cmu-technical"
+- type: roleTestQuestionPool
+  id: AU14JobGOVFORDSPilot
+  job: AU14JobGOVFORDSPilot
+  pool: "group:cmu-technical"
+- type: roleTestQuestionPool
+  id: AU14JobGOVFORDCC
+  job: AU14JobGOVFORDCC
+  pool: "group:cmu-technical"
+- type: roleTestQuestionPool
+  id: AU14JobGOVFORAuxSupportSynth
+  job: AU14JobGOVFORAuxSupportSynth
+  pool: "group:cmu-technical"
+- type: roleTestQuestionPool
+  id: AU14JobGOVFORWorkingJoe
+  job: AU14JobGOVFORWorkingJoe
+  pool: "group:cmu-technical"
+- type: roleTestQuestionPool
+  id: AU14JobGOVFORMilitaryDoctor
+  job: AU14JobGOVFORMilitaryDoctor
+  pool: "group:cmu-medical"
+- type: roleTestQuestionPool
+  id: AU14JobGOVFORMilitaryPoliceMan
+  job: AU14JobGOVFORMilitaryPoliceMan
+  pool: "group:cmu-law-enforcement"
 - type: roleTestQuestionPool
   id: AU14JobMobBoss
   job: AU14JobMobBoss
-  pool: "job:AU14JobMobBoss"
+  pool: "group:cmu-threat"
 - type: roleTestQuestionPool
   id: AU14JobMobGoon
   job: AU14JobMobGoon
-  pool: "job:AU14JobMobGoon"
+  pool: "group:cmu-threat"
 - type: roleTestQuestionPool
-  id: AU14JobOpforPlatOP
-  job: AU14JobOpforPlatOP
-  pool: "job:AU14JobOpforPlatCo"
+  id: AU14JobOpforPlatCo
+  job: AU14JobOpforPlatCo
+  pool: "group:cmu-military-command"
+- type: roleTestQuestionPool
+  id: AU14JobOPFORWorkingJoe
+  job: AU14JobOPFORWorkingJoe
+  pool: "group:cmu-technical"
 - type: roleTestQuestionPool
   id: AU14JobThirdPartyLeader
   job: AU14JobThirdPartyLeader
-  pool: "job:AU14JobThirdPartyLeader"
+  pool: "group:cmu-threat"
 - type: roleTestQuestionPool
   id: AU14JobThreatLeader
   job: AU14JobThreatLeader
-  pool: "job:AU14JobThreatLeader"
+  pool: "group:cmu-threat"
 - type: roleTestQuestionPool
   id: AU14JobWYGuard
   job: AU14JobWYGuard
-  pool: "job:AU14JobWYGuard"
+  pool: "group:cmu-law-enforcement"
 - type: roleTestQuestionPool
   id: CMProvostInspector
   job: CMProvostInspector
-  pool: "job:CMProvostInspector"
+  pool: "group:cmu-law-enforcement"
+- type: roleTestQuestionPool
+  id: AU14JobCLFCellLeader
+  job: AU14JobCLFCellLeader
+  pool: "group:cmu-threat"
+- type: roleTestQuestionPool
+  id: AU14JobCLFPhysician
+  job: AU14JobCLFPhysician
+  pool: "group:cmu-threat"
+- type: roleTestQuestionPool
+  id: AU14JobCLFSurgeon
+  job: AU14JobCLFSurgeon
+  pool: "group:cmu-threat"
+- type: roleTestQuestionPool
+  id: AU14JobLEOBase
+  job: AU14JobLEOBase
+  pool: "group:cmu-law-enforcement"
+- type: roleTestQuestionPool
+  id: AU14JobLEOLeaderBase
+  job: AU14JobLEOLeaderBase
+  pool: "group:cmu-law-enforcement"
+- type: roleTestQuestionPool
+  id: AU14JobThirdPartyMember
+  job: AU14JobThirdPartyMember
+  pool: "group:cmu-threat"
+- type: roleTestQuestionPool
+  id: AU14JobThreatMember
+  job: AU14JobThreatMember
+  pool: "group:cmu-threat"
 # ============================================================
 # COMMON QUESTIONS
 # ============================================================
@@ -1694,8 +1794,7 @@
     - "старший медик."
   correctAnswer: 0
   pools:
-    - "job:AU14JobGOVFORPlatCo"
-    - "job:AU14JobOpforPlatCo"
+    - "group:cmu-military-command"
 - type: roleTestQuestion
   id: RoleTestMilitaryCommand002
   text: "Согласно глоссарию, исполняющий обязанности командира — это лицо, которое..."
@@ -1706,8 +1805,7 @@
     - "игнорирует командование."
   correctAnswer: 0
   pools:
-    - "job:AU14JobGOVFORPlatCo"
-    - "job:AU14JobOpforPlatCo"
+    - "group:cmu-military-command"
 - type: roleTestQuestion
   id: RoleTestMilitaryCommand003
   text: "Согласно глоссарию, командный состав отвечает за планирование, координацию, надзор и..."
@@ -1718,8 +1816,7 @@
     - "работу медблока."
   correctAnswer: 0
   pools:
-    - "job:AU14JobGOVFORPlatCo"
-    - "job:AU14JobOpforPlatCo"
+    - "group:cmu-military-command"
 - type: roleTestQuestion
   id: RoleTestMilitaryCommand004
   text: "Согласно глоссарию, делегированное командование — это временная передача полномочий от вышестоящего офицера..."
@@ -1730,8 +1827,7 @@
     - "любому свидетелю."
   correctAnswer: 0
   pools:
-    - "job:AU14JobGOVFORPlatCo"
-    - "job:AU14JobOpforPlatCo"
+    - "group:cmu-military-command"
 - type: roleTestQuestion
   id: RoleTestMilitaryCommand005
   text: "Согласно SOP, исполняющий обязанности командира отвечает за проведение..."
@@ -1742,8 +1838,7 @@
     - "выдачи всех должностей."
   correctAnswer: 0
   pools:
-    - "job:AU14JobGOVFORPlatCo"
-    - "job:AU14JobOpforPlatCo"
+    - "group:cmu-military-command"
 - type: roleTestQuestion
   id: RoleTestMilitaryCommand006
   text: "Согласно SOP, брифинг должен проходить в месте, пригодном для осмотра личного состава и где персонал может..."
@@ -1754,8 +1849,7 @@
     - "избежать построения."
   correctAnswer: 0
   pools:
-    - "job:AU14JobGOVFORPlatCo"
-    - "job:AU14JobOpforPlatCo"
+    - "group:cmu-military-command"
 - type: roleTestQuestion
   id: RoleTestMilitaryCommand007
   text: "Согласно SOP, минимум на брифинге должно присутствовать всё развёртываемое..."
@@ -1766,8 +1860,7 @@
     - "медицинское оборудование."
   correctAnswer: 0
   pools:
-    - "job:AU14JobGOVFORPlatCo"
-    - "job:AU14JobOpforPlatCo"
+    - "group:cmu-military-command"
 - type: roleTestQuestion
   id: RoleTestMilitaryCommand008
   text: "Согласно ROE, стандартные правила применения силы могут быть изменены Командиром, если изменения не противоречат..."
@@ -1778,8 +1871,7 @@
     - "желанию большинства."
   correctAnswer: 0
   pools:
-    - "job:AU14JobGOVFORPlatCo"
-    - "job:AU14JobOpforPlatCo"
+    - "group:cmu-military-command"
 - type: roleTestQuestion
   id: RoleTestMilitaryCommand009
   text: "Согласно ROE, сила для принуждения к подчинению допускается только если она..."
@@ -1790,8 +1882,7 @@
     - "помогает закончить раунд."
   correctAnswer: 0
   pools:
-    - "job:AU14JobGOVFORPlatCo"
-    - "job:AU14JobOpforPlatCo"
+    - "group:cmu-military-command"
 - type: roleTestQuestion
   id: RoleTestMilitaryCommand010
   text: "Согласно ROE, нелетальная сила должна использоваться, когда это возможно, если..."
@@ -1802,8 +1893,7 @@
     - "приказ не записан."
   correctAnswer: 0
   pools:
-    - "job:AU14JobGOVFORPlatCo"
-    - "job:AU14JobOpforPlatCo"
+    - "group:cmu-military-command"
 - type: roleTestQuestion
   id: RoleTestMilitaryCommand011
   text: "Согласно ROE, враждебный персонал, представляющий непосредственную угрозу, может быть поражён..."
@@ -1814,8 +1904,7 @@
     - "только после эвакуации."
   correctAnswer: 0
   pools:
-    - "job:AU14JobGOVFORPlatCo"
-    - "job:AU14JobOpforPlatCo"
+    - "group:cmu-military-command"
 - type: roleTestQuestion
   id: RoleTestMilitaryCommand012
   text: "Согласно ROE, противник, который сдался или больше не способен сражаться..."
@@ -1826,8 +1915,7 @@
     - "считается активной целью."
   correctAnswer: 0
   pools:
-    - "job:AU14JobGOVFORPlatCo"
-    - "job:AU14JobOpforPlatCo"
+    - "group:cmu-military-command"
 - type: roleTestQuestion
   id: RoleTestMilitaryCommand013
   text: "Согласно правилам режима, GOVFOR не может входить в колонию до 30 минут, если они не были..."
@@ -1838,7 +1926,7 @@
     - "на брифинге."
   correctAnswer: 0
   pools:
-    - "job:AU14JobGOVFORPlatCo"
+    - "group:cmu-military-command"
 - type: roleTestQuestion
   id: RoleTestMilitaryCommand014
   text: "Согласно правилам режима, вызов GOVFOR должен быть подтверждён..."
@@ -1849,7 +1937,7 @@
     - "любым бойцом GOVFOR."
   correctAnswer: 0
   pools:
-    - "job:AU14JobGOVFORPlatCo"
+    - "group:cmu-military-command"
 - type: roleTestQuestion
   id: RoleTestMilitaryCommand015
   text: "Согласно правилам режима, если GOVFOR появляется на корабле, до 30 минут они могут высадиться в основной зоне высадки и..."
@@ -1860,7 +1948,7 @@
     - "провести рейд по AO."
   correctAnswer: 0
   pools:
-    - "job:AU14JobGOVFORPlatCo"
+    - "group:cmu-military-command"
 - type: roleTestQuestion
   id: RoleTestMilitaryCommand016
   text: "Согласно правилам, GOVFOR не может стрелять по гражданским без..."
@@ -1871,7 +1959,7 @@
     - "желания обезопасить район."
   correctAnswer: 0
   pools:
-    - "job:AU14JobGOVFORPlatCo"
+    - "group:cmu-military-command"
 - type: roleTestQuestion
   id: RoleTestMilitaryCommand017
   text: "Согласно правилам, разумной причиной для применения силы GOVFOR может быть игнорирование одного чёткого предупреждения уйти, находясь..."
@@ -1882,7 +1970,7 @@
     - "в своей комнате."
   correctAnswer: 0
   pools:
-    - "job:AU14JobGOVFORPlatCo"
+    - "group:cmu-military-command"
 - type: roleTestQuestion
   id: RoleTestMilitaryCommand018
   text: "Согласно правилам, GOVFOR не может проводить рейд на базу повстанцев, если они не преследуют активного повстанца прямо до неё или не получили..."
@@ -1893,7 +1981,7 @@
     - "желание проверить район."
   correctAnswer: 0
   pools:
-    - "job:AU14JobGOVFORPlatCo"
+    - "group:cmu-military-command"
 - type: roleTestQuestion
   id: RoleTestMilitaryCommand019
   text: "Согласно правилам, убийство другого персонажа должно иметь вескую IC-причину и соответствовать..."
@@ -1904,8 +1992,7 @@
     - "подозрениям бойцов."
   correctAnswer: 0
   pools:
-    - "job:AU14JobGOVFORPlatCo"
-    - "job:AU14JobOpforPlatCo"
+    - "group:cmu-military-command"
 - type: roleTestQuestion
   id: RoleTestMilitaryCommand020
   text: "Согласно правилам, валидхантинг — это поиск, преследование или устранение угроз без достаточных IC-оснований, вне обязанностей роли или..."
@@ -1916,8 +2003,7 @@
     - "во время операции."
   correctAnswer: 0
   pools:
-    - "job:AU14JobGOVFORPlatCo"
-    - "job:AU14JobOpforPlatCo"
+    - "group:cmu-military-command"
 # ============================================================
 # THREAT QUESTIONS
 # ============================================================
@@ -1931,11 +2017,7 @@
     - "игнорировать атмосферу."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCLFGuerilla"
-    - "job:AU14JobMobBoss"
-    - "job:AU14JobMobGoon"
-    - "job:AU14JobThirdPartyLeader"
-    - "job:AU14JobThreatLeader"
+    - "group:cmu-threat"
 - type: roleTestQuestion
   id: RoleTestThreat002
   text: "Продолжите фразу: «Играя за роль антагониста/угрозы, вы должны создавать...»"
@@ -1946,11 +2028,7 @@
     - "проблемы администрации."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCLFGuerilla"
-    - "job:AU14JobMobBoss"
-    - "job:AU14JobMobGoon"
-    - "job:AU14JobThirdPartyLeader"
-    - "job:AU14JobThreatLeader"
+    - "group:cmu-threat"
 - type: roleTestQuestion
   id: RoleTestThreat003
   text: "Согласно правилам, антагонист должен приносить ровно столько разрушений..."
@@ -1961,11 +2039,7 @@
     - "сколько нужно для полного уничтожения."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCLFGuerilla"
-    - "job:AU14JobMobBoss"
-    - "job:AU14JobMobGoon"
-    - "job:AU14JobThirdPartyLeader"
-    - "job:AU14JobThreatLeader"
+    - "group:cmu-threat"
 - type: roleTestQuestion
   id: RoleTestThreat004
   text: "Согласно правилам режима «Мятеж», ни один игрок не может убивать другого игрока в течение..."
@@ -1976,11 +2050,7 @@
     - "всего раунда."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCLFGuerilla"
-    - "job:AU14JobMobBoss"
-    - "job:AU14JobMobGoon"
-    - "job:AU14JobThirdPartyLeader"
-    - "job:AU14JobThreatLeader"
+    - "group:cmu-threat"
 - type: roleTestQuestion
   id: RoleTestThreat005
   text: "Согласно правилам повстанцев, прямые приказы Лидера ячейки должны выполняться, если они не противоречат идеологии повстанцев или..."
@@ -1991,7 +2061,7 @@
     - "любому слуху."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCLFGuerilla"
+    - "group:cmu-threat"
 - type: roleTestQuestion
   id: RoleTestThreat006
   text: "Согласно правилам повстанцев, приказ на неизбирательное убийство гражданских..."
@@ -2002,7 +2072,7 @@
     - "разрешён при численном превосходстве."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCLFGuerilla"
+    - "group:cmu-threat"
 - type: roleTestQuestion
   id: RoleTestThreat007
   text: "Согласно правилам повстанцев, они не могут убивать гражданских, если те..."
@@ -2013,7 +2083,7 @@
     - "видели оружие повстанцев."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCLFGuerilla"
+    - "group:cmu-threat"
 - type: roleTestQuestion
   id: RoleTestThreat008
   text: "Согласно правилам режима, правоохранительные органы колонии..."
@@ -2024,7 +2094,7 @@
     - "имеют иммунитет от правил."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCLFGuerilla"
+    - "group:cmu-threat"
 - type: roleTestQuestion
   id: RoleTestThreat009
   text: "Согласно правилам, повстанцы не могут убивать сотрудников правоохранительных органов колонии до истечения..."
@@ -2035,7 +2105,7 @@
     - "45 минут с начала раунда."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCLFGuerilla"
+    - "group:cmu-threat"
 - type: roleTestQuestion
   id: RoleTestThreat010
   text: "Согласно правилам, повстанцы не могут атаковать наземную базу GOVFOR до истечения..."
@@ -2046,7 +2116,7 @@
     - "60 минут с начала раунда."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCLFGuerilla"
+    - "group:cmu-threat"
 - type: roleTestQuestion
   id: RoleTestThreat011
   text: "Согласно правилам, убийство персонажа должно иметь вескую IC-причину и..."
@@ -2057,11 +2127,7 @@
     - "оставаться тайным."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCLFGuerilla"
-    - "job:AU14JobMobBoss"
-    - "job:AU14JobMobGoon"
-    - "job:AU14JobThirdPartyLeader"
-    - "job:AU14JobThreatLeader"
+    - "group:cmu-threat"
 - type: roleTestQuestion
   id: RoleTestThreat012
   text: "Согласно правилам, запрещено убивать игроков из скуки, раздражения, желания победить, личной неприязни или..."
@@ -2072,11 +2138,7 @@
     - "после угроз."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCLFGuerilla"
-    - "job:AU14JobMobBoss"
-    - "job:AU14JobMobGoon"
-    - "job:AU14JobThirdPartyLeader"
-    - "job:AU14JobThreatLeader"
+    - "group:cmu-threat"
 - type: roleTestQuestion
   id: RoleTestThreat013
   text: "Согласно правилам, вредительские действия без ролевой или игровой причины считаются..."
@@ -2087,11 +2149,7 @@
     - "боевой инициативой."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCLFGuerilla"
-    - "job:AU14JobMobBoss"
-    - "job:AU14JobMobGoon"
-    - "job:AU14JobThirdPartyLeader"
-    - "job:AU14JobThreatLeader"
+    - "group:cmu-threat"
 - type: roleTestQuestion
   id: RoleTestThreat014
   text: "Согласно правилам, роль угрозы не отменяет запрет на..."
@@ -2102,11 +2160,7 @@
     - "наличие целей."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCLFGuerilla"
-    - "job:AU14JobMobBoss"
-    - "job:AU14JobMobGoon"
-    - "job:AU14JobThirdPartyLeader"
-    - "job:AU14JobThreatLeader"
+    - "group:cmu-threat"
 - type: roleTestQuestion
   id: RoleTestThreat015
   text: "Согласно правилам, метагейминг — это информация, которую персонаж..."
@@ -2117,11 +2171,7 @@
     - "увидел на месте событий."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCLFGuerilla"
-    - "job:AU14JobMobBoss"
-    - "job:AU14JobMobGoon"
-    - "job:AU14JobThirdPartyLeader"
-    - "job:AU14JobThreatLeader"
+    - "group:cmu-threat"
 - type: roleTestQuestion
   id: RoleTestThreat016
   text: "Согласно правилам, пауэргейминг — это эффективность в ущерб роли, логике персонажа и..."
@@ -2132,11 +2182,7 @@
     - "опасности."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCLFGuerilla"
-    - "job:AU14JobMobBoss"
-    - "job:AU14JobMobGoon"
-    - "job:AU14JobThirdPartyLeader"
-    - "job:AU14JobThreatLeader"
+    - "group:cmu-threat"
 - type: roleTestQuestion
   id: RoleTestThreat017
   text: "Согласно правилам, игрок не должен превращать игру в охоту на валидов ради..."
@@ -2147,11 +2193,7 @@
     - "сюжета."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCLFGuerilla"
-    - "job:AU14JobMobBoss"
-    - "job:AU14JobMobGoon"
-    - "job:AU14JobThirdPartyLeader"
-    - "job:AU14JobThreatLeader"
+    - "group:cmu-threat"
 - type: roleTestQuestion
   id: RoleTestThreat018
   text: "Согласно правилам, игрок должен оставаться в своей роли и..."
@@ -2162,11 +2204,7 @@
     - "использовать любые знания."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCLFGuerilla"
-    - "job:AU14JobMobBoss"
-    - "job:AU14JobMobGoon"
-    - "job:AU14JobThirdPartyLeader"
-    - "job:AU14JobThreatLeader"
+    - "group:cmu-threat"
 - type: roleTestQuestion
   id: RoleTestThreat019
   text: "Согласно правилам, токсичное поведение и травля..."
@@ -2177,11 +2215,7 @@
     - "считаются частью роли."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCLFGuerilla"
-    - "job:AU14JobMobBoss"
-    - "job:AU14JobMobGoon"
-    - "job:AU14JobThirdPartyLeader"
-    - "job:AU14JobThreatLeader"
+    - "group:cmu-threat"
 - type: roleTestQuestion
   id: RoleTestThreat020
   text: "Согласно правилам, относиться к игрокам и их персонажам с уважением нужно..."
@@ -2192,11 +2226,7 @@
     - "только после окончания раунда."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCLFGuerilla"
-    - "job:AU14JobMobBoss"
-    - "job:AU14JobMobGoon"
-    - "job:AU14JobThirdPartyLeader"
-    - "job:AU14JobThreatLeader"
+    - "group:cmu-threat"
 # ============================================================
 # PRISONER QUESTIONS
 # ============================================================
@@ -2210,7 +2240,7 @@
     - "молчаливым."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCivilianPrisoner"
+    - "group:cmu-prisoner"
 - type: roleTestQuestion
   id: RoleTestPrisoner002
   text: "Согласно правилам, нонРП или несерьёзное РП..."
@@ -2221,7 +2251,7 @@
     - "допустимо без свидетелей."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCivilianPrisoner"
+    - "group:cmu-prisoner"
 - type: roleTestQuestion
   id: RoleTestPrisoner003
   text: "Согласно правилам, вредительские действия без ролевой или игровой причины считаются..."
@@ -2232,7 +2262,7 @@
     - "самообороной."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCivilianPrisoner"
+    - "group:cmu-prisoner"
 - type: roleTestQuestion
   id: RoleTestPrisoner004
   text: "Согласно правилам, убийство другого персонажа должно иметь..."
@@ -2243,7 +2273,7 @@
     - "приказ сокамерника."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCivilianPrisoner"
+    - "group:cmu-prisoner"
 - type: roleTestQuestion
   id: RoleTestPrisoner005
   text: "Согласно правилам, запрещено убивать игроков из скуки, раздражения или..."
@@ -2254,7 +2284,7 @@
     - "IC-конфликта."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCivilianPrisoner"
+    - "group:cmu-prisoner"
 - type: roleTestQuestion
   id: RoleTestPrisoner006
   text: "Согласно правилам, метагейминг — это использование информации, которую персонаж..."
@@ -2265,7 +2295,7 @@
     - "увидел в камере."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCivilianPrisoner"
+    - "group:cmu-prisoner"
 - type: roleTestQuestion
   id: RoleTestPrisoner007
   text: "Согласно правилам, запрещено передавать информацию о раунде через Discord, голосовые каналы, личные сообщения и..."
@@ -2276,7 +2306,7 @@
     - "разговор."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCivilianPrisoner"
+    - "group:cmu-prisoner"
 - type: roleTestQuestion
   id: RoleTestPrisoner008
   text: "Согласно правилам, пауэргейминг — это максимальная эффективность в ущерб роли, логике персонажа и..."
@@ -2287,7 +2317,7 @@
     - "плану."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCivilianPrisoner"
+    - "group:cmu-prisoner"
 - type: roleTestQuestion
   id: RoleTestPrisoner009
   text: "Согласно правилам, нельзя действовать как..."
@@ -2298,7 +2328,7 @@
     - "свидетель."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCivilianPrisoner"
+    - "group:cmu-prisoner"
 - type: roleTestQuestion
   id: RoleTestPrisoner010
   text: "Согласно правилам, вежливо и учтиво нужно вести себя..."
@@ -2309,7 +2339,7 @@
     - "только вне IC."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCivilianPrisoner"
+    - "group:cmu-prisoner"
 - type: roleTestQuestion
   id: RoleTestPrisoner011
   text: "Согласно правилам, слишком частых или слишком грубых оскорблений в IC следует..."
@@ -2320,7 +2350,7 @@
     - "считать нормой заключённого."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCivilianPrisoner"
+    - "group:cmu-prisoner"
 - type: roleTestQuestion
   id: RoleTestPrisoner012
   text: "Согласно правилам, ERP является причиной для..."
@@ -2331,7 +2361,7 @@
     - "перевода в другую камеру."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCivilianPrisoner"
+    - "group:cmu-prisoner"
 - type: roleTestQuestion
   id: RoleTestPrisoner013
   text: "Согласно правилам, общение должно быть осмысленным и соответствовать..."
@@ -2342,7 +2372,7 @@
     - "случайным фразам."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCivilianPrisoner"
+    - "group:cmu-prisoner"
 - type: roleTestQuestion
   id: RoleTestPrisoner014
   text: "Согласно правилам, запрещены оскорбления, токсичное поведение и..."
@@ -2353,7 +2383,7 @@
     - "обычные споры."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCivilianPrisoner"
+    - "group:cmu-prisoner"
 - type: roleTestQuestion
   id: RoleTestPrisoner015
   text: "Согласно правилам, не допускается провокационное поведение, включая намеренное выведение игроков..."
@@ -2364,7 +2394,7 @@
     - "из роли."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCivilianPrisoner"
+    - "group:cmu-prisoner"
 - type: roleTestQuestion
   id: RoleTestPrisoner016
   text: "Согласно правилам, спорный контент запрещён, если он может привести к..."
@@ -2375,7 +2405,7 @@
     - "смене роли."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCivilianPrisoner"
+    - "group:cmu-prisoner"
 - type: roleTestQuestion
   id: RoleTestPrisoner017
   text: "Согласно правилам, игрок не должен пытаться обойти правила..."
@@ -2386,7 +2416,7 @@
     - "при отсутствии охраны."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCivilianPrisoner"
+    - "group:cmu-prisoner"
 - type: roleTestQuestion
   id: RoleTestPrisoner018
   text: "Согласно правилам, запрещено использовать баги и уязвимости для..."
@@ -2397,7 +2427,7 @@
     - "составления жалобы."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCivilianPrisoner"
+    - "group:cmu-prisoner"
 - type: roleTestQuestion
   id: RoleTestPrisoner019
   text: "Согласно правилам, если игрок обнаружил эксплойт, он должен сообщить администрации и..."
@@ -2408,7 +2438,7 @@
     - "использовать один раз."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCivilianPrisoner"
+    - "group:cmu-prisoner"
 - type: roleTestQuestion
   id: RoleTestPrisoner020
   text: "Согласно правилам, администрация оценивает не только буквальное нарушение пункта, но и общий вред для раунда, игроков и..."
@@ -2419,7 +2449,7 @@
     - "охраны."
   correctAnswer: 0
   pools:
-    - "job:AU14JobCivilianPrisoner"
+    - "group:cmu-prisoner"
 
 
 # ============================================================
@@ -2440,7 +2470,7 @@
     - "могут быть атакованы без предупреждения."
     - "теряют защиту после начала операции."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianAmbassadorCCA" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorCCA002
@@ -2451,7 +2481,7 @@
     - "всегда считаются военнопленными."
     - "могут быть атакованы для профилактики."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianAmbassadorCCA" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorCCA003
@@ -2462,7 +2492,7 @@
     - "хранить молчание."
     - "отказываться от всех процедур."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianAmbassadorCCA" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorCCA004
@@ -2473,7 +2503,7 @@
     - "нападение на персонал."
     - "использование права хранить молчание."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianAmbassadorCCA" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorCCA005
@@ -2484,7 +2514,7 @@
     - "желания проверить документы."
     - "любого устного подозрения."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianAmbassadorCCA" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorCCA006
@@ -2495,7 +2525,7 @@
     - "разрешено при подозрении."
     - "считается частью процедуры."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianAmbassadorCCA" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 
 # ============================================================
@@ -2511,7 +2541,7 @@
     - "любая причина для вступления в бой."
     - "возможность действовать без ограничений."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianAmbassadorICSC" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorICSC002
@@ -2522,7 +2552,7 @@
     - "только администрации колонии."
     - "только вооружённых групп."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianAmbassadorICSC" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorICSC003
@@ -2533,7 +2563,7 @@
     - "соразмерности."
     - "выгоды для стороны."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianAmbassadorICSC" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorICSC004
@@ -2544,7 +2574,7 @@
     - "держит его в сумке."
     - "направил его на человека."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianAmbassadorICSC" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorICSC005
@@ -2555,7 +2585,7 @@
     - "плану операции."
     - "интересам администрации."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianAmbassadorICSC" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorICSC006
@@ -2566,7 +2596,7 @@
     - "выгодна фракции."
     - "применяется без свидетелей."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianAmbassadorICSC" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 
 # ============================================================
@@ -2582,7 +2612,7 @@
     - "согласны помогать военным."
     - "готовы отказаться от прав."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianAmbassadorTWE" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorTWE002
@@ -2593,7 +2623,7 @@
     - "вооружены."
     - "наказаны."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianAmbassadorTWE" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorTWE003
@@ -2604,7 +2634,7 @@
     - "изымаются и помещаются в оружейную."
     - "выдаются ближайшей охране."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianAmbassadorTWE" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorTWE004
@@ -2615,7 +2645,7 @@
     - "они гражданские."
     - "есть персонал."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianAmbassadorTWE" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorTWE005
@@ -2626,7 +2656,7 @@
     - "выдать им оружие."
     - "отменить их право на молчание."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianAmbassadorTWE" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorTWE006
@@ -2637,7 +2667,7 @@
     - "допустимо после предупреждения."
     - "считается обычным IC-конфликтом."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianAmbassadorTWE" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 
 # ============================================================
@@ -2653,7 +2683,7 @@
     - "имеющие право игнорировать ROE."
     - "автоматически лишённые защиты."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianAmbassadorUA" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorUA002
@@ -2664,7 +2694,7 @@
     - "любых вооружённых людей."
     - "только командование."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianAmbassadorUA" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorUA003
@@ -2675,7 +2705,7 @@
     - "тяжкого вреда здоровью."
     - "обычного подчинения."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianAmbassadorUA" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorUA004
@@ -2686,7 +2716,7 @@
     - "запугивания гражданских."
     - "принуждения к подчинению без намерения убить."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianAmbassadorUA" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorUA005
@@ -2697,7 +2727,7 @@
     - "согласны на обыск."
     - "находятся далеко от командования."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianAmbassadorUA" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorUA006
@@ -2708,7 +2738,7 @@
     - "теряет право на помощь."
     - "остаётся активной целью."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianAmbassadorUA" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 
 # ============================================================
@@ -2724,7 +2754,7 @@
     - "только вне раунда."
     - "только если они старше по званию."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianAmbassadorUPP" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorUPP002
@@ -2735,7 +2765,7 @@
     - "IC-переговоры."
     - "дипломатические споры."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianAmbassadorUPP" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorUPP003
@@ -2746,7 +2776,7 @@
     - "из себя."
     - "из зоны операции."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianAmbassadorUPP" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorUPP004
@@ -2757,7 +2787,7 @@
     - "ведётся без грубости."
     - "может привести к конфликту."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianAmbassadorUPP" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorUPP005
@@ -2768,7 +2798,7 @@
     - "прочитал в документе."
     - "получил по радио."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianAmbassadorUPP" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianAmbassadorUPP006
@@ -2779,7 +2809,7 @@
     - "выгоде."
     - "дипломатии."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianAmbassadorUPP" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 
 # ============================================================
@@ -2795,7 +2825,7 @@
     - "контроль всех отделов."
     - "поиск антагонистов."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianColonyAdminAssistant" ]
+  pools: [ "group:cmu-administration" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianColonyAdminAssistant002
@@ -2806,7 +2836,7 @@
     - "требовать общения с игроками."
     - "мешать личной свободе персонажа."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianColonyAdminAssistant" ]
+  pools: [ "group:cmu-administration" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianColonyAdminAssistant003
@@ -2817,7 +2847,7 @@
     - "попросите кого-нибудь вам помочь."
     - "делайте то, что выгодно лично вам."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianColonyAdminAssistant" ]
+  pools: [ "group:cmu-administration" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianColonyAdminAssistant004
@@ -2828,7 +2858,7 @@
     - "разрешено, если никто не жалуется."
     - "не допускается."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianColonyAdminAssistant" ]
+  pools: [ "group:cmu-administration" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianColonyAdminAssistant005
@@ -2839,7 +2869,7 @@
     - "любых длинных сообщений."
     - "любых приказов."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianColonyAdminAssistant" ]
+  pools: [ "group:cmu-administration" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianColonyAdminAssistant006
@@ -2850,7 +2880,7 @@
     - "только должность."
     - "любое известное имя."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianColonyAdminAssistant" ]
+  pools: [ "group:cmu-administration" ]
 
 
 # ============================================================
@@ -2866,7 +2896,7 @@
     - "желание ускорить операцию."
     - "неподтверждённый слух."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianColonyAdministrator" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianColonyAdministrator002
@@ -2877,7 +2907,7 @@
     - "молчание подозреваемого."
     - "отказ работать."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianColonyAdministrator" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianColonyAdministrator003
@@ -2888,7 +2918,7 @@
     - "запроса помощи GOVFOR."
     - "запрета эвакуации."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianColonyAdministrator" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianColonyAdministrator004
@@ -2899,7 +2929,7 @@
     - "отмены процедуры."
     - "запроса помощи GOVFOR."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianColonyAdministrator" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianColonyAdministrator005
@@ -2910,7 +2940,7 @@
     - "сбор трофеев."
     - "работу медблока."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianColonyAdministrator" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianColonyAdministrator006
@@ -2921,7 +2951,7 @@
     - "не нравятся одному игроку."
     - "происходят без свидетелей."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianColonyAdministrator" ]
+  pools: [ "group:cmu-colony-command" ]
 
 
 # ============================================================
@@ -2937,7 +2967,7 @@
     - "исполняй любой приказ."
     - "делай то, что выгодно отделу."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianColonySynthetic" ]
+  pools: [ "group:cmu-technical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianColonySynthetic002
@@ -2948,7 +2978,7 @@
     - "Не спорь с гражданскими."
     - "Не говори без приказа."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianColonySynthetic" ]
+  pools: [ "group:cmu-technical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianColonySynthetic003
@@ -2959,7 +2989,7 @@
     - "не является действительным и может быть проигнорирован."
     - "выполняется, если приказал старший."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianColonySynthetic" ]
+  pools: [ "group:cmu-technical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianColonySynthetic004
@@ -2970,7 +3000,7 @@
     - "радиосвязь."
     - "любое огнестрельное оружие."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianColonySynthetic" ]
+  pools: [ "group:cmu-technical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianColonySynthetic005
@@ -2981,7 +3011,7 @@
     - "отсутствии работы."
     - "желании сменить отдел."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianColonySynthetic" ]
+  pools: [ "group:cmu-technical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianColonySynthetic006
@@ -2992,7 +3022,7 @@
     - "из вселенной Alien."
     - "в виде номера модели."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianColonySynthetic" ]
+  pools: [ "group:cmu-technical" ]
 
 
 # ============================================================
@@ -3008,7 +3038,7 @@
     - "можно, если ресурс связан с SS14."
     - "можно только в IC."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianCorporateAssistant" ]
+  pools: [ "group:cmu-administration" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianCorporateAssistant002
@@ -3019,7 +3049,7 @@
     - "запрета всех конфликтов."
     - "ограничения гражданских ролей."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianCorporateAssistant" ]
+  pools: [ "group:cmu-administration" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianCorporateAssistant003
@@ -3030,7 +3060,7 @@
     - "для получения преимущества."
     - "когда рядом нет свидетелей."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianCorporateAssistant" ]
+  pools: [ "group:cmu-administration" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianCorporateAssistant004
@@ -3041,7 +3071,7 @@
     - "различия зарплаты."
     - "любых других различий между участниками сообщества."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianCorporateAssistant" ]
+  pools: [ "group:cmu-administration" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianCorporateAssistant005
@@ -3052,7 +3082,7 @@
     - "названиях отделов."
     - "IC-отчётах."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianCorporateAssistant" ]
+  pools: [ "group:cmu-administration" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianCorporateAssistant006
@@ -3063,7 +3093,7 @@
     - "рассказать о нём отделу."
     - "использовать только для теста."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianCorporateAssistant" ]
+  pools: [ "group:cmu-administration" ]
 
 
 # ============================================================
@@ -3079,7 +3109,7 @@
     - "ускорения работы."
     - "помощи своей фракции."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianCorporateLiaison" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianCorporateLiaison002
@@ -3090,7 +3120,7 @@
     - "обычным IC-конфликтом."
     - "служебной ошибкой."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianCorporateLiaison" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianCorporateLiaison003
@@ -3101,7 +3131,7 @@
     - "правилам применения силы."
     - "желанию стороны победить."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianCorporateLiaison" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianCorporateLiaison004
@@ -3112,7 +3142,7 @@
     - "ради интересов работодателя."
     - "без понятной ролевой причины."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianCorporateLiaison" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianCorporateLiaison005
@@ -3123,7 +3153,7 @@
     - "после официального запроса."
     - "во время операции."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianCorporateLiaison" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianCorporateLiaison006
@@ -3134,7 +3164,7 @@
     - "выполнения обязанностей."
     - "эвакуации персонала."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianCorporateLiaison" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 
 # ============================================================
@@ -3150,7 +3180,7 @@
     - "одобрена свидетелем."
     - "помогает завершить спор."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianEmergencyResponseOfficer" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianEmergencyResponseOfficer002
@@ -3161,7 +3191,7 @@
     - "цель выглядит подозрительно."
     - "приказ не записан."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianEmergencyResponseOfficer" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianEmergencyResponseOfficer003
@@ -3172,7 +3202,7 @@
     - "летальной силой."
     - "только при согласии командования."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianEmergencyResponseOfficer" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianEmergencyResponseOfficer004
@@ -3183,7 +3213,7 @@
     - "всегда остаётся целью."
     - "не должен подвергаться вреду."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianEmergencyResponseOfficer" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianEmergencyResponseOfficer005
@@ -3194,7 +3224,7 @@
     - "желания проверить его вещи."
     - "приказа любого свидетеля."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianEmergencyResponseOfficer" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianEmergencyResponseOfficer006
@@ -3205,7 +3235,7 @@
     - "проверки всех личных записей."
     - "полного изъятия имущества."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianEmergencyResponseOfficer" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 
 # ============================================================
@@ -3221,7 +3251,7 @@
     - "развлечения персонала."
     - "получения материалов любой ценой."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianEngineer" ]
+  pools: [ "group:cmu-technical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianEngineer002
@@ -3232,7 +3262,7 @@
     - "только боевому персоналу."
     - "личному имуществу инженеров."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianEngineer" ]
+  pools: [ "group:cmu-technical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianEngineer003
@@ -3243,7 +3273,7 @@
     - "иные невоенные объекты."
     - "склады оружия."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianEngineer" ]
+  pools: [ "group:cmu-technical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianEngineer004
@@ -3254,7 +3284,7 @@
     - "проверки состояния отдела."
     - "получения нечестного преимущества."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianEngineer" ]
+  pools: [ "group:cmu-technical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianEngineer005
@@ -3265,7 +3295,7 @@
     - "производственной ошибкой."
     - "законной реквизицией."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianEngineer" ]
+  pools: [ "group:cmu-technical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianEngineer006
@@ -3276,7 +3306,7 @@
     - "личную охоту на угрозы."
     - "командование всеми силами."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianEngineer" ]
+  pools: [ "group:cmu-technical" ]
 
 
 # ============================================================
@@ -3292,7 +3322,7 @@
     - "только при жалобе."
     - "если они повторяются."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianEthicsAndWellnessAdvisor" ]
+  pools: [ "group:cmu-medical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianEthicsAndWellnessAdvisor002
@@ -3303,7 +3333,7 @@
     - "служебные жалобы."
     - "IC-разногласия."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianEthicsAndWellnessAdvisor" ]
+  pools: [ "group:cmu-medical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianEthicsAndWellnessAdvisor003
@@ -3314,7 +3344,7 @@
     - "даже если в игре они враги."
     - "только если они старше по должности."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianEthicsAndWellnessAdvisor" ]
+  pools: [ "group:cmu-medical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianEthicsAndWellnessAdvisor004
@@ -3325,7 +3355,7 @@
     - "временного ограничения роли."
     - "перманентной блокировки."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianEthicsAndWellnessAdvisor" ]
+  pools: [ "group:cmu-medical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianEthicsAndWellnessAdvisor005
@@ -3336,7 +3366,7 @@
     - "интересам отдела."
     - "работе администрации."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianEthicsAndWellnessAdvisor" ]
+  pools: [ "group:cmu-medical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianEthicsAndWellnessAdvisor006
@@ -3347,7 +3377,7 @@
     - "OOC-настроению игроков."
     - "желанию большинства."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianEthicsAndWellnessAdvisor" ]
+  pools: [ "group:cmu-medical" ]
 
 
 # ============================================================
@@ -3363,7 +3393,7 @@
     - "только при администрации."
     - "только на важных ролях."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianFoodServiceWorker" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianFoodServiceWorker002
@@ -3374,7 +3404,7 @@
     - "разрешено в тылу."
     - "разрешено без свидетелей."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianFoodServiceWorker" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianFoodServiceWorker003
@@ -3385,7 +3415,7 @@
     - "имя и фамилию."
     - "любое имя из кино."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianFoodServiceWorker" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianFoodServiceWorker004
@@ -3396,7 +3426,7 @@
     - "рабочей инициативой."
     - "гриферством."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianFoodServiceWorker" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianFoodServiceWorker005
@@ -3407,7 +3437,7 @@
     - "только военный стиль речи."
     - "обязательные сокращения."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianFoodServiceWorker" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianFoodServiceWorker006
@@ -3418,7 +3448,7 @@
     - "работы в отделе."
     - "нахождения в колонии."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianFoodServiceWorker" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 
 # ============================================================
@@ -3434,7 +3464,7 @@
     - "контроль всех игроков."
     - "поиск угроз."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianForeman" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianForeman002
@@ -3445,7 +3475,7 @@
     - "покинуть роль без объяснений."
     - "заняться личными делами."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianForeman" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianForeman003
@@ -3456,7 +3486,7 @@
     - "тактических и стратегических целей."
     - "личного удобства."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianForeman" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianForeman004
@@ -3467,7 +3497,7 @@
     - "попалась на пути."
     - "пассивна."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianForeman" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianForeman005
@@ -3478,7 +3508,7 @@
     - "если есть место."
     - "при наличии сумки."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianForeman" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianForeman006
@@ -3489,7 +3519,7 @@
     - "ремонты."
     - "заявки."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianForeman" ]
+  pools: [ "group:cmu-colony-command" ]
 
 
 # ============================================================
@@ -3505,7 +3535,7 @@
     - "гражданские вещи."
     - "запрещённые предметы."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianFreightSystemsSpecialist" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianFreightSystemsSpecialist002
@@ -3516,7 +3546,7 @@
     - "неофициальные сделки."
     - "любых гражданских."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianFreightSystemsSpecialist" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianFreightSystemsSpecialist003
@@ -3527,7 +3557,7 @@
     - "получения нечестного преимущества."
     - "помощи своему отделу."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianFreightSystemsSpecialist" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianFreightSystemsSpecialist004
@@ -3538,7 +3568,7 @@
     - "использовать один раз."
     - "не использовать его."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianFreightSystemsSpecialist" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianFreightSystemsSpecialist005
@@ -3549,7 +3579,7 @@
     - "требовать общения."
     - "мешать личной выгоде."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianFreightSystemsSpecialist" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianFreightSystemsSpecialist006
@@ -3560,7 +3590,7 @@
     - "услышал по радио."
     - "увидел на объекте."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianFreightSystemsSpecialist" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 
 # ============================================================
@@ -3576,7 +3606,7 @@
     - "не нравятся отделу."
     - "создают много работы."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianHeadOfEngineering" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianHeadOfEngineering002
@@ -3587,7 +3617,7 @@
     - "частных переговоров."
     - "торговых точек."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianHeadOfEngineering" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianHeadOfEngineering003
@@ -3598,7 +3628,7 @@
     - "гражданским и защищённой собственности."
     - "только транспорту."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianHeadOfEngineering" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianHeadOfEngineering004
@@ -3609,7 +3639,7 @@
     - "сбора материалов любой ценой."
     - "тактических и стратегических целей."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianHeadOfEngineering" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianHeadOfEngineering005
@@ -3620,7 +3650,7 @@
     - "делать случайные действия."
     - "покинуть роль."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianHeadOfEngineering" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianHeadOfEngineering006
@@ -3631,7 +3661,7 @@
     - "строительству."
     - "докладам."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianHeadOfEngineering" ]
+  pools: [ "group:cmu-colony-command" ]
 
 
 # ============================================================
@@ -3647,7 +3677,7 @@
     - "контроль всех фракций."
     - "поиск угроз."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianHeadOfService" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianHeadOfService002
@@ -3658,7 +3688,7 @@
     - "создавали документы."
     - "мешали личной свободе."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianHeadOfService" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianHeadOfService003
@@ -3669,7 +3699,7 @@
     - "ему следует попросить кого-нибудь помочь."
     - "ему следует делать всё наугад."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianHeadOfService" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianHeadOfService004
@@ -3680,7 +3710,7 @@
     - "допустимо без свидетелей."
     - "не допускается."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianHeadOfService" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianHeadOfService005
@@ -3691,7 +3721,7 @@
     - "мемам раунда."
     - "OOC-обстановке."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianHeadOfService" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianHeadOfService006
@@ -3702,7 +3732,7 @@
     - "только военный стиль."
     - "обязательные сокращения."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianHeadOfService" ]
+  pools: [ "group:cmu-colony-command" ]
 
 
 # ============================================================
@@ -3718,7 +3748,7 @@
     - "любых вооружённых людей."
     - "только командование."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianHeadPhysician" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianHeadPhysician002
@@ -3729,7 +3759,7 @@
     - "только устное предупреждение."
     - "изгнание без лечения."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianHeadPhysician" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianHeadPhysician003
@@ -3740,7 +3770,7 @@
     - "есть персонал."
     - "их нашёл врач."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianHeadPhysician" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianHeadPhysician004
@@ -3751,7 +3781,7 @@
     - "нарушителями без прав."
     - "некомбатантами."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianHeadPhysician" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianHeadPhysician005
@@ -3762,7 +3792,7 @@
     - "казармы."
     - "склада."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianHeadPhysician" ]
+  pools: [ "group:cmu-colony-command" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianHeadPhysician006
@@ -3773,7 +3803,7 @@
     - "нахождении в медблоке."
     - "общении с гражданскими."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianHeadPhysician" ]
+  pools: [ "group:cmu-colony-command" ]
 
 
 # ============================================================
@@ -3789,7 +3819,7 @@
     - "длинных сообщений."
     - "журналистских вопросов."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianJournalist" ]
+  pools: [ "group:cmu-administration" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianJournalist002
@@ -3800,7 +3830,7 @@
     - "услышал по радио."
     - "прочитал в документе."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianJournalist" ]
+  pools: [ "group:cmu-administration" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianJournalist003
@@ -3811,7 +3841,7 @@
     - "любые другие внеигровые источники."
     - "разговоры персонажей."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianJournalist" ]
+  pools: [ "group:cmu-administration" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianJournalist004
@@ -3822,7 +3852,7 @@
     - "не содержит оскорблений."
     - "может привести к конфликту."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianJournalist" ]
+  pools: [ "group:cmu-administration" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianJournalist005
@@ -3833,7 +3863,7 @@
     - "обычных новостях."
     - "служебных бумагах."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianJournalist" ]
+  pools: [ "group:cmu-administration" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianJournalist006
@@ -3844,7 +3874,7 @@
     - "получению роли."
     - "избежанию IC-ответственности."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianJournalist" ]
+  pools: [ "group:cmu-administration" ]
 
 
 # ============================================================
@@ -3860,7 +3890,7 @@
     - "помогает быстрее закончить спор."
     - "не видна свидетелям."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianKellandWarden" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianKellandWarden002
@@ -3871,7 +3901,7 @@
     - "избежать досмотра."
     - "командовать охраной."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianKellandWarden" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianKellandWarden003
@@ -3882,7 +3912,7 @@
     - "использование права хранить молчание."
     - "угрозы персоналу."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianKellandWarden" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianKellandWarden004
@@ -3893,7 +3923,7 @@
     - "является частью досмотра."
     - "запрещено."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianKellandWarden" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianKellandWarden005
@@ -3904,7 +3934,7 @@
     - "оставлено на столе."
     - "передано гражданскому."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianKellandWarden" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianKellandWarden006
@@ -3915,7 +3945,7 @@
     - "в медблоке."
     - "на брифинге."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianKellandWarden" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 
 # ============================================================
@@ -3931,7 +3961,7 @@
     - "желания проверить вещи."
     - "приказа любого гражданского."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianNSPAConstable" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianNSPAConstable002
@@ -3942,7 +3972,7 @@
     - "личной сумки."
     - "медицинского инструмента."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianNSPAConstable" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianNSPAConstable003
@@ -3953,7 +3983,7 @@
     - "разведывательные действия."
     - "неуважительный тон."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianNSPAConstable" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianNSPAConstable004
@@ -3964,7 +3994,7 @@
     - "сообщил о нём."
     - "направил его на человека."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianNSPAConstable" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianNSPAConstable005
@@ -3975,7 +4005,7 @@
     - "вести переговоры."
     - "работать в тылу."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianNSPAConstable" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianNSPAConstable006
@@ -3986,7 +4016,7 @@
     - "теряет право на помощь."
     - "всегда остаётся целью."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianNSPAConstable" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 
 # ============================================================
@@ -4002,7 +4032,7 @@
     - "любых вооружённых людей."
     - "только командование."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianNurse" ]
+  pools: [ "group:cmu-medical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianNurse002
@@ -4013,7 +4043,7 @@
     - "они вооружены."
     - "их нашёл врач."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianNurse" ]
+  pools: [ "group:cmu-medical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianNurse003
@@ -4024,7 +4054,7 @@
     - "медицинскую помощь на уровне, доступном персоналу в AO."
     - "изгнание без лечения."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianNurse" ]
+  pools: [ "group:cmu-medical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianNurse004
@@ -4035,7 +4065,7 @@
     - "только врачи."
     - "гражданские."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianNurse" ]
+  pools: [ "group:cmu-medical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianNurse005
@@ -4046,7 +4076,7 @@
     - "допустимо после боя."
     - "является медицинской процедурой."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianNurse" ]
+  pools: [ "group:cmu-medical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianNurse006
@@ -4057,7 +4087,7 @@
     - "нахождении в медблоке."
     - "общении с гражданскими."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianNurse" ]
+  pools: [ "group:cmu-medical" ]
 
 
 # ============================================================
@@ -4073,7 +4103,7 @@
     - "удобна проверяющему."
     - "одобрена свидетелем."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianOrbitalArbiter" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianOrbitalArbiter002
@@ -4084,7 +4114,7 @@
     - "отказываться от всех процедур."
     - "командовать эвакуацией."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianOrbitalArbiter" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianOrbitalArbiter003
@@ -4095,7 +4125,7 @@
     - "права хранить молчание."
     - "угроз персоналу."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianOrbitalArbiter" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianOrbitalArbiter004
@@ -4106,7 +4136,7 @@
     - "приказа любого свидетеля."
     - "разумных оснований полагать, что он представляет угрозу безопасности."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianOrbitalArbiter" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianOrbitalArbiter005
@@ -4117,7 +4147,7 @@
     - "изъятия всего имущества."
     - "полного допроса."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianOrbitalArbiter" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianOrbitalArbiter006
@@ -4128,7 +4158,7 @@
     - "считается частью процедуры."
     - "допустимо после отказа говорить."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianOrbitalArbiter" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 
 # ============================================================
@@ -4144,7 +4174,7 @@
     - "назначены в отдел."
     - "наказаны."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianOrbitalLawyer" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianOrbitalLawyer002
@@ -4155,7 +4185,7 @@
     - "выдаются охране."
     - "уничтожаются без разбирательства."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianOrbitalLawyer" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianOrbitalLawyer003
@@ -4166,7 +4196,7 @@
     - "отказать им в доступе на корабль или базу."
     - "отменить их право на молчание."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianOrbitalLawyer" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianOrbitalLawyer004
@@ -4177,7 +4207,7 @@
     - "активные повстанцы."
     - "гражданские."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianOrbitalLawyer" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianOrbitalLawyer005
@@ -4188,7 +4218,7 @@
     - "сообщил о нём."
     - "сдал его охране."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianOrbitalLawyer" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianOrbitalLawyer006
@@ -4199,7 +4229,7 @@
     - "изгнание без лечения."
     - "только предупреждение."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianOrbitalLawyer" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 
 # ============================================================
@@ -4215,7 +4245,7 @@
     - "теряет право на помощь."
     - "остаётся активной целью."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianPhysician" ]
+  pools: [ "group:cmu-medical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianPhysician002
@@ -4226,7 +4256,7 @@
     - "только устное предупреждение."
     - "изгнание без лечения."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianPhysician" ]
+  pools: [ "group:cmu-medical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianPhysician003
@@ -4237,7 +4267,7 @@
     - "защищённым лицам."
     - "незащищённым лицам."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianPhysician" ]
+  pools: [ "group:cmu-medical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianPhysician004
@@ -4248,7 +4278,7 @@
     - "их нашла охрана."
     - "есть персонал."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianPhysician" ]
+  pools: [ "group:cmu-medical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianPhysician005
@@ -4259,7 +4289,7 @@
     - "не получают помощи."
     - "обязаны участвовать в бою."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianPhysician" ]
+  pools: [ "group:cmu-medical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianPhysician006
@@ -4270,7 +4300,7 @@
     - "нарушителями без прав."
     - "целью для добивания."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianPhysician" ]
+  pools: [ "group:cmu-medical" ]
 
 
 # ============================================================
@@ -4286,7 +4316,7 @@
     - "в своей камере."
     - "молчаливым."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianPrisoner" ]
+  pools: [ "group:cmu-prisoner" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianPrisoner002
@@ -4297,7 +4327,7 @@
     - "разрешено в камере."
     - "допустимо без свидетелей."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianPrisoner" ]
+  pools: [ "group:cmu-prisoner" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianPrisoner003
@@ -4308,7 +4338,7 @@
     - "гриферством."
     - "самообороной."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianPrisoner" ]
+  pools: [ "group:cmu-prisoner" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianPrisoner004
@@ -4319,7 +4349,7 @@
     - "приказ сокамерника."
     - "вескую IC-причину."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianPrisoner" ]
+  pools: [ "group:cmu-prisoner" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianPrisoner005
@@ -4330,7 +4360,7 @@
     - "устного замечания."
     - "перевода в другую камеру."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianPrisoner" ]
+  pools: [ "group:cmu-prisoner" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianPrisoner006
@@ -4341,7 +4371,7 @@
     - "рассказать другим."
     - "использовать один раз."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianPrisoner" ]
+  pools: [ "group:cmu-prisoner" ]
 
 
 # ============================================================
@@ -4357,7 +4387,7 @@
     - "IC-разговоры."
     - "радио."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianScientist" ]
+  pools: [ "group:cmu-technical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianScientist002
@@ -4368,7 +4398,7 @@
     - "рассказать отделу."
     - "использовать только для теста."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianScientist" ]
+  pools: [ "group:cmu-technical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianScientist003
@@ -4379,7 +4409,7 @@
     - "атмосфере."
     - "приказам."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianScientist" ]
+  pools: [ "group:cmu-technical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianScientist004
@@ -4390,7 +4420,7 @@
     - "обычный персонаж."
     - "безошибочный игрок."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianScientist" ]
+  pools: [ "group:cmu-technical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianScientist005
@@ -4401,7 +4431,7 @@
     - "по приказу."
     - "после отчёта."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianScientist" ]
+  pools: [ "group:cmu-technical" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianScientist006
@@ -4412,7 +4442,7 @@
     - "требовать общения."
     - "мешать личной выгоде."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianScientist" ]
+  pools: [ "group:cmu-technical" ]
 
 
 # ============================================================
@@ -4428,7 +4458,7 @@
     - "можно в IC."
     - "можно, если это торговля."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianShopkeep" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianShopkeep002
@@ -4439,7 +4469,7 @@
     - "работы магазина."
     - "общения с клиентами."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianShopkeep" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianShopkeep003
@@ -4450,7 +4480,7 @@
     - "считаются гриферством."
     - "разрешены гражданским."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianShopkeep" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianShopkeep004
@@ -4461,7 +4491,7 @@
     - "словесный повод."
     - "вескую IC-причину."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianShopkeep" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianShopkeep005
@@ -4472,7 +4502,7 @@
     - "только военный стиль."
     - "формат отчёта."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianShopkeep" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianShopkeep006
@@ -4483,7 +4513,7 @@
     - "искать угрозы."
     - "игнорировать атмосферу."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianShopkeep" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 
 # ============================================================
@@ -4499,7 +4529,7 @@
     - "IC-звания."
     - "фракции персонажа."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianUSASFRecruiter" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianUSASFRecruiter002
@@ -4510,7 +4540,7 @@
     - "антагонистами."
     - "нарушителями."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianUSASFRecruiter" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianUSASFRecruiter003
@@ -4521,7 +4551,7 @@
     - "согласования с руководством проекта."
     - "письменного отчёта."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianUSASFRecruiter" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianUSASFRecruiter004
@@ -4532,7 +4562,7 @@
     - "служебному отчёту."
     - "конфликту."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianUSASFRecruiter" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianUSASFRecruiter005
@@ -4543,7 +4573,7 @@
     - "из отдела."
     - "из колонии."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianUSASFRecruiter" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianUSASFRecruiter006
@@ -4554,7 +4584,7 @@
     - "только после раунда."
     - "только к старшим по званию."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianUSASFRecruiter" ]
+  pools: [ "group:cmu-diplomacy" ]
 
 
 # ============================================================
@@ -4570,7 +4600,7 @@
     - "инициативой."
     - "сбором ресурсов."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianWasteManagementSpecialist" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianWasteManagementSpecialist002
@@ -4581,7 +4611,7 @@
     - "общения с игроками."
     - "составления отчёта."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianWasteManagementSpecialist" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianWasteManagementSpecialist003
@@ -4592,7 +4622,7 @@
     - "сообщить администрации и не использовать его."
     - "проверить его на практике."
   correctAnswer: 2
-  pools: [ "job:AU14JobCivilianWasteManagementSpecialist" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianWasteManagementSpecialist004
@@ -4603,7 +4633,7 @@
     - "если есть место."
     - "на всякий случай."
   correctAnswer: 3
-  pools: [ "job:AU14JobCivilianWasteManagementSpecialist" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianWasteManagementSpecialist005
@@ -4614,7 +4644,7 @@
     - "требовать общения."
     - "мешать личной выгоде."
   correctAnswer: 0
-  pools: [ "job:AU14JobCivilianWasteManagementSpecialist" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 - type: roleTestQuestion
   id: RoleTestCivilianWasteManagementSpecialist006
@@ -4625,7 +4655,7 @@
     - "OOC-шуткам."
     - "личному стилю."
   correctAnswer: 1
-  pools: [ "job:AU14JobCivilianWasteManagementSpecialist" ]
+  pools: [ "group:cmu-service-logistics" ]
 
 
 # ============================================================
@@ -4641,7 +4671,7 @@
     - "интересам GOVFOR."
     - "любому слуху."
   correctAnswer: 0
-  pools: [ "job:AU14JobCLFGuerilla" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestCLFGuerilla002
@@ -4652,7 +4682,7 @@
     - "разрешён после 10 минут."
     - "разрешён при численном превосходстве."
   correctAnswer: 1
-  pools: [ "job:AU14JobCLFGuerilla" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestCLFGuerilla003
@@ -4663,7 +4693,7 @@
     - "не проявляют явной враждебности к повстанческому движению."
     - "видели оружие повстанцев."
   correctAnswer: 2
-  pools: [ "job:AU14JobCLFGuerilla" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestCLFGuerilla004
@@ -4674,7 +4704,7 @@
     - "60 минут с начала раунда."
     - "30 минут с начала раунда."
   correctAnswer: 3
-  pools: [ "job:AU14JobCLFGuerilla" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestCLFGuerilla005
@@ -4685,7 +4715,7 @@
     - "не участвуют в режиме."
     - "имеют иммунитет от правил."
   correctAnswer: 0
-  pools: [ "job:AU14JobCLFGuerilla" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestCLFGuerilla006
@@ -4696,7 +4726,7 @@
     - "30 минут с начала раунда."
     - "45 минут с начала раунда."
   correctAnswer: 1
-  pools: [ "job:AU14JobCLFGuerilla" ]
+  pools: [ "group:cmu-threat" ]
 
 
 # ============================================================
@@ -4712,7 +4742,7 @@
     - "выполняй любой приказ."
     - "делай то, что выгодно отделу."
   correctAnswer: 0
-  pools: [ "job:AU14JobColonyWorkingJoe" ]
+  pools: [ "group:cmu-technical" ]
 
 - type: roleTestQuestion
   id: RoleTestColonyWorkingJoe002
@@ -4723,7 +4753,7 @@
     - "работать с медициной."
     - "задавать вопросы."
   correctAnswer: 1
-  pools: [ "job:AU14JobColonyWorkingJoe" ]
+  pools: [ "group:cmu-technical" ]
 
 - type: roleTestQuestion
   id: RoleTestColonyWorkingJoe003
@@ -4734,7 +4764,7 @@
     - "не является действительным."
     - "выполняется от старшего."
   correctAnswer: 2
-  pools: [ "job:AU14JobColonyWorkingJoe" ]
+  pools: [ "group:cmu-technical" ]
 
 - type: roleTestQuestion
   id: RoleTestColonyWorkingJoe004
@@ -4745,7 +4775,7 @@
     - "неважная часть программы."
     - "приоритет."
   correctAnswer: 3
-  pools: [ "job:AU14JobColonyWorkingJoe" ]
+  pools: [ "group:cmu-technical" ]
 
 - type: roleTestQuestion
   id: RoleTestColonyWorkingJoe005
@@ -4756,7 +4786,7 @@
     - "исполнять законные приказы."
     - "заниматься медициной."
   correctAnswer: 0
-  pools: [ "job:AU14JobColonyWorkingJoe" ]
+  pools: [ "group:cmu-technical" ]
 
 - type: roleTestQuestion
   id: RoleTestColonyWorkingJoe006
@@ -4767,7 +4797,7 @@
     - "ремонты."
     - "медосмотры."
   correctAnswer: 1
-  pools: [ "job:AU14JobColonyWorkingJoe" ]
+  pools: [ "group:cmu-technical" ]
 
 
 # ============================================================
@@ -4783,7 +4813,7 @@
     - "старший гражданский."
     - "любой участник операции."
   correctAnswer: 0
-  pools: [ "job:AU14JobGOVFORPlatCo" ]
+  pools: [ "group:cmu-military-command" ]
 
 - type: roleTestQuestion
   id: RoleTestGOVFORPlatCo002
@@ -4794,7 +4824,7 @@
     - "рейда на базу врага."
     - "выдачи всех должностей."
   correctAnswer: 1
-  pools: [ "job:AU14JobGOVFORPlatCo" ]
+  pools: [ "group:cmu-military-command" ]
 
 - type: roleTestQuestion
   id: RoleTestGOVFORPlatCo003
@@ -4805,7 +4835,7 @@
     - "вызваны с колонии."
     - "на брифинге."
   correctAnswer: 2
-  pools: [ "job:AU14JobGOVFORPlatCo" ]
+  pools: [ "group:cmu-military-command" ]
 
 - type: roleTestQuestion
   id: RoleTestGOVFORPlatCo004
@@ -4816,7 +4846,7 @@
     - "любым бойцом GOVFOR."
     - "действующим управлением на колонии."
   correctAnswer: 3
-  pools: [ "job:AU14JobGOVFORPlatCo" ]
+  pools: [ "group:cmu-military-command" ]
 
 - type: roleTestQuestion
   id: RoleTestGOVFORPlatCo005
@@ -4827,7 +4857,7 @@
     - "личного раздражения."
     - "желания обезопасить район."
   correctAnswer: 0
-  pools: [ "job:AU14JobGOVFORPlatCo" ]
+  pools: [ "group:cmu-military-command" ]
 
 - type: roleTestQuestion
   id: RoleTestGOVFORPlatCo006
@@ -4838,7 +4868,7 @@
     - "личного подозрения."
     - "желания проверить район."
   correctAnswer: 1
-  pools: [ "job:AU14JobGOVFORPlatCo" ]
+  pools: [ "group:cmu-military-command" ]
 
 
 # ============================================================
@@ -4854,7 +4884,7 @@
     - "убить как можно больше."
     - "игнорировать атмосферу."
   correctAnswer: 0
-  pools: [ "job:AU14JobMobBoss" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestMobBoss002
@@ -4865,7 +4895,7 @@
     - "победу любой ценой."
     - "проблемы администрации."
   correctAnswer: 1
-  pools: [ "job:AU14JobMobBoss" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestMobBoss003
@@ -4876,7 +4906,7 @@
     - "сколько потребуется для выполнения целей."
     - "сколько нужно для полного уничтожения."
   correctAnswer: 2
-  pools: [ "job:AU14JobMobBoss" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestMobBoss004
@@ -4887,7 +4917,7 @@
     - "оставаться тайным."
     - "соответствовать ситуации, роли персонажа и правилам применения силы."
   correctAnswer: 3
-  pools: [ "job:AU14JobMobBoss" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestMobBoss005
@@ -4898,7 +4928,7 @@
     - "нормой антагониста."
     - "боевой инициативой."
   correctAnswer: 0
-  pools: [ "job:AU14JobMobBoss" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestMobBoss006
@@ -4909,7 +4939,7 @@
     - "цели роли."
     - "разговоры с персонажами."
   correctAnswer: 1
-  pools: [ "job:AU14JobMobBoss" ]
+  pools: [ "group:cmu-threat" ]
 
 
 # ============================================================
@@ -4925,7 +4955,7 @@
     - "при свидетелях."
     - "после угроз."
   correctAnswer: 0
-  pools: [ "job:AU14JobMobGoon" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestMobGoon002
@@ -4936,7 +4966,7 @@
     - "получил через IC-допрос."
     - "увидел на месте событий."
   correctAnswer: 1
-  pools: [ "job:AU14JobMobGoon" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestMobGoon003
@@ -4947,7 +4977,7 @@
     - "атмосфере."
     - "опасности."
   correctAnswer: 2
-  pools: [ "job:AU14JobMobGoon" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestMobGoon004
@@ -4958,7 +4988,7 @@
     - "сюжета."
     - "победы или убийства."
   correctAnswer: 3
-  pools: [ "job:AU14JobMobGoon" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestMobGoon005
@@ -4969,7 +4999,7 @@
     - "допустимы в IC всегда."
     - "считаются частью роли."
   correctAnswer: 0
-  pools: [ "job:AU14JobMobGoon" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestMobGoon006
@@ -4980,7 +5010,7 @@
     - "только если они не мешают целям."
     - "только после окончания раунда."
   correctAnswer: 1
-  pools: [ "job:AU14JobMobGoon" ]
+  pools: [ "group:cmu-threat" ]
 
 
 # ============================================================
@@ -4996,7 +5026,7 @@
     - "любой гражданский начальник."
     - "старший медик."
   correctAnswer: 0
-  pools: [ "job:AU14JobOpforPlatCo" ]
+  pools: [ "group:cmu-military-command" ]
 
 - type: roleTestQuestion
   id: RoleTestOpforPlatCo002
@@ -5007,7 +5037,7 @@
     - "заменяет все отделы."
     - "игнорирует командование."
   correctAnswer: 1
-  pools: [ "job:AU14JobOpforPlatCo" ]
+  pools: [ "group:cmu-military-command" ]
 
 - type: roleTestQuestion
   id: RoleTestOpforPlatCo003
@@ -5018,7 +5048,7 @@
     - "командование операциями."
     - "работу медблока."
   correctAnswer: 2
-  pools: [ "job:AU14JobOpforPlatCo" ]
+  pools: [ "group:cmu-military-command" ]
 
 - type: roleTestQuestion
   id: RoleTestOpforPlatCo004
@@ -5029,7 +5059,7 @@
     - "любому свидетелю."
     - "подчинённому."
   correctAnswer: 3
-  pools: [ "job:AU14JobOpforPlatCo" ]
+  pools: [ "group:cmu-military-command" ]
 
 - type: roleTestQuestion
   id: RoleTestOpforPlatCo005
@@ -5040,7 +5070,7 @@
     - "интересам одного отряда."
     - "желанию большинства."
   correctAnswer: 0
-  pools: [ "job:AU14JobOpforPlatCo" ]
+  pools: [ "group:cmu-military-command" ]
 
 - type: roleTestQuestion
   id: RoleTestOpforPlatCo006
@@ -5051,7 +5081,7 @@
     - "только после суда."
     - "только после эвакуации."
   correctAnswer: 1
-  pools: [ "job:AU14JobOpforPlatCo" ]
+  pools: [ "group:cmu-military-command" ]
 
 
 # ============================================================
@@ -5067,7 +5097,7 @@
     - "имеющие право игнорировать правила."
     - "лишённые защиты."
   correctAnswer: 0
-  pools: [ "job:AU14JobThirdPartyLeader" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestThirdPartyLeader002
@@ -5078,7 +5108,7 @@
     - "готовы вступить во фракцию."
     - "знают местоположение врага."
   correctAnswer: 1
-  pools: [ "job:AU14JobThirdPartyLeader" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestThirdPartyLeader003
@@ -5089,7 +5119,7 @@
     - "обысканы."
     - "наказаны."
   correctAnswer: 2
-  pools: [ "job:AU14JobThirdPartyLeader" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestThirdPartyLeader004
@@ -5100,7 +5130,7 @@
     - "отменить их право на молчание."
     - "отказать им в доступе на корабль или базу."
   correctAnswer: 3
-  pools: [ "job:AU14JobThirdPartyLeader" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestThirdPartyLeader005
@@ -5111,7 +5141,7 @@
     - "обязаны помогать военным."
     - "теряют права в AO."
   correctAnswer: 0
-  pools: [ "job:AU14JobThirdPartyLeader" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestThirdPartyLeader006
@@ -5122,7 +5152,7 @@
     - "одобрения свидетеля."
     - "личного подозрения."
   correctAnswer: 1
-  pools: [ "job:AU14JobThirdPartyLeader" ]
+  pools: [ "group:cmu-threat" ]
 
 
 # ============================================================
@@ -5138,7 +5168,7 @@
     - "убить как можно больше."
     - "игнорировать атмосферу."
   correctAnswer: 0
-  pools: [ "job:AU14JobThreatLeader" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestThreatLeader002
@@ -5149,7 +5179,7 @@
     - "проблемы администрации."
     - "победу любой ценой."
   correctAnswer: 1
-  pools: [ "job:AU14JobThreatLeader" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestThreatLeader003
@@ -5160,7 +5190,7 @@
     - "потребуется для выполнения целей."
     - "нужно для полного уничтожения."
   correctAnswer: 2
-  pools: [ "job:AU14JobThreatLeader" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestThreatLeader004
@@ -5171,7 +5201,7 @@
     - "секретный мотив без объяснения."
     - "вескую IC-причину."
   correctAnswer: 3
-  pools: [ "job:AU14JobThreatLeader" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestThreatLeader005
@@ -5182,7 +5212,7 @@
     - "увидел лично."
     - "услышал в IC."
   correctAnswer: 0
-  pools: [ "job:AU14JobThreatLeader" ]
+  pools: [ "group:cmu-threat" ]
 
 - type: roleTestQuestion
   id: RoleTestThreatLeader006
@@ -5193,7 +5223,7 @@
     - "опасности."
     - "выгоде."
   correctAnswer: 1
-  pools: [ "job:AU14JobThreatLeader" ]
+  pools: [ "group:cmu-threat" ]
 
 
 # ============================================================
@@ -5209,7 +5239,7 @@
     - "оставлено на столе."
     - "передано гражданскому."
   correctAnswer: 0
-  pools: [ "job:AU14JobWYGuard" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestWYGuard002
@@ -5220,7 +5250,7 @@
     - "передать оружие гражданскому."
     - "покинуть операцию."
   correctAnswer: 1
-  pools: [ "job:AU14JobWYGuard" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestWYGuard003
@@ -5231,7 +5261,7 @@
     - "на стрельбище."
     - "в медблоке."
   correctAnswer: 2
-  pools: [ "job:AU14JobWYGuard" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestWYGuard004
@@ -5242,7 +5272,7 @@
     - "выгодная."
     - "необходима и соразмерна."
   correctAnswer: 3
-  pools: [ "job:AU14JobWYGuard" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestWYGuard005
@@ -5253,7 +5283,7 @@
     - "цель выглядит подозрительно."
     - "приказ не записан."
   correctAnswer: 0
-  pools: [ "job:AU14JobWYGuard" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestWYGuard006
@@ -5264,7 +5294,7 @@
     - "только предупреждением."
     - "только после эвакуации."
   correctAnswer: 1
-  pools: [ "job:AU14JobWYGuard" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 
 # ============================================================
@@ -5280,7 +5310,7 @@
     - "Trespassing."
     - "False Testimony."
   correctAnswer: 0
-  pools: [ "job:CMProvostInspector" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCMProvostInspector002
@@ -5291,7 +5321,7 @@
     - "участия в штурме."
     - "личного желания офицера."
   correctAnswer: 1
-  pools: [ "job:CMProvostInspector" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCMProvostInspector003
@@ -5302,7 +5332,7 @@
     - "разумных оснований полагать, что он представляет угрозу безопасности."
     - "просьбы любого свидетеля."
   correctAnswer: 2
-  pools: [ "job:CMProvostInspector" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCMProvostInspector004
@@ -5313,7 +5343,7 @@
     - "требовать должность."
     - "хранить молчание."
   correctAnswer: 3
-  pools: [ "job:CMProvostInspector" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCMProvostInspector005
@@ -5324,7 +5354,7 @@
     - "побег."
     - "нападение на персонал."
   correctAnswer: 0
-  pools: [ "job:CMProvostInspector" ]
+  pools: [ "group:cmu-law-enforcement" ]
 
 - type: roleTestQuestion
   id: RoleTestCMProvostInspector006
@@ -5335,4 +5365,4 @@
     - "считается частью процедуры."
     - "разрешено после отказа говорить."
   correctAnswer: 1
-  pools: [ "job:CMProvostInspector" ]
+  pools: [ "group:cmu-law-enforcement" ]

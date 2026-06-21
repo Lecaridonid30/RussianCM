@@ -59,6 +59,17 @@ public sealed partial class RoleTestWindow : DefaultWindow
             return;
         }
 
+        if (state.RetryCooldown > TimeSpan.Zero)
+        {
+            _content.AddChild(new Label
+            {
+                Text = Loc.GetString(
+                    "role-test-retry-cooldown",
+                    ("minutes", Math.Max(1, (int) Math.Ceiling(state.RetryCooldown.TotalMinutes)))),
+                StyleClasses = { StyleNano.StyleClassCrtText },
+            });
+        }
+
         BuildTestList(state.Tests);
     }
 

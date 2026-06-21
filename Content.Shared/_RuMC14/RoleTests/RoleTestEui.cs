@@ -7,11 +7,13 @@ namespace Content.Shared._RuMC14.RoleTests;
 public sealed class RoleTestEuiState(
     List<RoleTestEntry> tests,
     ActiveRoleTest? active,
-    string? message) : EuiStateBase
+    string? message,
+    TimeSpan retryCooldown) : EuiStateBase
 {
     public readonly List<RoleTestEntry> Tests = tests;
     public readonly ActiveRoleTest? Active = active;
     public readonly string? Message = message;
+    public readonly TimeSpan RetryCooldown = retryCooldown;
 }
 
 [Serializable, NetSerializable]

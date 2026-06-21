@@ -36,6 +36,6 @@ role-test-summary = Responsibility: {$responsibility}; questions: {$count}; {$la
 role-test-not-enough-questions = Not enough questions in the pool: {$available} available, {$required} required.
 role-test-not-enough-pool-questions = Not enough questions in pool "{$pool}": {$available} available, {$required} required.
 role-test-pool-total = total
-role-test-failed = Test failed: {$correct} of {$total} correct.
+role-test-failed = Test failed: {$correct} of {$total} correct. Any role test can be retried in {$minutes} minutes.
+role-test-retry-cooldown = A global cooldown is active after a failed test. You can retry any role test in {$minutes} minutes.
 role-test-passed = Test "{$test}" passed. The role is now unlocked.
-

@@ -699,7 +699,8 @@ public abstract partial class SharedRoleSystem : EntitySystem
 
     private HashSet<JobRequirement>? WithRoleTestRequirement(JobPrototype job, HashSet<JobRequirement>? requirements)
     {
-        if (RoleTestShared.IsRoleTestExempt(job))
+        if (RoleTestShared.IsRoleTestExempt(job) ||
+            !_prototypes.TryIndex<RoleTestQuestionPoolPrototype>(job.ID, out _))
             return requirements;
 
         var result = requirements == null

@@ -79,6 +79,8 @@ public static class RoleTestShared
     public const string LawPool = "law";
     public const string JobTestPrefix = "Job:";
     public const string JobQuestionPoolPrefix = "job:";
+    public const string RetryCooldownTracker = "RoleTest:RetryCooldownUntil";
+    public static readonly TimeSpan RetryCooldown = TimeSpan.FromHours(1);
 
     public static string GetTracker(string testId)
     {

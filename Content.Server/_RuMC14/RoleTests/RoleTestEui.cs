@@ -40,6 +40,7 @@ public sealed class RoleTestEui : BaseEui
     public override EuiStateBase GetNewState()
     {
         var playTimes = _playTime.GetTrackerTimes(Player);
+        var retryCooldown = GetRetryCooldown(playTimes);
         var tests = EnumerateRoleTests()
             .OrderBy(test => test.Responsibility)
             .ThenBy(test => test.RequiresLaw)
@@ -56,12 +57,12 @@ public sealed class RoleTestEui : BaseEui
                     test.QuestionCount,
                     test.RequiresLaw,
                     playTimes.GetValueOrDefault(RoleTestShared.GetTracker(test.Id)) > TimeSpan.Zero,
-                    CanStart(test, questions),
+                    retryCooldown == TimeSpan.Zero && CanStart(test, questions),
                     available);
             })
             .ToList();
 
-        return new RoleTestEuiState(tests, _active, _message);
+        return new RoleTestEuiState(tests, _active, _message, retryCooldown);
     }
 
     public override void HandleMessage(EuiMessageBase msg)
@@ -89,6 +90,14 @@ public sealed class RoleTestEui : BaseEui
         var test = GetRoleTest(testId);
         if (test == null)
             return;
+
+        var retryCooldown = GetRetryCooldown(_playTime.GetTrackerTimes(Player));
+        if (retryCooldown > TimeSpan.Zero)
+        {
+            _message = GetRetryCooldownMessage(retryCooldown);
+            StateDirty();
+            return;
+        }
 
         var allQuestions = GetQuestions(test);
         if (!CanStart(test, allQuestions))
@@ -139,10 +148,12 @@ public sealed class RoleTestEui : BaseEui
 
         if (correct != _active.Questions.Count)
         {
+            SetRetryCooldown();
             _message = Loc.GetString(
                 "role-test-failed",
                 ("correct", correct),
-                ("total", _active.Questions.Count));
+                ("total", _active.Questions.Count),
+                ("minutes", (int) RoleTestShared.RetryCooldown.TotalMinutes));
             _active = null;
             _activeCorrectAnswers.Clear();
             StateDirty();
@@ -155,6 +166,28 @@ public sealed class RoleTestEui : BaseEui
         _active = null;
         _activeCorrectAnswers.Clear();
         StateDirty();
+    }
+
+    private void SetRetryCooldown()
+    {
+        var current = _playTime.GetPlayTimeForTracker(Player, RoleTestShared.RetryCooldownTracker);
+        var retryAt = TimeSpan.FromTicks(DateTime.UtcNow.Add(RoleTestShared.RetryCooldown).Ticks);
+        _playTime.AddTimeToTracker(Player, RoleTestShared.RetryCooldownTracker, retryAt - current);
+        _playTime.QueueSendTimers(Player);
+    }
+
+    private static TimeSpan GetRetryCooldown(IReadOnlyDictionary<string, TimeSpan> playTimes)
+    {
+        var retryAt = playTimes.GetValueOrDefault(RoleTestShared.RetryCooldownTracker);
+        var remaining = retryAt - TimeSpan.FromTicks(DateTime.UtcNow.Ticks);
+        return remaining > TimeSpan.Zero ? remaining : TimeSpan.Zero;
+    }
+
+    private static string GetRetryCooldownMessage(TimeSpan remaining)
+    {
+        return Loc.GetString(
+            "role-test-retry-cooldown",
+            ("minutes", Math.Max(1, (int) Math.Ceiling(remaining.TotalMinutes))));
     }
 
     private bool CanStart(RoleTestDefinition test, List<TestQuestion> questions)
@@ -257,7 +290,7 @@ public sealed class RoleTestEui : BaseEui
     {
         if (RoleTestShared.TryGetJobId(testId, out var jobId) &&
             _prototypes.TryIndex<JobPrototype>(jobId, out var job) &&
-            IsPersonalizationJob(job))
+            IsTestedCmuJob(job))
         {
             return CreateJobRoleTest(job);
         }
@@ -278,7 +311,7 @@ public sealed class RoleTestEui : BaseEui
                 if (!seen.Add(jobId.Id) || !_prototypes.TryIndex(jobId, out var job))
                     continue;
 
-                if (!IsPersonalizationJob(job))
+                if (!IsTestedCmuJob(job))
                     continue;
 
                 yield return job;
@@ -291,6 +324,12 @@ public sealed class RoleTestEui : BaseEui
         return job.SetPreference &&
                !job.Hidden &&
                !RoleTestShared.IsRoleTestExempt(job);
+    }
+
+    private bool IsTestedCmuJob(JobPrototype job)
+    {
+        return IsPersonalizationJob(job) &&
+               _prototypes.TryIndex<RoleTestQuestionPoolPrototype>(job.ID, out _);
     }
 
     private RoleTestDefinition CreateJobRoleTest(JobPrototype job)
@@ -341,9 +380,7 @@ public sealed class RoleTestEui : BaseEui
 
     private string GetRoleQuestionPool(JobPrototype job)
     {
-        return _prototypes.TryIndex<RoleTestQuestionPoolPrototype>(job.ID, out var pool)
-            ? pool.Pool
-            : RoleTestShared.GetJobQuestionPool(job.ID);
+        return _prototypes.Index<RoleTestQuestionPoolPrototype>(job.ID).Pool;
     }
 
     private sealed record RoleTestDefinition(
