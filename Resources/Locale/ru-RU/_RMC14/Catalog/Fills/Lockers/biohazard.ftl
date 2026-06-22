@@ -1,20 +1,20 @@
 ent-CMClosetBioFilled = {ent-CMClosetBio}
     .desc = {ent-CMClosetBio.desc}
-    .siffix = Заполнен
+    .suffix = Заполнен
 
 ent-CMClosetBioVirologyFilled = {ent-CMClosetBio}
     .desc = {ent-CMClosetBio.desc}
-    .siffix = Заполнен, Вирусология
+    .suffix = Заполнен, Вирусология
 
 ent-CMClosetBioSecurityFilled = {ent-CMClosetBio}
     .desc = {ent-CMClosetBio.desc}
-    .siffix = Заполнен, Охрана
+    .suffix = Заполнен, Охрана
 
 ent-CMClosetBioJanitorFilled = {ent-CMClosetBio}
     .desc = {ent-CMClosetBio.desc}
-    .siffix = Заполнен, Уборщик
+    .suffix = Заполнен, Уборщик
 
 ent-CMClosetBioScientistFilled = {ent-CMClosetBio}
     .desc = {ent-CMClosetBio.desc}
-    .siffix = Заполнен, Научный
+    .suffix = Заполнен, Научный
 

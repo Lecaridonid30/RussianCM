@@ -32,4 +32,4 @@ reagent-name-cmu-tramadol                    = Трамадол
 reagent-desc-cmu-tramadol                    = Умеренное обезболивающее. Способствует исчезновению боли.
 
 reagent-name-cmu-oxycodone                   = Оксикодон
-reagent-desc-cmu-oxycodone                   = Сильное обезболивающие. Может полностью убирать болевой шок, пока он длится.
+reagent-desc-cmu-oxycodone                   = Сильное обезболивающее. Может полностью убирать болевой шок, пока он длится.

@@ -38,7 +38,7 @@ public sealed partial class AnalyzerSystem : EntitySystem
         var verb = new InteractionVerb
         {
             Act = () => PerformScan(uid, args.User),
-            Text = Loc.GetString("au14-analyzer-verb-scan"), // RuCM edit
+            Text = Loc.GetString("au14-analyzer-verb-scan"), // RuMC edit
             Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/examine.svg.192dpi.png"))
         };
         args.Verbs.Add(verb);
@@ -48,8 +48,8 @@ public sealed partial class AnalyzerSystem : EntitySystem
     {
         var count = _fetchSystem.ScanForFetchItems(analyzerUid);
         var message = count > 0
-            ? Loc.GetString("au14-analyzer-scan-found", ("count", count)) // RuCM edit
-            : Loc.GetString("au14-analyzer-scan-none"); // RuCM edit
+            ? Loc.GetString("au14-analyzer-scan-found", ("count", count)) // RuMC edit
+            : Loc.GetString("au14-analyzer-scan-none"); // RuMC edit
         _popupSystem.PopupEntity(message, analyzerUid, user);
     }
 
@@ -76,7 +76,7 @@ public sealed partial class AnalyzerSystem : EntitySystem
             _objectiveSystem.AwardRawPointsToFaction(ClfFaction, points);
 
         var banked = component.CashStored > 0
-            ? $" ({component.CashStored}/{CashPerPoint} cr. banked)" // RuMC edit
+            ? Loc.GetString("au14-analyzer-cash-banked-suffix", ("stored", component.CashStored), ("perPoint", CashPerPoint)) // RuMC edit // RuMC edit
             : string.Empty;
 
         var msg = points > 0
