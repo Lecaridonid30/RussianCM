@@ -119,7 +119,7 @@
     layers:
     - state: base_mini
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
+    - state: mag-3Mini
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     slots:
