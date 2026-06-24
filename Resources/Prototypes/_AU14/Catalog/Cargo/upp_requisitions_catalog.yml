@@ -214,6 +214,8 @@
         crate: RMCCrateMagazineFlamerMixed
       - cost: 500
         crate: RMCCrateMagazineBGel
+      - cost: 450
+        crate: RuMCCrateUTES-CMagazine
     - name: AP Ammo
       entries:
       - cost: 850
