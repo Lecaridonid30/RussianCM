@@ -45,12 +45,12 @@
     recoilUnwielded: 0
     scatterWielded: 1
     scatterUnwielded: 1
-    baseFireRate: 3
+    baseFireRate: 4
     modifiers:
       FullAuto:
-        fireDelay: 0.01
-        maxScatterModifier: 3
-        shotsToMaxScatter: 6
+        fireDelay: 0.1
+        maxScatterModifier: 13
+        shotsToMaxScatter: 4
   - type: RMCWeaponAccuracy
     accuracyMultiplier: 0.8
     accuracyMultiplierUnwielded: 0.65
@@ -93,6 +93,13 @@
     tags:
     - RuMCMachineGunTachanka
   - type: Wieldable
+  - type: WieldableSpeedModifiers
+    base: 0.50
+    light: 0.85
+    medium: 0.8
+    heavy: 0.75
+  - type: WieldDelay
+    baseDelay: 0.9
   - type: GunRequiresWield
   - type: RMCMagneticItem
 
@@ -120,6 +127,36 @@
     - state: base_mini
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-3Mini
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    slots:
+    - suitStorage
+  - type: Item
+    size: Large
+
+- type: entity
+  parent: RuMCMagazineTachanka
+  id: RuMCMagazineTracerTachanka
+  name: DP-72 pan tracer magazine (7.62x54R)
+  description: A 47-round pan tracer magazine for the DP-72 light machine gun.
+  components:
+  - type: Tag
+    tags:
+    - RuMCMagazineTachanka
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - RuMCCartridge762x54RTracer
+      - RMCCartridgeLMGQYJ72
+    proto: RuMCCartridge762x54RTracer
+    capacity: 47
+    deleteWhenEmpty: false
+  - type: Sprite
+    sprite: _RuMC14/Objects/Weapons/Guns/Ammunition/Magazines/LMGs/tachanka.rsi
+    layers:
+    - state: base_mini
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-4MiniTracer
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     slots:

@@ -1158,6 +1158,8 @@
         amount: 200
       - id: RuMCMagazineTachanka
         amount: 25
+      - id: RuMCMagazineTracerTachanka
+        amount: 25
       - id: RuMCMagazineTachankaLarge
         amount: 1
       - id: RuMCMagazineTachankaLargeTracer
