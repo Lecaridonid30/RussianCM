@@ -23,6 +23,9 @@ public sealed partial class WorkingJoeVoiceWindow : DefaultWindow
     private List<WorkingJoeVoiceLine> _allLines = new();
     private string? _selectedCategory;
     private bool _showFavorites;
+    private Button? _allButton;
+    private Button? _favButton;
+    private Button? _recentButton;
 
     public WorkingJoeVoiceWindow(WorkingJoeVoiceFavorites favorites)
     {
@@ -222,7 +225,7 @@ public sealed partial class WorkingJoeVoiceWindow : DefaultWindow
             bool isFav = _favorites.Contains(line.EmoteId);
             var favButton = new Button
             {
-                Text = isFav ? "★" : "☆",
+                Text = isFav ? "\u2605" : "\u2606",
                 MinWidth = 30,
                 MaxWidth = 30,
                 ToolTip = isFav ? "Remove from favorites" : "Add to favorites"
