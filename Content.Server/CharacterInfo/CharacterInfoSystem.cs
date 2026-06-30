@@ -7,7 +7,7 @@ using Content.Shared.Mind;
 using Content.Server.GameTicking;
 using Content.Shared._RMC14.Rules;
 using Content.Shared.AU14.Util;
-using Content.Shared.AU14.Threats;
+using Content.Shared._CMU14.Threats;
 using Content.Shared.AU14.util;
 using Content.Shared.CharacterInfo;
 using Content.Shared.Inventory;
@@ -123,7 +123,7 @@ public sealed partial class CharacterInfoSystem : EntitySystem
         var presetId = (_ticker.CurrentPreset?.ID ?? _ticker.Preset?.ID ?? string.Empty).ToLowerInvariant();
 
         var selectedPlanet = _auRound.GetSelectedPlanet();
-        var selectedThreat = _auRound._selectedthreat;
+        var selectedThreat = _auRound.SelectedThreat;
 
         // Keep one deterministic knowledge line for the whole round.
         EnsureRoundKnowledgeLine(selectedThreat);
@@ -252,9 +252,9 @@ public sealed partial class CharacterInfoSystem : EntitySystem
 
         if (selectedPlanet.LorePrimer is { } planetPrimerId &&
             _prototypes.TryIndex(planetPrimerId, out LorePrimerPrototype? primer) &&
-            !string.IsNullOrWhiteSpace(primer.PlanetText))
+            primer.PlanetText is { } planetTextKey) // RuMC edit
         {
-            lines.Add(primer.PlanetText);
+            lines.Add(Loc.GetString(planetTextKey)); // RuMC edit
             return;
         }
 
@@ -269,17 +269,17 @@ public sealed partial class CharacterInfoSystem : EntitySystem
 
         if (platoon.LorePrimer is { } platoonPrimerId &&
             _prototypes.TryIndex(platoonPrimerId, out LorePrimerPrototype? primer) &&
-            !string.IsNullOrWhiteSpace(primer.PlatoonInfo))
+            // RuMC edit start
+            primer.PlatoonInfo is { } platoonInfoKey)
         {
-            var platoonInfo = primer.PlatoonInfo.Trim();
-            lines.Add(platoonInfo.StartsWith("Platoon:", StringComparison.OrdinalIgnoreCase)
-                ? platoonInfo
-                : $"Platoon: {platoonInfo}");
+            lines.Add(Loc.GetString("lore-primer-platoon-label",
+                ("info", Loc.GetString(platoonInfoKey))));
+            // RuMC edit end
             return;
         }
 
         if (!string.IsNullOrWhiteSpace(platoon.Name))
-            lines.Add($"Platoon: {platoon.Name}");
+            lines.Add(Loc.GetString("lore-primer-platoon-label", ("info", platoon.Name))); // RuMC edit
     }
 
     private bool IsThreatMind(MindComponent mind)
@@ -304,4 +304,3 @@ public sealed partial class CharacterInfoSystem : EntitySystem
     }
 
 }
-

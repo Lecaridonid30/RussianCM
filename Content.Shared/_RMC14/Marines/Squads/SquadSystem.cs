@@ -66,6 +66,15 @@ public sealed partial class SquadSystem : EntitySystem
     private static readonly ProtoId<JobPrototype> IntelOfficerJob = "CMIntelOfficer";
     public static readonly EntProtoId<SquadTeamComponent> EchoSquadId = "SquadEcho";
 
+    private static readonly Dictionary<string, HashSet<ProtoId<RadioChannelPrototype>>>
+        LeaderChannels = new(StringComparer.OrdinalIgnoreCase)
+        {
+            ["GOVFOR"] = new() { "radioGovforJTAC", "radioGovforCommand" },
+            ["OPFOR"] = new() { "radioOpforJTAC", "radioOpforCommand" }
+        };
+    private static readonly HashSet<ProtoId<RadioChannelPrototype>> DefaultLeaderChannels =
+        new() { "MarineJTAC", "MarineCommand" }; // apply unusable/legacy channels on failure
+
     public ImmutableArray<EntityPrototype> SquadPrototypes { get; private set; }
     public ImmutableArray<JobPrototype> SquadRolePrototypes { get; private set; }
 
@@ -261,6 +270,9 @@ public sealed partial class SquadSystem : EntitySystem
 
     private void OnSquadLeaderHeadsetChannelsChanged(Entity<SquadLeaderHeadsetComponent> ent, ref EncryptionChannelsChangedEvent args)
     {
+        if (TerminatingOrDeleted(ent) || args.Component == null || ent.Comp.Channels == null)
+            return;
+
         foreach (var channel in ent.Comp.Channels)
         {
             args.Component.Channels.Add(channel);
@@ -829,7 +841,7 @@ public sealed partial class SquadSystem : EntitySystem
         if (!TryComp(marine, out SquadLeaderComponent? leader))
             return;
 
-        if (leader.Headset is { } headset)
+        if (leader.Headset is { } headset && !TerminatingOrDeleted(headset))
         {
             RemComp<SquadLeaderHeadsetComponent>(headset);
             if (TryComp(headset, out EncryptionKeyHolderComponent? holder))
@@ -855,24 +867,7 @@ public sealed partial class SquadSystem : EntitySystem
             !TryComp<SquadTeamComponent>(squad, out var squadTeam))
             return;
 
-        string group = squadTeam.Group?.ToUpperInvariant() ?? "";
-        if (group is "GOVFOR" or "OPFOR")
-        {
-            headsetComp.Channels = new()
-            {
-                new ProtoId<RadioChannelPrototype>($"radio{group}JTAC"),
-                new ProtoId<RadioChannelPrototype>($"radio{group}Command")
-            };
-        }
-        else
-        {
-            headsetComp.Channels = new()
-            {
-                new ProtoId<RadioChannelPrototype>("MarineJTAC"),
-                new ProtoId<RadioChannelPrototype>("MarineCommand")
-            };
-        }
-
+        headsetComp.Channels = LeaderChannels.GetValueOrDefault(squadTeam.Group ?? "", DefaultLeaderChannels);
         Dirty(headset, headsetComp);
     }
 
