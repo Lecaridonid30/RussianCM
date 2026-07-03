@@ -558,7 +558,10 @@ public sealed partial class HardpointSystem : EntitySystem
         UpdateFrameDamageAppearance(vehicle, frameIntegrity);
 
         if ((previous > 0f) != (frameIntegrity.Integrity > 0f))
+        {
             RefreshCanRun(vehicle);
+            RaiseFrameIntegrityChanged(vehicle, frameIntegrity.Integrity > 0f);
+        }
 
         _lock.RefreshForcedOpen(vehicle);
         return true;
@@ -1384,6 +1387,12 @@ public sealed partial class HardpointSystem : EntitySystem
         RaiseLocalEvent(vehicle, ev, broadcast: true);
     }
 
+    private void RaiseFrameIntegrityChanged(EntityUid vehicle, bool intact)
+    {
+        var ev = new VehicleFrameIntegrityChangedEvent(vehicle, intact);
+        RaiseLocalEvent(vehicle, ev, broadcast: true);
+    }
+
     private void RaiseVehicleSlotsChanged(EntityUid owner)
     {
         if (!TryGetContainingVehicleFrame(owner, out var vehicle))
@@ -1415,6 +1424,9 @@ public sealed partial class HardpointSystem : EntitySystem
 
             if (_itemSlots.TryGetSlot(uid, slot.Id, out var existingSlot, itemSlots))
             {
+                // HardpointSlotSystem owns click installation; generic item slots should not eat repair/removal tool clicks.
+                _itemSlots.SetInsertOnInteract(uid, existingSlot, false, itemSlots);
+
                 if (slot.DisableEject && !existingSlot.DisableEject)
                     _itemSlots.SetDisableEject(uid, existingSlot, true, itemSlots);
 
@@ -1447,6 +1459,7 @@ public sealed partial class HardpointSystem : EntitySystem
             };
 
             _itemSlots.AddItemSlot(uid, slot.Id, itemSlot, itemSlots);
+            _itemSlots.SetInsertOnInteract(uid, itemSlot, false, itemSlots);
 
             if (slot.DisableEject)
                 _itemSlots.SetDisableEject(uid, itemSlot, true, itemSlots);
@@ -2079,7 +2092,7 @@ public sealed partial class HardpointSystem : EntitySystem
                 continue;
 
             if (step.RequiresWelder &&
-                !_repairable.UseFuel(args.Used, args.User, ent.Comp.RepairFuelCost, true))
+                !_repairable.UseFuel(args.Used, args.User, GetFuelCostForSeconds(step.Time, ent.Comp.FuelPerSecond), true))
             {
                 args.Handled = true;
                 return true;
@@ -2167,7 +2180,7 @@ public sealed partial class HardpointSystem : EntitySystem
         {
             if (!HasComp<BlowtorchComponent>(used.Value) ||
                 !TryComp(ent.Owner, out HardpointIntegrityComponent? integrity) ||
-                !_repairable.UseFuel(used.Value, args.User, integrity.RepairFuelCost))
+                !_repairable.UseFuel(used.Value, args.User, GetFuelCostForSeconds(step.Time, integrity.FuelPerSecond)))
             {
                 return;
             }
@@ -2309,12 +2322,6 @@ public sealed partial class HardpointSystem : EntitySystem
             return true;
         }
 
-        if (usedWelder && !_repairable.UseFuel(used, args.User, ent.Comp.RepairFuelCost, true))
-        {
-            args.Handled = true;
-            return true;
-        }
-
         var repairAmount = GetRepairAmountForCurrentStep(ent.Owner, ent.Comp, usedWelder, usedWrench, isFrame);
         if (repairAmount <= 0f)
         {
@@ -2323,6 +2330,13 @@ public sealed partial class HardpointSystem : EntitySystem
         }
 
         var repairTime = GetRepairTimeForCurrentStep(ent.Owner, args.User, ent.Comp, repairAmount, isFrame);
+        var fuelCost = GetFuelCostForChunk(ent.Owner, ent.Comp, repairAmount, isFrame);
+
+        if (usedWelder && !_repairable.UseFuel(used, args.User, fuelCost, true))
+        {
+            args.Handled = true;
+            return true;
+        }
 
         ent.Comp.Repairing = true;
 
@@ -2362,7 +2376,13 @@ public sealed partial class HardpointSystem : EntitySystem
 
         if (usedWelder)
         {
-            if (used == null || !_repairable.UseFuel(used.Value, args.User, ent.Comp.RepairFuelCost))
+            var fuelCost = GetFuelCostForChunk(
+                ent.Owner,
+                ent.Comp,
+                GetRepairAmountForCurrentStep(ent.Owner, ent.Comp, usedWelder, usedWrench, isFrame),
+                isFrame);
+
+            if (used == null || !_repairable.UseFuel(used.Value, args.User, fuelCost))
                 return;
         }
 
@@ -2370,12 +2390,16 @@ public sealed partial class HardpointSystem : EntitySystem
         if (repairAmount <= 0f)
             return;
 
+        var previousIntegrity = ent.Comp.Integrity;
         ent.Comp.Integrity = MathF.Min(ent.Comp.MaxIntegrity, ent.Comp.Integrity + repairAmount);
 
         Dirty(ent.Owner, ent.Comp);
         UpdateFrameDamageAppearance(ent.Owner, ent.Comp);
         if (isFrame)
             _lock.RefreshForcedOpen(ent.Owner);
+
+        if (isFrame && previousIntegrity <= 0f && ent.Comp.Integrity > 0f)
+            RaiseFrameIntegrityChanged(ent.Owner, true);
 
         RefreshGunModifiers(ent.Owner);
 
@@ -2455,11 +2479,16 @@ public sealed partial class HardpointSystem : EntitySystem
         var repairFraction = repairAmount / integrity.MaxIntegrity;
         var skillMultiplier = _skills.GetSkillDelayMultiplier(user, EngineerSkill);
 
+        float time;
         if (isFrame)
-            return integrity.FrameRepairChunkSeconds * (repairFraction / integrity.RepairChunkFraction) * skillMultiplier;
+            time = integrity.FrameRepairChunkSeconds * (repairFraction / integrity.RepairChunkFraction) * skillMultiplier;
+        else
+        {
+            var repairRate = GetHardpointRepairRate(uid);
+            time = repairFraction / repairRate * skillMultiplier;
+        }
 
-        var repairRate = GetHardpointRepairRate(uid);
-        return (repairFraction / repairRate) * skillMultiplier;
+        return MathF.Max(1f, time);
     }
 
     private bool IsVehicleFrame(EntityUid uid)
@@ -2499,10 +2528,44 @@ public sealed partial class HardpointSystem : EntitySystem
 
     private float GetHardpointRepairRate(EntityUid uid)
     {
-        if (TryComp(uid, out HardpointItemComponent? hardpoint))
-            return hardpoint.RepairRate > 0f ? hardpoint.RepairRate : 0.01f;
+        if (!TryComp(uid, out HardpointItemComponent? hardpoint))
+            return 0.05f;
 
-        return 0.01f;
+        if (hardpoint.SlotType is { } slotTypeId &&
+            _prototypeManager.TryIndex(slotTypeId, out HardpointSlotTypePrototype? slotType) &&
+            slotType.RepairRate > 0f)
+        {
+            return slotType.RepairRate;
+        }
+
+        return hardpoint.RepairRate > 0f ? hardpoint.RepairRate : 0.05f;
+    }
+
+    private FixedPoint2 GetFuelCostForChunk(EntityUid uid, HardpointIntegrityComponent integrity, float repairAmount, bool isFrame)
+    {
+        if (integrity.MaxIntegrity <= 0f || repairAmount <= 0f)
+            return FixedPoint2.New(1);
+
+        var repairFraction = repairAmount / integrity.MaxIntegrity;
+
+        float baseSeconds;
+        if (isFrame)
+        {
+            baseSeconds = integrity.FrameRepairChunkSeconds * (repairFraction / integrity.RepairChunkFraction);
+        }
+        else
+        {
+            var repairRate = GetHardpointRepairRate(uid);
+            baseSeconds = repairFraction / repairRate;
+        }
+
+        return GetFuelCostForSeconds(baseSeconds, integrity.FuelPerSecond);
+    }
+
+    private FixedPoint2 GetFuelCostForSeconds(float seconds, FixedPoint2 fuelPerSecond)
+    {
+        var fuelAmount = Math.Max(1, (int) MathF.Round(seconds * fuelPerSecond.Float()));
+        return FixedPoint2.New(fuelAmount);
     }
 
     private bool ShouldRepeatRepair(
