@@ -9,6 +9,15 @@
   - type: RemoveLanguage
     languages:
     - English
+    clearCurrentLanguage: true
+
+- type: trait
+  id: NoLanguageLearning
+  name: au14-trait-no-language-learning-name
+  description: au14-trait-no-language-learning-desc
+  category: LanguageTraits # RuMC edit
+  components:
+  - type: NoLanguageLearning
 
 - type: trait
   id: Polyglot
@@ -27,14 +36,23 @@
   components: []
   language: SignLanguage
 
+# - type: trait
+#   id: LatinLanguage
+#   name: au14-trait-latin-language-name
+#   description: au14-trait-latin-language-desc
+#   category: LanguageTraits
+#   cost: 1
+#   components: []
+#   language: Latin
+
 - type: trait
-  id: LatinLanguage
-  name: au14-trait-latin-language-name
-  description: au14-trait-latin-language-desc
+  id: PortugueseLanguage
+  name: au14-trait-portuguese-language-name
+  description: au14-trait-portuguese-language-desc
   category: LanguageTraits
   cost: 1
   components: []
-  language: Latin
+  language: Portuguese
 
 - type: trait
   id: SpanishLanguage
@@ -153,15 +171,6 @@
 #   cost: 1
 #   components: []
 #   language: Ukrainian
-
-## - type: trait
-#   id: PortugueseLanguage
-#   name: au14-trait-portuguese-language-name
-#   description: au14-trait-portuguese-language-desc
-#   category: LanguageTraits
-#   cost: 1
-#   components: []
-#   language: Portuguese
 
 # - type: trait
 #   id: LegaleseLanguage # High-Corporate

@@ -1,5 +1,5 @@
 - type: job
-  parent: CMJobBase
+  parent: RMCJobRibbonBase # RuCM замена медалей на ленточки для колонистов
   id: AU14JobCivilianColonist
   roundSide: Civilian
   roundForce: COLONY
@@ -80,8 +80,14 @@
   groups:
   - CivSatchelAU14
   - CivFootwearAU14
+  - CivHatsAU14
+  - CivGlassesAU14
   - CivJumpsuitAU14
+  - CivJacketAU14
   - PaperworkRMC
   - RecreationalRMC
   - CannedDrinksAU14
   - SmokablesRMC
+  - EyewearRMC
+  - MasksRMC
+  - HeadwearCLFAU14

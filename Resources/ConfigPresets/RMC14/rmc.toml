@@ -71,13 +71,16 @@ github = "https://github.com/AU-14/ColonialMarinesUniverse"
 boosty = "https://boosty.to/rumarinecorps"
 #patreon = "https://github.com/AU-14/ColonialMarinesUniverse"
 #website = ""
-wiki = "https://cm-ss13.com/wiki/Main_Page"
+wiki = "https://wiki.rouny-ss14.com/wiki/Main_Page"
 
 [net]
 tickrate = 25
 bindto = "::,0.0.0.0"
 max_connections = 500
 log_late_msg = false
+max_connections = 1024
+sendbuffersize = 1048576
+receivebuffersize = 1048576
 
 [physics]
 grid_splitting = false

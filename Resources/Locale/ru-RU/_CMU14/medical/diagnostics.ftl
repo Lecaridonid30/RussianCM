@@ -1,5 +1,3 @@
-# Missing entries synced from en-US
-
 cmu-medical-scanner-body-map-header        = Карта тела
 cmu-medical-scanner-pulse-label            = Пульс:
 cmu-medical-scanner-body-parts-header      = Части тела
@@ -55,7 +53,6 @@ cmu-medical-scanner-pain-risk-imminent     = Критический
 cmu-medical-scanner-pain-risk-active       = Активный
 cmu-medical-scanner-pain-risk-suppressed-suffix =  (подавлено)
 
-# V2-ε Stat-sheet redesign — dark cards + status banner + body chart
 cmu-medical-scanner-card-body              = Тело
 cmu-medical-scanner-card-organs            = Органы
 cmu-medical-scanner-card-reagents          = Вещества в кровотоке
@@ -86,7 +83,7 @@ cmu-medical-scanner-severity-severed       = Отсечено
 
 cmu-medical-scanner-chip-fracture-vague    = Перелом
 cmu-medical-scanner-chip-suppressed-suffix =  (подавл.)
-cmu-medical-scanner-chip-bleed             = ВК
+cmu-medical-scanner-chip-bleed             = ВнК
 cmu-medical-scanner-chip-bleeding          = Кровотечение
 cmu-medical-scanner-chip-splint            = Шина
 cmu-medical-scanner-chip-cast              = Гипс
@@ -163,8 +160,10 @@ cmu-medical-scanner-fracture-severity-hairline    = трещинный
 cmu-medical-scanner-fracture-severity-simple      = простой
 cmu-medical-scanner-fracture-severity-compound    = открытый
 cmu-medical-scanner-fracture-severity-comminuted  = оскольчатый
+cmu-medical-scanner-fracture-severity-shattered   = раздробленный
 
 cmu-medical-scanner-organ-stage-healthy  = Здоров
+cmu-medical-scanner-organ-stage-bruised  = Ушиблен
 cmu-medical-scanner-organ-stage-damaged  = Повреждён
 cmu-medical-scanner-organ-stage-failing  = Отказывает
 cmu-medical-scanner-organ-stage-dead     = Мёртв

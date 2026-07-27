@@ -8,6 +8,7 @@ using Content.Server._RMC14.Language.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
+using Content.Server.Chat.V2;
 using Content.Server.GameTicking;
 using Content.Server.Players.RateLimiting;
 using Content.Server.Speech.Components;
@@ -269,7 +270,16 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool shouldCapitalizeTheWordI = (!CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Parent.Name == "en")
             || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en");
 
-        message = SanitizeInGameICMessage(source, message, out var emoteStr, shouldCapitalize, shouldPunctuate, shouldCapitalizeTheWordI);
+        var isRadioMessage = checkRadioPrefix && TryProccessRadioMessage(source, message, out var radioText, out _) && !string.IsNullOrWhiteSpace(radioText);
+
+        message = SanitizeInGameICMessage(
+            source,
+            message,
+            out var emoteStr,
+            shouldCapitalize,
+            shouldPunctuate,
+            shouldCapitalizeTheWordI,
+            skipEmoteShorthands: isRadioMessage);
 
         // Was there an emote in the message? If so, send it.
         if (player != null && emoteStr != message && emoteStr != null)
@@ -507,7 +517,9 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool hideLog = false,
         bool checkEmote = true,
         bool ignoreActionBlocker = false,
-        NetUserId? author = null
+        NetUserId? author = null,
+        string? speechBubbleMessage = null,
+        string? speechStyleClass = null
         )
     {
         if (!_actionBlocker.CanEmote(source) && !ignoreActionBlocker && !_mobStateSystem.IsCritical(source)) // mobs that are in critical can emote
@@ -526,14 +538,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (checkEmote)
             TryEmoteChatInput(source, action);
-        SendInVoiceRange(
-            ChatChannel.Emotes,
-            action,
-            wrappedMessage,
-            source,
-            range,
-            author,
-            visualNameMarkup: nameOverride == null ? nameMarkup : null);
+        SendInVoiceRange(ChatChannel.Emotes, speechBubbleMessage ?? action, wrappedMessage, source, range, author, speechStyleClass);
         if (!hideLog)
             if (name != Name(source))
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Emote from {ToPrettyString(source):user} as {name}: {action}");
@@ -573,6 +578,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("message", FormattedMessage.EscapeText(message)));
 
         SendInVoiceRange(ChatChannel.LOOC, message, wrappedMessage, source, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, player.UserId);
+        RaiseLocalEvent(source, new LoocCreatedEvent(source, message));
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"LOOC from {player:Player}: {message}");
     }
 
@@ -668,16 +674,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// <summary>
     ///     Sends a chat message to the given players in range of the source entity.
     /// </summary>
-    private void SendInVoiceRange(
-        ChatChannel channel,
-        string message,
-        string wrappedMessage,
-        EntityUid source,
-        ChatTransmitRange range,
-        NetUserId? author = null,
-        string? speakerNameMarkup = null,
-        string? transformedVoiceName = null,
-        string? visualNameMarkup = null)
+    private void SendInVoiceRange(ChatChannel channel, string message, string wrappedMessage, EntityUid source, ChatTransmitRange range, NetUserId? author = null, string? speechStyleClass = null)
     {
         foreach (var (session, data) in GetRecipients(source, VoiceRange))
         {
@@ -699,27 +696,10 @@ public sealed partial class ChatSystem : SharedChatSystem
             else
                 RaiseLocalEvent(source, ref ev);
 
-            var listenerWrappedMessage = ev.WrappedMessage;
-            if (channel == ChatChannel.Local &&
-                speakerNameMarkup != null &&
-                transformedVoiceName != null &&
-                session.AttachedEntity is { Valid: true })
-            {
-                var perceivedName = FormattedMessage.EscapeText(transformedVoiceName);
-                listenerWrappedMessage = ReplaceFirst(listenerWrappedMessage, speakerNameMarkup, perceivedName);
-            }
-            else if (channel == ChatChannel.Emotes &&
-                     visualNameMarkup != null &&
-                     session.AttachedEntity is { Valid: true })
-            {
-                var perceivedName = FormattedMessage.EscapeText(Name(source));
-                listenerWrappedMessage = ReplaceFirst(listenerWrappedMessage, visualNameMarkup, perceivedName);
-            }
-
-            _chatManager.ChatMessageToOne(channel, ev.Message, GetYautjaVisibleWrappedMessage(listenerWrappedMessage, source, session), source, ev.EntHideChat, session.Channel, author: author);
+            _chatManager.ChatMessageToOne(channel, ev.Message, GetYautjaVisibleWrappedMessage(ev.WrappedMessage, source, session), source, ev.EntHideChat, session.Channel, author: author, speechStyleClass: speechStyleClass);
         }
 
-        _replay.RecordServerMessage(new ChatMessage(channel, message, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range), speechStyleClass: CompOrNull<RMCSpeechBubbleSpecificStyleComponent>(source)?.SpeechStyleClass, repeatCheckSender: !HasComp<ChatRepeatIgnoreSenderComponent>(source)));
+        _replay.RecordServerMessage(new ChatMessage(channel, message, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range), speechStyleClass: speechStyleClass ?? CompOrNull<RMCSpeechBubbleSpecificStyleComponent>(source)?.SpeechStyleClass, repeatCheckSender: !HasComp<ChatRepeatIgnoreSenderComponent>(source)));
     }
 
     private string GetYautjaVisibleWrappedMessage(string wrappedMessage, EntityUid source, ICommonSession session)
@@ -808,7 +788,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     }
 
     // ReSharper disable once InconsistentNaming
-    private string SanitizeInGameICMessage(EntityUid source, string message, out string? emoteStr, bool capitalize = true, bool punctuate = false, bool capitalizeTheWordI = true)
+    private string SanitizeInGameICMessage(EntityUid source, string message, out string? emoteStr, bool capitalize = true, bool punctuate = false, bool capitalizeTheWordI = true, bool skipEmoteShorthands = false)
     {
         var newMessage = SanitizeMessageReplaceWords(source, message.Trim());
 
@@ -822,7 +802,10 @@ public sealed partial class ChatSystem : SharedChatSystem
             newMessage = SanitizeMessagePeriod(newMessage);
 
         // For auto-punctuation such as 'Lol.'
-        _sanitizer.TrySanitizeEmoteShorthands(newMessage, source, out newMessage, out emoteStr);
+        if (!skipEmoteShorthands)
+            _sanitizer.TrySanitizeEmoteShorthands(newMessage, source, out newMessage, out emoteStr);
+        else
+            emoteStr = null;
 
         return prefix + newMessage;
     }

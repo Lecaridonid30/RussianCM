@@ -2,9 +2,11 @@ using Content.Shared._CMU14.ZLevels.Core.EntitySystems;
 using Content.Shared._RMC14.Areas;
 using Content.Shared._RMC14.Marines.Skills;
 using Content.Shared._RMC14.Sprite;
+using Content.Shared._RMC14.Stun;
 using Content.Shared._RMC14.Tools;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared.Access.Components;
+using Content.Shared.Audio;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
@@ -17,6 +19,7 @@ using Content.Shared.Power;
 using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.PowerCell;
+using Content.Shared.Stacks;
 using Content.Shared.Toggleable;
 using Content.Shared.Tools.Systems;
 using Content.Shared.UserInterface;
@@ -34,6 +37,7 @@ public abstract partial class SharedRMCPowerSystem : EntitySystem
 {
     [Dependency] protected SharedPointLightSystem Pointlight = default!;
 
+    [Dependency] private SharedAmbientSoundSystem _ambientSound = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private AreaSystem _area = default!;
     [Dependency] private SharedContainerSystem _container = default!;
@@ -45,9 +49,12 @@ public abstract partial class SharedRMCPowerSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private RMCSizeStunSystem _sizeStun = default!;
     [Dependency] private SkillsSystem _skills = default!;
     [Dependency] private SharedRMCSpriteSystem _sprite = default!;
+    [Dependency] private SharedStackSystem _stack = default!;
     [Dependency] private SharedToolSystem _tool = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private CMUSharedZLevelsSystem _zLevels = default!;
 
     protected readonly HashSet<EntityUid> ToUpdate = new();
@@ -93,6 +100,21 @@ public abstract partial class SharedRMCPowerSystem : EntitySystem
         SubscribeLocalEvent<RMCFusionReactorComponent, InteractHandEvent>(OnFusionReactorInteractHand);
         SubscribeLocalEvent<RMCFusionReactorComponent, RMCFusionReactorDestroyDoAfterEvent>(OnFusionReactorDestroyDoAfter);
         SubscribeLocalEvent<RMCFusionReactorComponent, ExaminedEvent>(OnFusionReactorExamined);
+
+        SubscribeLocalEvent<RMCPortableGeneratorComponent, InteractUsingEvent>(OnPortableGeneratorInteractUsing);
+        SubscribeLocalEvent<RMCPortableGeneratorComponent, InteractHandEvent>(OnPortableGeneratorInteractHand);
+        SubscribeLocalEvent<RMCPortableGeneratorComponent, RMCPortableGeneratorStartDoAfterEvent>(OnPortableGeneratorStartDoAfter);
+        SubscribeLocalEvent<RMCPortableGeneratorComponent, ExaminedEvent>(OnPortableGeneratorExamined);
+        SubscribeLocalEvent<RMCPortableGeneratorComponent, AnchorStateChangedEvent>(OnPortableGeneratorAnchorChanged);
+
+        Subs.BuiEvents<RMCPortableGeneratorComponent>(RMCPortableGeneratorUiKey.Key,
+            subs =>
+            {
+                subs.Event<RMCPortableGeneratorToggleBuiMsg>(OnPortableGeneratorToggle);
+                subs.Event<RMCPortableGeneratorEjectFuelBuiMsg>(OnPortableGeneratorEjectFuel);
+                subs.Event<RMCPortableGeneratorRaisePowerBuiMsg>(OnPortableGeneratorRaisePower);
+                subs.Event<RMCPortableGeneratorLowerPowerBuiMsg>(OnPortableGeneratorLowerPower);
+            });
 
         SubscribeLocalEvent<RMCReactorPoweredLightComponent, MapInitEvent>(OnReactorPoweredLightMapInit);
 
@@ -180,7 +202,7 @@ public abstract partial class SharedRMCPowerSystem : EntitySystem
         var user = args.User;
         if (!_skills.HasSkill(user, ent.Comp.Skill, ent.Comp.SkillLevel))
         {
-            _popup.PopupClient($"You don't know how to use the {Name(ent)}'s interface.", ent, user, SmallCaution);
+            _popup.PopupClient(Loc.GetString("rmc-apc-no-skill", ("apc", ent)), ent, user, SmallCaution); // RuMC edit
             return;
         }
 
@@ -193,7 +215,7 @@ public abstract partial class SharedRMCPowerSystem : EntitySystem
                 case RMCApcState.WiresExposed:
                     if (ent.Comp.CoverLockedButton)
                     {
-                        _popup.PopupClient("The cover is locked and cannot be opened.", user, user, MediumCaution);
+                        _popup.PopupClient(Loc.GetString("rmc-apc-cover-locked"), user, user, MediumCaution); // RuMC edit
                         return;
                     }
 
@@ -295,7 +317,7 @@ public abstract partial class SharedRMCPowerSystem : EntitySystem
         if (!_skills.HasSkill(args.User, ent.Comp.Skill, ent.Comp.SkillLevel))
         {
             args.Cancel();
-            _popup.PopupClient($"You don't know how to use the {Name(ent)}'s interface.", ent, args.User, SmallCaution);
+            _popup.PopupClient(Loc.GetString("rmc-apc-no-skill", ("apc", ent)), ent, args.User, SmallCaution); // RuMC edit
             return;
         }
 
@@ -312,13 +334,12 @@ public abstract partial class SharedRMCPowerSystem : EntitySystem
         {
             var markup = ent.Comp.State switch
             {
-                RMCApcState.Working => "Use:\n" +
-                                       "- An [color=cyan]engineering ID[/color] to lock or unlock the interface.\n" +
-                                       "- A [color=cyan]crowbar[/color] to open the cover.\n" +
-                                       "- A [color=cyan]screwdriver[/color] to expose the wires.",
-                RMCApcState.WiresExposed => "Use a [color=cyan]screwdriver[/color] to unexpose the wires or a [color=cyan]crowbar[/color] to open the cover!",
-                RMCApcState.CoverOpenBattery => "Use an [color=cyan]empty hand[/color] to remove the battery or a [color=cyan]crowbar[/color] to close the cover!",
-                RMCApcState.CoverOpenNoBattery => "Use a [color=cyan]battery[/color] to put in a battery!",
+                // RuMC edit start
+                RMCApcState.Working => Loc.GetString("rmc-apc-examine-working"),
+                RMCApcState.WiresExposed => Loc.GetString("rmc-apc-examine-wires-exposed"),
+                RMCApcState.CoverOpenBattery => Loc.GetString("rmc-apc-examine-cover-open-battery"),
+                RMCApcState.CoverOpenNoBattery => Loc.GetString("rmc-apc-examine-cover-open-no-battery"),
+                // RuMC edit end
                 _ => null,
             };
 
@@ -603,25 +624,224 @@ public abstract partial class SharedRMCPowerSystem : EntitySystem
         {
             if (ent.Comp.State != RMCFusionReactorState.Working)
             {
-                // TODO: localize
-                var tool = ent.Comp.State switch
+                // RuMC edit start
+                var repairKey = ent.Comp.State switch
                 {
-                    RMCFusionReactorState.Wrench => "a [color=cyan]Wrench[/color]",
-                    RMCFusionReactorState.Wire => "[color=cyan]Wirecutters[/color]",
-                    RMCFusionReactorState.Weld => "a [color=cyan]Welder[/color]",
+                    RMCFusionReactorState.Wrench => "rmc-fusion-reactor-examine-needs-repair-wrench",
+                    RMCFusionReactorState.Wire   => "rmc-fusion-reactor-examine-needs-repair-wire",
+                    RMCFusionReactorState.Weld   => "rmc-fusion-reactor-examine-needs-repair-weld",
+                    // RuMC edit end
                     _ => throw new ArgumentOutOfRangeException(),
                 };
 
-                args.PushMarkup($"Use {tool} to repair it!");
+                args.PushMarkup(Loc.GetString(repairKey)); // RuMC edit
             }
 
             if (!_container.TryGetContainer(ent, ent.Comp.CellContainerSlot, out var container) ||
                 container.ContainedEntities.Count == 0)
             {
-                // TODO: localize
-                args.PushMarkup("It needs a [color=cyan]fuel cell[/color]!");
+                args.PushMarkup(Loc.GetString("rmc-fusion-reactor-examine-needs-cell")); // RuMC edit
             }
         }
+    }
+
+    private void OnPortableGeneratorInteractUsing(Entity<RMCPortableGeneratorComponent> ent, ref InteractUsingEvent args)
+    {
+        var user = args.User;
+        var used = args.Used;
+
+        if (!TryComp(used, out StackComponent? stack))
+            return;
+
+        if (stack.StackTypeId != ent.Comp.FuelStackType)
+            return;
+
+        // Gen is already full so we can skip the partial stack math below
+        if (ent.Comp.Sheets >= ent.Comp.MaxSheets)
+        {
+            _popup.PopupClient(Loc.GetString("rmc-portable-generator-fuel-full", ("generator", ent)), ent, user, SmallCaution);
+            args.Handled = true;
+            return;
+        }
+
+        var amount = Math.Min(stack.Count, ent.Comp.MaxSheets - ent.Comp.Sheets);
+        if (amount <= 0)
+            return;
+
+        _stack.Use(used, amount, stack);
+        ent.Comp.Sheets += amount;
+        Dirty(ent);
+
+        var addMsg = Loc.GetString("rmc-portable-generator-fuel-add",
+            ("amount", amount),
+            ("fuel", ent.Comp.FuelName),
+            ("generator", ent));
+        _popup.PopupClient(addMsg, ent, user);
+
+        args.Handled = true;
+    }
+
+    private void OnPortableGeneratorInteractHand(Entity<RMCPortableGeneratorComponent> ent, ref InteractHandEvent args)
+    {
+        var user = args.User;
+
+        if (HasComp<XenoComponent>(user) && HasComp<MeleeWeaponComponent>(user))
+        {
+            if (_sizeStun.TryGetSize(user, out var size) && size < RMCSizes.Xeno)
+            {
+                _popup.PopupClient(Loc.GetString("rmc-portable-generator-xeno-too-small", ("generator", ent)), ent, user, SmallCaution);
+                args.Handled = true;
+                return;
+            }
+
+            if (ent.Comp.On)
+            {
+                SetPortableGeneratorOn(ent, false);
+                _popup.PopupEntity(Loc.GetString("rmc-portable-generator-xeno-off", ("generator", ent)), ent, SmallCaution);
+            }
+            else if (Transform(ent).Anchored)
+            {
+                _transform.Unanchor(ent, Transform(ent));
+                _popup.PopupEntity(Loc.GetString("rmc-portable-generator-xeno-unanchor", ("generator", ent)), ent, SmallCaution);
+            }
+
+            args.Handled = true;
+            return;
+        }
+    }
+
+    private void OnPortableGeneratorStartDoAfter(Entity<RMCPortableGeneratorComponent> ent, ref RMCPortableGeneratorStartDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Handled)
+            return;
+
+        args.Handled = true;
+
+        if (ent.Comp.On)
+            return;
+
+        if (!Transform(ent).Anchored)
+            return;
+
+        if (ent.Comp.Sheets <= 0 && ent.Comp.SheetFraction <= 0)
+            return;
+
+        SetPortableGeneratorOn(ent, true);
+        _popup.PopupClient(Loc.GetString("rmc-portable-generator-start-success", ("generator", ent)), ent, args.User);
+    }
+
+    private void OnPortableGeneratorExamined(Entity<RMCPortableGeneratorComponent> ent, ref ExaminedEvent args)
+    {
+        if (HasComp<XenoComponent>(args.Examiner))
+            return;
+
+        using (args.PushGroup(nameof(RMCPortableGeneratorComponent)))
+        {
+            if (ent.Comp.On)
+                args.PushMarkup(Loc.GetString("rmc-portable-generator-examine-on"));
+            else
+                args.PushMarkup(Loc.GetString("rmc-portable-generator-examine-off"));
+
+            args.PushMarkup(Loc.GetString("rmc-portable-generator-examine-fuel",
+                ("sheets", ent.Comp.Sheets),
+                ("fuel", ent.Comp.FuelName),
+                ("watts", ent.Comp.Watts)));
+
+            if (ent.Comp.CritFail)
+                args.PushMarkup(Loc.GetString("rmc-portable-generator-examine-crit"));
+        }
+    }
+
+    private void OnPortableGeneratorAnchorChanged(Entity<RMCPortableGeneratorComponent> ent, ref AnchorStateChangedEvent args)
+    {
+        if (!args.Anchored && ent.Comp.On)
+            SetPortableGeneratorOn(ent, false);
+    }
+
+    private void OnPortableGeneratorToggle(Entity<RMCPortableGeneratorComponent> ent, ref RMCPortableGeneratorToggleBuiMsg args)
+    {
+        var user = args.Actor;
+
+        if (ent.Comp.On)
+        {
+            SetPortableGeneratorOn(ent, false);
+            return;
+        }
+
+        if (!Transform(ent).Anchored)
+        {
+            _popup.PopupClient(Loc.GetString("rmc-portable-generator-not-anchored", ("generator", ent)), ent, user, SmallCaution);
+            return;
+        }
+
+        if (ent.Comp.Sheets <= 0 && ent.Comp.SheetFraction <= 0)
+            return;
+
+        var ev = new RMCPortableGeneratorStartDoAfterEvent();
+        var delay = ent.Comp.StartDelay * _skills.GetSkillDelayMultiplier(user, ent.Comp.Skill);
+        var doAfter = new DoAfterArgs(EntityManager, user, delay, ev, ent)
+        {
+            BreakOnMove = true,
+            DuplicateCondition = DuplicateConditions.SameEvent,
+        };
+
+        _doAfter.TryStartDoAfter(doAfter);
+    }
+
+    private void OnPortableGeneratorEjectFuel(Entity<RMCPortableGeneratorComponent> ent, ref RMCPortableGeneratorEjectFuelBuiMsg args)
+    {
+        if (ent.Comp.On)
+            return;
+
+        if (ent.Comp.Sheets <= 0)
+            return;
+
+        if (_net.IsServer)
+        {
+            var remaining = ent.Comp.Sheets;
+            var coords = Transform(ent).Coordinates;
+            while (remaining > 0)
+            {
+                var spawned = Spawn(ent.Comp.FuelEntity, coords);
+                if (!TryComp(spawned, out StackComponent? spawnedStack))
+                    break;
+
+                var amount = Math.Min(remaining, _stack.GetMaxCount(spawnedStack));
+                _stack.SetCount(spawned, amount, spawnedStack);
+                remaining -= amount;
+            }
+        }
+
+        ent.Comp.Sheets = 0;
+        Dirty(ent);
+    }
+
+    private void OnPortableGeneratorRaisePower(Entity<RMCPortableGeneratorComponent> ent, ref RMCPortableGeneratorRaisePowerBuiMsg args)
+    {
+        if (ent.Comp.PowerGenPercent >= ent.Comp.MaxPowerPercent)
+            return;
+
+        ent.Comp.PowerGenPercent = Math.Min(ent.Comp.PowerGenPercent + ent.Comp.PowerPercentStep, ent.Comp.MaxPowerPercent);
+        Dirty(ent);
+    }
+
+    private void OnPortableGeneratorLowerPower(Entity<RMCPortableGeneratorComponent> ent, ref RMCPortableGeneratorLowerPowerBuiMsg args)
+    {
+        if (ent.Comp.PowerGenPercent <= ent.Comp.MinPowerPercent)
+            return;
+
+        ent.Comp.PowerGenPercent = Math.Max(ent.Comp.PowerGenPercent - ent.Comp.PowerPercentStep, ent.Comp.MinPowerPercent);
+        Dirty(ent);
+    }
+
+    private void SetPortableGeneratorOn(Entity<RMCPortableGeneratorComponent> ent, bool on)
+    {
+        ent.Comp.On = on;
+        Dirty(ent);
+
+        // TODO: Needs sprite implementation
+        _appearance.SetData(ent, RMCPortableGeneratorVisuals.Running, on);
+        _ambientSound.SetAmbience(ent, on);
     }
 
     private void OnReactorPoweredLightMapInit(Entity<RMCReactorPoweredLightComponent> ent, ref MapInitEvent args)

@@ -15,6 +15,7 @@
     blacklist:
       tags:
       - Pouch
+      - Machete # RuMC edit
   - type: LimitedStorage
     limits:
     - popup: rmc-storage-limit-cant-fit
@@ -139,6 +140,9 @@
   - type: IntegratedVisors
     visorsToAdd:
     - RMCVisorSquadIntegrated
+  - type: CMUItemStain
+    wornStates:
+      head: m10helmet_blood
 
 - type: entity
   parent: RMCMarineHelmetBase

@@ -1,5 +1,13 @@
 ## General stuff
 
+ui-options-tab-cmu = CMU
+ui-options-cmu-crt = ЭЛТ-интерфейс
+ui-options-cmu-runechat = Облачка речи
+ui-options-cmu-chat = Чат
+ui-options-cmu-zlevels = Z-уровни
+ui-options-runechat-speech = Использовать облачка речи CMSS
+ui-options-runechat-speech-scale = Размер облачков речи CMSS
+
 ui-options-title = Настройки игры
 ui-options-tab-accessibility = Доступность
 ui-options-tab-admin = Админ

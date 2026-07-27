@@ -11,6 +11,7 @@
   playTimeTracker: AU14JobGOVFORRadioTelephoneOperator
   overwatchSortPriority: -3
   overwatchRoleName: Fire Team Leaders
+  displayWeight: 5
   accessGroups:
   - AU14GovforFTL
 
@@ -22,6 +23,9 @@
   roundProfiles:
   - AU14RoundJobProfileMilitaryBase
   roundComponents:
+  - type: AU14CallsignRole
+    radioTag: FTL
+  - type: ANPRCRadioUser # radio trained so an FTL can run the manpack if the RTO drops, they don't spawn with one
   - type: Skills
     preset: AU14SkillPresetPlatoonRTO
   - type: JobPrefix
@@ -75,6 +79,13 @@
     - Epilepsy
     - NonResuscitable
     - NoEnglish
+    - CMUProstheticLeftArm
+    - CMUProstheticRightArm
+    - CMUProstheticLeftLeg
+    - CMUProstheticRightLeg
+    - SlowRunner
+    - Anemic
+    - Asthmatic
   ranks:
     RMCRankCivilian: []
   chevrons:
@@ -148,7 +159,7 @@
 - type: startingGear
   id: AU14GearopforRadioTelephoneOperator
   equipment:
-    id: AU14JobIDCardopforRadioTelephoneOperator
+    id: AU14JobIDCardOPFORRadioTelephoneOperator
     ears: AU14HeadsetOpforMarineFTL
 
 - type: entity

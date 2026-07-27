@@ -231,6 +231,9 @@ public sealed partial class RMCPullingSystem : EntitySystem
         if (!TryComp<XenoParasiteComponent>(target, out var paraComp))
             return;
 
+        if (!HasComp<InfectableComponent>(user))
+            return;
+
         Entity<XenoParasiteComponent> comp = (target, paraComp);
         args.Cancelled = true;
 
@@ -367,6 +370,20 @@ public sealed partial class RMCPullingSystem : EntitySystem
 
     private void OnXenoPullToggle(Entity<XenoComponent> ent, ref RMCPullToggleEvent args)
     {
+        if (HasComp<RMCAllowXenoPullToggleStopComponent>(ent))
+        {
+            args.Handled = true;
+
+            if (TryComp(ent, out PullerComponent? puller) &&
+                puller.Pulling is { } pulled &&
+                TryComp(pulled, out PullableComponent? pullable))
+            {
+                _pulling.TryStopPull(pulled, pullable, ent);
+            }
+
+            return;
+        }
+
         args.Handled = true;
     }
 

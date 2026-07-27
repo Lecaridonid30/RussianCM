@@ -112,8 +112,6 @@
         amount: 3
       - id: RMCPouchMagazine
         amount: 50
-      - id: RMCPouchMagazineLargePMC
-        amount: 8
       - id: RMCPouchShotgunLarge
         amount: 8
       - id: RMCPouchGeneralMedium
@@ -122,8 +120,6 @@
         amount: 4
       - id: RMCPouchMagazinePistol
         amount: 25
-      - id: RMCPouchMagazinePistolLarge
-        amount: 6
       - id: RMCPouchPistol
         amount: 20
       - id: AU14PouchIFAKFill
@@ -138,10 +134,6 @@
         amount: 15
     - name: Mask
       entries:
-      - id: CMMaskGas
-        amount: 20
-      - id: CMUGasMaskFilterWY
-        amount: 40
       - id: CMMaskCoif
         amount: 20
       - id: RMCMaskScarfBlack
@@ -209,6 +201,10 @@
       entries:
       - id: RMCM5Bayonet
         amount: 15
+      - id: CMEntrenchingTool
+        amount: 15
+      - id: AU14ToolShovel
+        amount: 10
       - id: CMScrewdriver
         amount: 5
       - id: CMWirecutter
@@ -233,8 +229,20 @@
         amount: 5
       - id: RMCPackFlareCAS
         amount: 2
+    - name: Gas Mask
+      entries:
+      - id: CMMaskGas
+        amount: 20
+      - id: CMUGasMaskFilterWY
+        amount: 40
+      - id: AU14PouchGasMaskBag
+        amount: 20
     - name: Medical Supplies
       entries:
+      - id: AU14PouchIFAKFill
+        name: infantry first aid kit (Full)
+        recommended: true
+        amount: 30
       - id: AU14HemostaticGauzePacket
         amount: 40
       - id: AU14Tourniquet
@@ -245,6 +253,12 @@
         amount: 12
       - id: AU14NaloxoneAutoInjector
         amount: 2
+      - id: AU14PacketPillsTramadol
+        amount: 40
+      - id: AU14FirstAidAutoInjectorNoSkill
+        amount: 20
+      - id: CMUSplintItem
+        amount: 40
     - name: Miscellaneous
       entries:
       - id: RMCEngineerKit
@@ -286,7 +300,13 @@
   - type: Sprite
     sprite: _RMC14/Structures/Machines/VendingMachines/ColMarTech/medical_gear.rsi
   - type: CMAutomatedVendor
-    jobs: [ AU14JobPlatoonCorpsmanBase, AU14JobGOVFORPlatoonCorpsman, AU14JobOPFORPlatoonCorpsman ]
+    jobs:
+    - AU14JobGOVFORPlatoonCorpsman
+    - AU14JobGOVFOROfficerMedical
+    - AU14JobGOVFORAuxSupportSynth
+    - AU14JobOPFORPlatoonCorpsman
+    - AU14JobOPFOROfficerMedical
+    - AU14JobOPFORAuxSupportSynth
     sections:
     - name: Essential Equipment
       takeAll: CMUEssentialEquipment
@@ -827,7 +847,7 @@
         isAppendSquadRoleName: false
         givePrefix: rmc-job-prefix-weapons-specialist-shotgunner
         isAppendPrefix: true
-      - id: RMCPyroSpecEquipmentCase
+      - id: CMU14PyroSpecEquipmentCaseWeylandYutani
         giveSquadRoleName: rmc-job-name-weapons-specialist-pyro
         isAppendSquadRoleName: false
         givePrefix: au14-job-prefix-specialist-pyro
@@ -903,6 +923,24 @@
       entries:
       - id: CMMagazinePistolM77AP
         amount: 200
+    - name: Magazine Boxes
+      entries:
+      - id: CMUBoxMagazineSMGFP9000
+        amount: 2
+      - id: RMCBoxMagazineSMGM63
+        amount: 2
+      - id: RMCBoxMagazinePistolM77AP
+        amount: 2
+    - name: Ammo Boxes
+      entries:
+      - id: RMCBoxBulletsRifle
+        amount: 5
+      - id: RMCBoxBulletsSMG
+        amount: 5
+      - id: RMCBoxBulletsSmartGun
+        amount: 5
+      - id: CMUBoxBulletsSMGP90
+        amount: 5
     - name: explosives
       entries:
       - id: CMPacketGrenadeHighExplosiveFilled
@@ -913,6 +951,8 @@
         amount: 3
       - id: RMCPacketGrenadeSmokeFilled
         amount: 6
+      - id: RMCPacketGrenadeWhitePhosphorusFilled
+        amount: 3
       - id: RMCBoxClaymoreMineFilled
         amount: 3
       - id: AU14BoxClaymoreMineIncendiaryFilled
@@ -981,6 +1021,12 @@
         amount: 4
       - id: RMCOuterClothingExternalWebbing
         amount: 4
+    - name: Pouches
+      entries:
+      - id: RMCPouchMagazineLargePMC
+        amount: 10
+      - id: RMCPouchMagazinePistolLarge
+        amount: 10
     - name: Devices
       entries:
       - id: RMCIntelDetector
@@ -997,6 +1043,28 @@
         amount: 1
       - id: AU14BackpackRTOPackGray
         amount: 1
+    - name: Materials
+      entries:
+      - id: CMSheetMetal
+        amount: 4
+      - id: CMSheetPlasteel50
+        amount: 4
+      - id: CMSandbagEmpty50
+        amount: 8
+      - id: AU14HescoKit
+        amount: 30
+      - id: RMCSheetPlastic
+        amount: 4
+      - id: RMCSheetAluminum
+        amount: 4
+      - id: CMSheetGlass
+        amount: 5
+      - id: RMCSheetCardboard
+        amount: 5
+      - id: CMSheetPhoron
+        amount: 1
+      - id: SheetUranium
+        amount: 1
     - name: Tents
       entries:
       - id: RMCTentUNMCStandardFolded
@@ -1011,3 +1079,64 @@
         amount: 1
       - id: RMCTentUNMCExtendedMessFolded
         amount: 1
+
+- type: entity
+  parent: ColMarTechBase
+  id: AU14WYShipsideUniformVendor
+  name: We-Yu PMC shipside uniform vendor
+  description: A stripped-down dispenser rack stocked with off-duty uniforms, footwear, and light personal gear for wear aboard ship.
+  components:
+  - type: AccessReader
+    access: [ [ "AU14AccessGovforSquad" ], [ "AU14AccessOpforSquad" ] ]
+  - type: Sprite
+    sprite: _AU14/Structures/Vendors/uscmgearrack.rsi
+  - type: CMAutomatedVendor
+    sections:
+    - name: Softcovers
+      entries:
+      - id: AU14WYPMCBallCap
+        amount: 20
+      - id: AU14HeadCommandoBeanie
+        amount: 10
+    - name: Fatigues
+      entries:
+      - id: AU14WYPMCFatigues
+        amount: 40
+    - name: Footwear
+      entries:
+      - id: RMCBootsPMCFilled
+        amount: 25
+      - id: RMCBootsCorporate
+        amount: 40
+    - name: Mask
+      entries:
+      - id: CMMaskCoif
+        amount: 20
+      - id: RMCMaskScarfBlack
+        amount: 20
+      - id: RMCMaskScarfGray
+        amount: 20
+      - id: RMCMaskTornScarfGreen
+        amount: 20
+      - id: RMCMaskTornScarfDesert
+        amount: 20
+      - id: RMCMaskTornScarfSnow
+        amount: 20
+      - id: RMCMaskTornScarfBlack
+        amount: 20
+      - id: RMCMaskSmockBlack
+        amount: 20
+      - id: RMCMaskNeckerchiefGray
+        amount: 20
+    - name: Glasses
+      entries:
+      - id: AU14GlassesBiMex
+        amount: 25
+      - id: AU14GlassesBiMexOrange
+        amount: 25
+      - id: RMCGlassesTriMaxBronze
+        amount: 25
+    - name: Bag
+      entries:
+      - id: CMSatchelMarine
+        amount: 40

@@ -1,6 +1,7 @@
 - type: entity
   abstract: false
   id: UPPCargoCatalog
+  parent: [ CMUASRSResearchGoodies, CMUASRSBotanyGoodies ]
   components:
   - type: RequisitionsComputer
     categories:
@@ -90,6 +91,10 @@
         crate: RMCCrateFoodIngredients
     - name: Gear
       entries:
+      - cost: 300
+        crate: ANPRCFillCardResupplyCrateOPFOR
+      - cost: 1500
+        crate: ANPRCRadioResupplyCrateOPFOR
       - cost: 1200
         crate: AU14CrateTacticalMonocular
       - cost: 1700
@@ -106,6 +111,10 @@
         crate: RMCCrateGearParachute
       - cost: 800
         crate: RMCCrateAttachmentSmartScope
+    - name: Pouches
+      entries:
+      - cost: 150
+        crate: RMCCrateClothingMagazinePouchesLarge
     - name: Medical
       entries:
       - cost: 3000
@@ -231,7 +240,9 @@
       - cost: 1200
         crate: AU14CrateOG60
       - cost: 1500
-        crate: AU14CrateM5A1SLAW
+        crate: RuMCCrateRPG_36
+      - cost: 3000
+        crate: RuMCCrateRPO_Pchela
       - cost: 1000
         crate: RuMCCrateUTES-C
     - name: Ammo
@@ -256,7 +267,7 @@
         crate: RMCCrateBoxShellsShotgunBuckshot
       - cost: 200
         crate: AU14CrateHJRA12ATRocket
-      - cost: 350
+      - cost: 200
         crate: AU14CrateHJRA12MixedRocket
       - cost: 150
         crate: AU14CrateHJRA12HERocket
@@ -274,9 +285,43 @@
         crate: RMCCrateMagazineBGel
       - cost: 450
         crate: RuMCCrateUTES-CMagazine
+      - cost: 200
+        crate: RuMCCrateBulletsSMG10x20mm
+      - cost: 200
+        crate: RuMCCrateBulletsPistol762x25mm
+      - cost: 200
+        crate: RuMCCrateBoxBulletsRifle10x24mm
+      - cost: 200
+        crate: RuMCCrateBoxBulletsRifleType71
+      - cost: 200
+        crate: RuMCCrateBoxBulletsRifleAG80
+      - cost: 700
+        crate: RuMCCrateMagazineRifleAG80EXT
+      - cost: 350
+        crate: RuMCCrateMagazineRifleAG80
+      - cost: 350
+        crate: RuMCCrateMagazineRifleType71
+      - cost: 400
+        crate: RuMCCrateMagazineRifleAK4047
+      - cost: 350
+        crate: RuMCCrateMagazineSMGType64
+      - cost: 300
+        crate: RuMCCrateMagazinePistolNP92
+      - cost: 300
+        crate: RuMCCrateMagazinePistolType73
 
     - name: Specialist Ammo
       entries:
+      - cost: 700
+        crate: CMUCrateEMBLRAP
+      - cost: 600
+        crate: CMUCrateEMBLRMixed
+      - cost: 700
+        crate: CMUCrateEMBLRHE
+      - cost: 900
+        crate: CMUCrateEMBLRWP
+      - cost: 2000
+        crate: RMCCratePyroTankMixedUPP
       # Sniper
       - cost: 2000
         crate: AU14CrateMagazineSpecSniperM96S
@@ -307,10 +352,23 @@
         crate: AU14CrateMagazineSpecScoutFLAK
       - cost: 1500
         crate: AU14CrateMagazineSpecScoutMixed
+      # CMP
+      - cost: 450
+        crate: AU14CrateBoxRSH9SL
     - name: AP Ammo
       entries:
+      - cost: 650
+        crate: RuMCBoxBulletsRifleAG80AP
+      - cost: 650
+        crate: RuMCBoxBulletsRifleType71AP
+      - cost: 650
+        crate: RuMCBoxBulletsRifle10x24mmAP
       - cost: 850
-        crate: AU14CrateBoxMagazineRifleAG80AP
+        crate: RuMCCrateMagazineRifleAG80AP
+      - cost: 850
+        crate: RuMCCrateMagazineRifleType71AP
+      - cost: 850
+        crate: RuMCCrateMagazineRifleAK4047AP
     - name: Dropship Parts
       entries:
       - cost: 100

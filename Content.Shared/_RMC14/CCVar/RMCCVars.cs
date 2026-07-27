@@ -18,13 +18,22 @@ public sealed partial class RMCCVars : CVars
         CVarDef.Create("rmc.xeno_speed_multiplier", 1f, CVar.REPLICATED | CVar.SERVER);
 
     public static readonly CVarDef<bool> RMCAutoPunctuate =
-        CVarDef.Create("rmc.auto_punctuate", true, CVar.REPLICATED | CVar.CLIENT | CVar.ARCHIVE);
+        CVarDef.Create("rmc.auto_punctuate", false, CVar.REPLICATED | CVar.CLIENT | CVar.ARCHIVE);
 
     public static readonly CVarDef<bool> RMCAutoEjectMagazines =
         CVarDef.Create("rmc.auto_eject_magazines", true, CVar.REPLICATED | CVar.CLIENT | CVar.ARCHIVE);
 
     public static readonly CVarDef<bool> RMCShowNewPlayerIcons =
         CVarDef.Create("rmc.show_new_player_icons", true, CVar.REPLICATED | CVar.CLIENT | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> RMCOnboardingEnabled =
+        CVarDef.Create("rmc.onboarding_enabled", true, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<bool> RMCOnboardingPrompt =
+        CVarDef.Create("rmc.onboarding_prompt", true, CVar.CLIENT | CVar.ARCHIVE);
+
+    public static readonly CVarDef<int> RMCOnboardingMaxSessions =
+        CVarDef.Create("rmc.onboarding_max_sessions", 8, CVar.SERVERONLY);
 
     public static readonly CVarDef<bool> RMCMarineOverlayEnabled =
         CVarDef.Create("rmc.marine_overlay_enabled", true, CVar.CLIENT | CVar.ARCHIVE);
@@ -170,6 +179,9 @@ public sealed partial class RMCCVars : CVars
     public static readonly CVarDef<int> RMCDropshipHijackTravelTimeSeconds =
         CVarDef.Create("rmc.dropship_hijack_travel_time_seconds", 180, CVar.REPLICATED | CVar.SERVER);
 
+    public static readonly CVarDef<bool> ThirdPartyDropshipReusable =
+        CVarDef.Create("rmc.thirdparty_dropship_reusable", true, CVar.REPLICATED | CVar.SERVER);
+
     public static readonly CVarDef<bool> RMCEntitiesLogDelete =
         CVarDef.Create("rmc.entities_log_delete", false, CVar.SERVER | CVar.SERVERONLY);
 
@@ -303,10 +315,10 @@ public sealed partial class RMCCVars : CVars
         CVarDef.Create("rmc.playtime_amethyst_medal_time_hours", 120, CVar.REPLICATED | CVar.SERVER);
 
     public static readonly CVarDef<int> RMCPlaytimeEmeraldMedalTimeHours =
-        CVarDef.Create("rmc.playtime_emerald_medal_time_hours", 1000, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("rmc.playtime_emerald_medal_time_hours", 200, CVar.REPLICATED | CVar.SERVER); // RuCM Изменение времени для последних медалей
 
     public static readonly CVarDef<int> RMCPlaytimePrismaticMedalTimeHours =
-        CVarDef.Create("rmc.playtime_prismatic_medal_time_hours", 1500, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("rmc.playtime_prismatic_medal_time_hours", 500, CVar.REPLICATED | CVar.SERVER); // RuCM Изменение времени для последних медалей
     // For the future coder: 2100, 2800, 3600, 4500
 
     public static readonly CVarDef<int> RMCPlaytimeXenoPrefixThreeTimeHours =
@@ -465,19 +477,13 @@ public sealed partial class RMCCVars : CVars
     /// How announcements should be displayed for this client.
     /// </summary>
     public static readonly CVarDef<AnnouncementDisplayPreference> RMCAnnouncementStyle =
-        CVarDef.Create("rmc.announcement_style", AnnouncementDisplayPreference.Stylized, CVar.ARCHIVE | CVar.CLIENTONLY);
+        CVarDef.Create("rmc.announcement_style", AnnouncementDisplayPreference.Default, CVar.ARCHIVE | CVar.CLIENTONLY);
 
     /// <summary>
     /// Per-announcement display overrides keyed by announcement preset id.
     /// </summary>
     public static readonly CVarDef<string> RMCAnnouncementStyleOverrides =
         CVarDef.Create("rmc.announcement_style_overrides", string.Empty, CVar.ARCHIVE | CVar.CLIENTONLY);
-
-    public static readonly CVarDef<string> RMCAnnouncementLayout =
-        CVarDef.Create("rmc.announcement_layout", string.Empty, CVar.ARCHIVE | CVar.CLIENTONLY);
-
-    public static readonly CVarDef<string> RMCAnnouncementLayoutOverrides =
-        CVarDef.Create("rmc.announcement_layout_overrides", string.Empty, CVar.ARCHIVE | CVar.CLIENTONLY);
 
     public static readonly CVarDef<int> RMCSunsetDuration =
         CVarDef.Create("rmc.lighting_sunset_duration", 280, CVar.REPLICATED | CVar.SERVER);
@@ -548,6 +554,9 @@ public sealed partial class RMCCVars : CVars
     public static readonly CVarDef<bool> RMCXenoAbilityPreviews =
         CVarDef.Create("rmc.xeno_ability_previews", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    public static readonly CVarDef<int> RMCNightVisionColor =
+        CVarDef.Create("rmc.night_vision_color", (int) NightVisionColor.Green, CVar.CLIENTONLY | CVar.ARCHIVE);
+
     public static readonly CVarDef<int> RMCXenoDefaultNightVision =
         CVarDef.Create("rmc.xeno_default_night_vision", (int) NightVisionState.Half, CVar.CLIENT | CVar.ARCHIVE | CVar.REPLICATED);
 
@@ -600,4 +609,10 @@ public sealed partial class RMCCVars : CVars
 
     public static readonly CVarDef<string> RMCChemMasterPresets =
         CVarDef.Create("rmc.chemmaster_presets", "", CVar.CLIENT | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> RMCWeedSpreadMaxProcessTimeMilliseconds =
+        CVarDef.Create("rmc.weed_spread_max_process_time_milliseconds", 1f, CVar.REPLICATED | CVar.SERVER);
+
+    public static readonly CVarDef<float> RMCDoAfterCancelMaxProcessTimeMilliseconds =
+        CVarDef.Create("rmc.do_after_cancel_max_process_time_milliseconds", 1f, CVar.REPLICATED | CVar.SERVER);
 }
