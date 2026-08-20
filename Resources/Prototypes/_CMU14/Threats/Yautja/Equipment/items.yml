@@ -1,42 +1,57 @@
 - type: radioChannel
   id: CMUYautja
   name: chat-radio-cmu-yautja
-  keycode: "е"
+  keycode: "g"
+  radioPrefix: ":"
   frequency: 1541
   color: "#b85440"
   longRange: true
+  tower: true
+  faction: "FactionYautja"
 
 - type: radioChannel
   id: CMUYautjaOverseer
   name: chat-radio-cmu-yautja-overseer
-  keycode: "н"
+  keycode: "o"
+  radioPrefix: "#"
   frequency: 1542
   color: "#d4a85b"
   longRange: true
+  tower: true
+  faction: "FactionYautja"
 
 - type: radioChannel
   id: CMUYautjaBadBlood
   name: chat-radio-cmu-yautja-badblood
-  keycode: "г"
+  keycode: "b"
+  radioPrefix: "#"
   frequency: 1543
   color: "#c44343"
   longRange: true
+  tower: true
+  faction: "FactionYautja"
 
 - type: radioChannel
   id: CMUYautjaStranded
   name: chat-radio-cmu-yautja-stranded
-  keycode: "д"
+  keycode: "s"
+  radioPrefix: "#"
   frequency: 1544
   color: "#a88762"
   longRange: true
+  tower: true
+  faction: "FactionYautja"
 
 - type: radioChannel
   id: CMUYautjaMilitary
   name: chat-radio-cmu-yautja-military
-  keycode: "м"
+  keycode: "m"
+  radioPrefix: "#"
   frequency: 1545
   color: "#8db7d4"
   longRange: true
+  tower: true
+  faction: "FactionYautja"
 
 - type: entity
   abstract: true
@@ -49,6 +64,42 @@
     blockMelee: false
     blockThrow: false
     blockShoot: false
+
+- type: entity
+  parent: BaseItem
+  id: CMUYautjaHealthShard
+  name: health shard
+  description: A crystalline shard pulsing with restorative energy. Split it with both hands free to activate, then plunge both halves into yourself for a burst of healing and a sustained chemical treatment.
+  components:
+  - type: Sprite
+    sprite: _CMU14/Yautja/health_shard.rsi
+    state: shard_icon
+  - type: Item
+    sprite: _CMU14/Yautja/health_shard.rsi
+    heldPrefix: shard_inhand
+    size: Small
+  - type: YautjaHealthShard
+  - type: YautjaTechItem
+    blockPickup: false
+    blockUse: false
+    blockMelee: false
+    blockThrow: false
+
+- type: entity
+  parent: BaseItem
+  id: CMUYautjaHealthShardHalf
+  name: health shard half
+  description: One half of a split health shard. Use on yourself to plunge it in for immediate healing and a chemical boost.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _CMU14/Yautja/health_shard.rsi
+    state: shard_icon_twohand
+  - type: Item
+    sprite: _CMU14/Yautja/health_shard.rsi
+    heldPrefix: shard_inhand
+    size: Tiny
+  - type: YautjaHealthShardHalf
 
 - type: entity
   parent: EncryptionKey
@@ -137,6 +188,9 @@
     blockMelee: false
     blockThrow: false
   - type: YautjaCommunicator
+  - type: ItemIFF
+    factions:
+    - FactionYautja
   - type: StaticPrice
     price: 100
   - type: Corrodible
@@ -365,6 +419,7 @@
     sprite: _CMU14/HunterShip/obj/items/hunter/pred_gear.rsi
     layers:
     - state: falcon_drone_active
+      map: [ "enum.YautjaFalconVisualLayers.Base" ]
   - type: MovementSpeedModifier
     baseWalkSpeed: 5.5
     baseSprintSpeed: 8
@@ -385,6 +440,7 @@
         - MobMask
         layer:
         - MobLayer
+  - type: Climbing
   - type: ActiveInputMover
   - type: Tag
     tags:
@@ -404,6 +460,7 @@
     sprite: _CMU14/HunterShip/obj/items/hunter/pred_gear.rsi
     layers:
     - state: falcon_drone_badblood_active
+      map: [ "enum.YautjaFalconVisualLayers.Base" ]
   - type: YautjaFalconHudIcon
     icon: CMUYautjaIconFalconDroneBadBlood
 
@@ -702,17 +759,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
-  - type: UserInterface
-    interfaces:
-      enum.RMCCameraUiKey.Key:
-        type: RMCCameraBui
-  - type: RMCCameraComputer
-    protoIds:
-    - CMUYautjaHellhoundCamera
-    networks:
-    - Yautja
-    title: cmu-yautja-houndpad-interface-title
-    viewportSize: 672, 480
 
 - type: entity
   parent: BaseItem

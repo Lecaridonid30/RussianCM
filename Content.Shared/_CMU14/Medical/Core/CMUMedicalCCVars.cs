@@ -51,6 +51,13 @@ public sealed partial class CMUMedicalCCVars : CVars
         CVarDef.Create("cmu.medical.targeted_healing.enabled", false, CVar.REPLICATED | CVar.CLIENT | CVar.ARCHIVE);
 
     /// <summary>
+    ///     Whether stacked trauma and burn kits automatically continue to the next applicable wound.
+    ///     Replicated so the server can honor the treating player's preference.
+    /// </summary>
+    public static readonly CVarDef<bool> AutoReapplyKitsEnabled =
+        CVarDef.Create("cmu.medical.auto_reapply_kits.enabled", true, CVar.REPLICATED | CVar.CLIENT | CVar.ARCHIVE);
+
+    /// <summary>
     ///     Whether this client performs surgery directly from tool intent instead of opening the surgery window.
     ///     Replicated so the server can honor the operating player's preference.
     /// </summary>
@@ -72,8 +79,20 @@ public sealed partial class CMUMedicalCCVars : CVars
     public static readonly CVarDef<float> BodyPartDamagePropagation =
         CVarDef.Create("cmu.medical.body_part.damage_propagation", 1.0f, CVar.REPLICATED | CVar.SERVER);
 
+    /// <summary>
+    ///     Ranged called-shot accuracy multiplier for the hand zone.
+    /// </summary>
+    public static readonly CVarDef<float> HitLocationHandAccuracyMultiplier =
+        CVarDef.Create("cmu.medical.hit_location.hand_accuracy_multiplier", 0.1667f, CVar.REPLICATED | CVar.SERVER); // RuMC edit
+
+    /// <summary>
+    ///     Ranged called-shot accuracy multiplier for the foot zone.
+    /// </summary>
+    public static readonly CVarDef<float> HitLocationFootAccuracyMultiplier =
+        CVarDef.Create("cmu.medical.hit_location.foot_accuracy_multiplier", 0.1667f, CVar.REPLICATED | CVar.SERVER); // RuMC edit
+
     public static readonly CVarDef<bool> SeveranceHeadDisabled =
-        CVarDef.Create("cmu.medical.severance.head_disabled", false, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("cmu.medical.severance.head_disabled", true, CVar.REPLICATED | CVar.SERVER); // RuMC edit
 
     public static readonly CVarDef<bool> SeveranceTorsoDisabled =
         CVarDef.Create("cmu.medical.severance.torso_disabled", true, CVar.REPLICATED | CVar.SERVER);

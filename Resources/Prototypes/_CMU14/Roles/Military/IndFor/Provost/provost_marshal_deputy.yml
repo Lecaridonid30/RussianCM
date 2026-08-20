@@ -7,7 +7,11 @@
   startingGear: CMUGearProvostDeputyMarshal
   playTimeTracker: CMJobProvostDeputyMarshal
   ranks:
-    CMURankProvostDeputyMarshal: []
+    RMCRankCivilian: []
+  chevrons:
+    CMURankProvostDeputyMarshal:
+      entity: AU14ChevronProvostDeputyMarshall
+      requirements: []
   roundComponents:
   - type: Skills
     skills:
@@ -77,3 +81,12 @@
     back: CMSatchelSecurityFilledProvostDeputyMarshal
     pocket1: RMCUniversalRecorder
     pocket2: RMCPouchMagazinePistolFilledMateba
+  storage:
+    back:
+    - CMUStampProvost
+
+- type: roleLoadout
+  id: JobCMUJobINDFORProvostDeputyMarshal
+  points: 7
+  groups:
+  - ProvostStampGroupCMU

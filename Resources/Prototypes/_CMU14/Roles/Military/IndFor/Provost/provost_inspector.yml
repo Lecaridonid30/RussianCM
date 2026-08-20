@@ -7,9 +7,13 @@
   startingGear: CMUGearProvostInspector
   playTimeTracker: CMJobProvostInspector
   whitelisted: true
-  whitelistParent: CMUJobCommandWhitelist
+  whitelistParent: RMCWhitelistHard
   ranks:
-    CMURankProvostInspector: []
+    RMCRankCivilian: []
+  chevrons:
+    CMURankProvostInspector:
+      entity: AU14ChevronProvostInspector
+      requirements: []
   roundComponents:
   - type: Skills
     skills:
@@ -103,5 +107,5 @@
     pocket2: RMCPouchGeneralLarge
   storage:
     back:
-    - AU14StampProvostInspector
+    - CMUStampProvostInspector
     - AU14RadioJammer

@@ -188,6 +188,69 @@
         - WallLayer
         density: 1000
 
+# Compatibility aliases for the canonical Yautja wrapper names used by the
+# integration coverage and map-export tooling.
+- type: entity
+  parent: [ CMUHunterShipPlacedCMVendorDinnerwareLockedPoweredDinnerwareSouth, CMUHunterShipYautjaVendorDinnerware ]
+  id: CMUHunterShipPlacedCMUHunterShipYautjaVendorDinnerwareDinnerwareSouthVariant02
+  name: "Dinnerplate dispenser"
+  description: "A kitchen and restaurant equipment vendor."
+  components:
+  - type: Sprite
+    sprite: _CMU14/HunterShip/obj/structures/machinery/yautja_machines.rsi
+    drawdepth: SmallObjects
+    noRot: true
+    snapCardinals: false
+    enableOverrideDir: true
+    overrideDir: South
+    layers:
+    - state: "dinnerware"
+      map: [ "enum.VendingMachineVisualLayers.Base" ]
+    - state: "dinnerware-vend"
+      shader: unshaded
+      map: [ "enum.VendingMachineVisualLayers.BaseUnshaded" ]
+
+- type: entity
+  parent: [ CMUHunterShipPlacedCMVendorNutriNutriSouthOffsetNeg3xNeg1, CMUHunterShipYautjaVendorNutri ]
+  id: CMUHunterShipPlacedCMUHunterShipYautjaVendorNutriNutriSouthOffsetNeg3xNeg1
+  name: "Nutrient Servitor"
+  description: "A plant nutrients vendor."
+  components:
+  - type: Sprite
+    sprite: _CMU14/HunterShip/obj/structures/machinery/yautja_machines.rsi
+    drawdepth: SmallObjects
+    noRot: true
+    snapCardinals: false
+    offset: -0.0938,-0.0313
+    enableOverrideDir: true
+    overrideDir: South
+    layers:
+    - state: "nutri"
+      map: [ "enum.VendingMachineVisualLayers.Base" ]
+    - state: "nutri"
+      shader: unshaded
+      map: [ "enum.VendingMachineVisualLayers.BaseUnshaded" ]
+
+- type: entity
+  parent: [ CMUHunterShipPlacedCMVendorSeedsSeedsSouthOffset3xNeg1, CMUHunterShipYautjaVendorSeeds ]
+  id: CMUHunterShipPlacedCMUHunterShipYautjaVendorSeedsSeedsSouthOffset3xNeg1
+  name: "Seed Servitor"
+  description: "A plant seeds vendor."
+  components:
+  - type: Sprite
+    sprite: _CMU14/HunterShip/obj/structures/machinery/yautja_machines.rsi
+    drawdepth: SmallObjects
+    noRot: true
+    snapCardinals: false
+    offset: 0.0938,-0.0313
+    enableOverrideDir: true
+    overrideDir: South
+    layers:
+    - state: "seeds"
+      map: [ "enum.VendingMachineVisualLayers.Base" ]
+    - state: "seeds"
+      shader: unshaded
+      map: [ "enum.VendingMachineVisualLayers.BaseUnshaded" ]
 
 - type: entity
   parent: CMUHunterShipYautjaGiantStatue
@@ -2011,12 +2074,14 @@
 
 
 - type: entity
-  parent: CMUHunterShipStaticAlienEffect
+  parent: XenoEgg
   id: CMUHunterShipObjEffectAlienEggForsakenEggGrowingSouth
   name: "Egg"
   description: "It looks like a weird egg."
   suffix: Hunter Ship exact visual
   components:
+  - type: Transform
+    anchored: true
   - type: Sprite
     sprite: _CMU14/HunterShip/mob/xenos/effects.rsi
     drawdepth: BelowMobs
@@ -2025,18 +2090,35 @@
     overrideDir: South
     layers:
     - state: "Egg Growing"
+      map: [ "enum.XenoEggLayers.Base" ]
   - type: Icon
     sprite: _CMU14/HunterShip/mob/xenos/effects.rsi
     state: "Egg Growing"
+  - type: XenoEgg
+    state: Growing
+    canSpawnGhostParasite: false
+    normalSprite: _CMU14/HunterShip/mob/xenos/effects.rsi
+    currentSprite: _CMU14/HunterShip/mob/xenos/effects.rsi
+    growingState: "Egg Growing"
+    grownState: "Egg"
+    openingState: "Egg Opening"
+    openedState: "Egg Opened"
+  - type: CMUHunterShipHiveAssignment
+    hive: Forsaken
 
 
 - type: entity
-  parent: CMUHunterShipStaticAlienEffect
+  parent: XenoHiveWeedsSource
   id: CMUHunterShipObjEffectAlienWeedsNodeForsakenWeednodeSouth
   name: "Weed node"
   description: "A weird, pulsating node."
   suffix: Hunter Ship exact visual
   components:
+  - type: RemoveComponents
+    components:
+    - type: IconSmooth
+    - type: IconSmoothRandom
+    - type: RandomSprite
   - type: Sprite
     sprite: _CMU14/HunterShip/mob/xenos/weeds.rsi
     drawdepth: HighFloorObjects
@@ -2048,6 +2130,8 @@
   - type: Icon
     sprite: _CMU14/HunterShip/mob/xenos/weeds.rsi
     state: "weednode"
+  - type: CMUHunterShipHiveAssignment
+    hive: Forsaken
 
 
 - type: entity
@@ -7947,6 +8031,9 @@
     layers:
     - state: "vial"
       color: "#9b1818"
+    - state: "vial"
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
   - type: Icon
     sprite: _CMU14/HunterShip/obj/items/chemistry.rsi
     state: "vial"
@@ -7957,6 +8044,10 @@
     - type: Contraband
   - type: Item
     sprite: _RMC14/Objects/Chemistry/vials.rsi
+  - type: SolutionContainerVisuals
+    fillSprite:
+      sprite: _RMC14/Objects/Chemistry/vials.rsi
+      state: vial1
   - type: Physics
     bodyType: Dynamic
     fixedRotation: false
@@ -7993,6 +8084,9 @@
     layers:
     - state: "vial"
       color: "#9b1818"
+    - state: "vial"
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
   - type: Icon
     sprite: _CMU14/HunterShip/obj/items/chemistry.rsi
     state: "vial"
@@ -8003,6 +8097,10 @@
     - type: Contraband
   - type: Item
     sprite: _RMC14/Objects/Chemistry/vials.rsi
+  - type: SolutionContainerVisuals
+    fillSprite:
+      sprite: _RMC14/Objects/Chemistry/vials.rsi
+      state: vial1
   - type: Physics
     bodyType: Dynamic
     fixedRotation: false
@@ -8039,6 +8137,9 @@
     layers:
     - state: "vial"
       color: "#9b1818"
+    - state: "vial"
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
   - type: Icon
     sprite: _CMU14/HunterShip/obj/items/chemistry.rsi
     state: "vial"
@@ -8049,6 +8150,10 @@
     - type: Contraband
   - type: Item
     sprite: _RMC14/Objects/Chemistry/vials.rsi
+  - type: SolutionContainerVisuals
+    fillSprite:
+      sprite: _RMC14/Objects/Chemistry/vials.rsi
+      state: vial1
   - type: Physics
     bodyType: Dynamic
     fixedRotation: false
@@ -8085,6 +8190,9 @@
     layers:
     - state: "vial"
       color: "#9b1818"
+    - state: "vial"
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
   - type: Icon
     sprite: _CMU14/HunterShip/obj/items/chemistry.rsi
     state: "vial"
@@ -8095,6 +8203,10 @@
     - type: Contraband
   - type: Item
     sprite: _RMC14/Objects/Chemistry/vials.rsi
+  - type: SolutionContainerVisuals
+    fillSprite:
+      sprite: _RMC14/Objects/Chemistry/vials.rsi
+      state: vial1
   - type: Physics
     bodyType: Dynamic
     fixedRotation: false
@@ -8131,6 +8243,9 @@
     layers:
     - state: "vial"
       color: "#9b1818"
+    - state: "vial"
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
   - type: Icon
     sprite: _CMU14/HunterShip/obj/items/chemistry.rsi
     state: "vial"
@@ -8141,6 +8256,10 @@
     - type: Contraband
   - type: Item
     sprite: _RMC14/Objects/Chemistry/vials.rsi
+  - type: SolutionContainerVisuals
+    fillSprite:
+      sprite: _RMC14/Objects/Chemistry/vials.rsi
+      state: vial1
   - type: Physics
     bodyType: Dynamic
     fixedRotation: false
@@ -9519,11 +9638,27 @@
 
 - type: entity
   parent: XenoEgg
+  id: CMUHunterShipItemEggBase
+  abstract: true
+  components:
+  - type: XenoEgg
+    normalSprite: _CMU14/HunterShip/mob/xenos/effects.rsi
+    currentSprite: _CMU14/HunterShip/mob/xenos/effects.rsi
+    growingState: "Egg Growing"
+    grownState: "Egg"
+    openingState: "Egg Opening"
+    openedState: "Egg Opened"
+
+
+- type: entity
+  parent: CMUHunterShipItemEggBase
   id: CMUHunterShipPlacedBaseItemEggItemSouthOffset1x2
   name: "Egg"
   description: "Some sort of egg."
   suffix: Hunter Ship CMU exact wrapper
   components:
+  - type: CMUHunterShipHiveAssignment
+    hive: Alpha
   - type: Sprite
     sprite: _CMU14/HunterShip/mob/xenos/effects.rsi
     drawdepth: Items
@@ -9534,7 +9669,6 @@
     layers:
     - state: "egg_item"
       map: [ "enum.XenoEggLayers.Base" ]
-      color: "#ff4040"
   - type: Icon
     sprite: _CMU14/HunterShip/mob/xenos/effects.rsi
     state: "egg_item"
@@ -9565,12 +9699,14 @@
 
 
 - type: entity
-  parent: XenoEgg
+  parent: CMUHunterShipItemEggBase
   id: CMUHunterShipPlacedBaseItemEggItemSouthOffset6x7
   name: "Egg"
   description: "Some sort of egg."
   suffix: Hunter Ship CMU exact wrapper
   components:
+  - type: CMUHunterShipHiveAssignment
+    hive: Alpha
   - type: Sprite
     sprite: _CMU14/HunterShip/mob/xenos/effects.rsi
     drawdepth: Items
@@ -9581,7 +9717,6 @@
     layers:
     - state: "egg_item"
       map: [ "enum.XenoEggLayers.Base" ]
-      color: "#ff4040"
   - type: Icon
     sprite: _CMU14/HunterShip/mob/xenos/effects.rsi
     state: "egg_item"
@@ -9612,12 +9747,14 @@
 
 
 - type: entity
-  parent: XenoEgg
+  parent: CMUHunterShipItemEggBase
   id: CMUHunterShipPlacedBaseItemEggItemSouthOffset8x13
   name: "Egg"
   description: "Some sort of egg."
   suffix: Hunter Ship CMU exact wrapper
   components:
+  - type: CMUHunterShipHiveAssignment
+    hive: Alpha
   - type: Sprite
     sprite: _CMU14/HunterShip/mob/xenos/effects.rsi
     drawdepth: Items
@@ -9628,7 +9765,6 @@
     layers:
     - state: "egg_item"
       map: [ "enum.XenoEggLayers.Base" ]
-      color: "#ff4040"
   - type: Icon
     sprite: _CMU14/HunterShip/mob/xenos/effects.rsi
     state: "egg_item"
@@ -9659,12 +9795,14 @@
 
 
 - type: entity
-  parent: XenoEgg
+  parent: CMUHunterShipItemEggBase
   id: CMUHunterShipPlacedBaseItemEggItemSouthOffsetNeg5x9
   name: "Egg"
   description: "Some sort of egg."
   suffix: Hunter Ship CMU exact wrapper
   components:
+  - type: CMUHunterShipHiveAssignment
+    hive: Alpha
   - type: Sprite
     sprite: _CMU14/HunterShip/mob/xenos/effects.rsi
     drawdepth: Items
@@ -9675,7 +9813,6 @@
     layers:
     - state: "egg_item"
       map: [ "enum.XenoEggLayers.Base" ]
-      color: "#ff4040"
   - type: Icon
     sprite: _CMU14/HunterShip/mob/xenos/effects.rsi
     state: "egg_item"
@@ -9706,12 +9843,14 @@
 
 
 - type: entity
-  parent: XenoEgg
+  parent: CMUHunterShipItemEggBase
   id: CMUHunterShipPlacedBaseItemEggItemSouthOffsetNeg7x15
   name: "Egg"
   description: "Some sort of egg."
   suffix: Hunter Ship CMU exact wrapper
   components:
+  - type: CMUHunterShipHiveAssignment
+    hive: Alpha
   - type: Sprite
     sprite: _CMU14/HunterShip/mob/xenos/effects.rsi
     drawdepth: Items
@@ -9722,7 +9861,6 @@
     layers:
     - state: "egg_item"
       map: [ "enum.XenoEggLayers.Base" ]
-      color: "#ff4040"
   - type: Icon
     sprite: _CMU14/HunterShip/mob/xenos/effects.rsi
     state: "egg_item"
@@ -9753,12 +9891,14 @@
 
 
 - type: entity
-  parent: XenoEgg
+  parent: CMUHunterShipItemEggBase
   id: CMUHunterShipPlacedBaseItemEggItemSouthVariant02Offset1xNeg2
   name: "Egg"
   description: "Some sort of egg."
   suffix: Hunter Ship CMU exact wrapper
   components:
+  - type: CMUHunterShipHiveAssignment
+    hive: Forsaken
   - type: Sprite
     sprite: _CMU14/HunterShip/mob/xenos/effects.rsi
     drawdepth: Items
@@ -9769,7 +9909,6 @@
     layers:
     - state: "egg_item"
       map: [ "enum.XenoEggLayers.Base" ]
-      color: "#cc8ec4"
   - type: Icon
     sprite: _CMU14/HunterShip/mob/xenos/effects.rsi
     state: "egg_item"
@@ -9800,12 +9939,14 @@
 
 
 - type: entity
-  parent: XenoEgg
+  parent: CMUHunterShipItemEggBase
   id: CMUHunterShipPlacedBaseItemEggItemSouthVariant02Offset9x10
   name: "Egg"
   description: "Some sort of egg."
   suffix: Hunter Ship CMU exact wrapper
   components:
+  - type: CMUHunterShipHiveAssignment
+    hive: Forsaken
   - type: Sprite
     sprite: _CMU14/HunterShip/mob/xenos/effects.rsi
     drawdepth: Items
@@ -9816,7 +9957,6 @@
     layers:
     - state: "egg_item"
       map: [ "enum.XenoEggLayers.Base" ]
-      color: "#cc8ec4"
   - type: Icon
     sprite: _CMU14/HunterShip/mob/xenos/effects.rsi
     state: "egg_item"
@@ -9847,12 +9987,14 @@
 
 
 - type: entity
-  parent: XenoEgg
+  parent: CMUHunterShipItemEggBase
   id: CMUHunterShipPlacedBaseItemEggItemSouthVariant02OffsetNeg7x11
   name: "Egg"
   description: "Some sort of egg."
   suffix: Hunter Ship CMU exact wrapper
   components:
+  - type: CMUHunterShipHiveAssignment
+    hive: Forsaken
   - type: Sprite
     sprite: _CMU14/HunterShip/mob/xenos/effects.rsi
     drawdepth: Items
@@ -9863,7 +10005,6 @@
     layers:
     - state: "egg_item"
       map: [ "enum.XenoEggLayers.Base" ]
-      color: "#cc8ec4"
   - type: Icon
     sprite: _CMU14/HunterShip/mob/xenos/effects.rsi
     state: "egg_item"
@@ -14252,16 +14393,16 @@
     enableOverrideDir: true
     overrideDir: South
     layers:
-    - state: ""
+    - state: base
       color: "#9bb1be"
       map: [ "enum.IVDripVisualLayers.Base" ]
     - state: reagent0
       map: [ "enum.IVDripVisualLayers.Reagent" ]
   - type: Icon
     sprite: _CMU14/HunterShip/obj/structures/machinery/iv_drip.rsi
-    state: ""
+    state: base
   - type: IVDrip
-    unattachedState: ""
+    unattachedState: base
     attachedState: hooked
     reagentStates:
     - 0: reagent0
@@ -14713,6 +14854,9 @@
     layers:
     - state: "beakersilver"
       color: "#9b1818"
+    - state: "beakersilver"
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
   - type: Icon
     sprite: _CMU14/HunterShip/obj/items/chemistry.rsi
     state: "beakersilver"
@@ -14723,6 +14867,10 @@
     - type: Contraband
   - type: Item
     sprite: _RMC14/Objects/Medical/large_beaker.rsi
+  - type: SolutionContainerVisuals
+    fillSprite:
+      sprite: _RMC14/Objects/Medical/large_beaker.rsi
+      state: beakerlarge1
   - type: Physics
     bodyType: Dynamic
     fixedRotation: false
@@ -14759,6 +14907,9 @@
     layers:
     - state: "beakersilver"
       color: "#9b1818"
+    - state: "beakersilver"
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
   - type: Icon
     sprite: _CMU14/HunterShip/obj/items/chemistry.rsi
     state: "beakersilver"
@@ -14769,6 +14920,10 @@
     - type: Contraband
   - type: Item
     sprite: _RMC14/Objects/Medical/large_beaker.rsi
+  - type: SolutionContainerVisuals
+    fillSprite:
+      sprite: _RMC14/Objects/Medical/large_beaker.rsi
+      state: beakerlarge1
   - type: Physics
     bodyType: Dynamic
     fixedRotation: false
@@ -15917,6 +16072,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: East
   - type: Clickable
   - type: InteractionOutline
 
@@ -15946,6 +16103,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: East
   - type: Clickable
   - type: InteractionOutline
 
@@ -15975,6 +16134,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: East
   - type: Clickable
   - type: InteractionOutline
 
@@ -16004,6 +16165,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: East
   - type: Clickable
   - type: InteractionOutline
 
@@ -16033,6 +16196,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: East
   - type: Clickable
   - type: InteractionOutline
 
@@ -16062,6 +16227,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: East
   - type: Clickable
   - type: InteractionOutline
 
@@ -16090,6 +16257,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: North
   - type: Clickable
   - type: InteractionOutline
 
@@ -16118,6 +16287,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: South
   - type: Clickable
   - type: InteractionOutline
 
@@ -16146,6 +16317,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: West
   - type: Clickable
   - type: InteractionOutline
 
@@ -16175,6 +16348,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: West
   - type: Clickable
   - type: InteractionOutline
 
@@ -16204,6 +16379,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: West
   - type: Clickable
   - type: InteractionOutline
 
@@ -16233,6 +16410,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: South
   - type: Clickable
   - type: InteractionOutline
 
@@ -16262,6 +16441,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: South
   - type: Clickable
   - type: InteractionOutline
 
@@ -16290,6 +16471,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: East
   - type: Clickable
   - type: InteractionOutline
 
@@ -16319,6 +16502,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: East
   - type: Clickable
   - type: InteractionOutline
 
@@ -16347,6 +16532,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: North
   - type: Clickable
   - type: InteractionOutline
 
@@ -16376,6 +16563,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: North
   - type: Clickable
   - type: InteractionOutline
 
@@ -16405,6 +16594,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: North
   - type: Clickable
   - type: InteractionOutline
 
@@ -16434,6 +16625,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: North
   - type: Clickable
   - type: InteractionOutline
 
@@ -16463,6 +16656,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: South
   - type: Clickable
   - type: InteractionOutline
 
@@ -16492,6 +16687,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: South
   - type: Clickable
   - type: InteractionOutline
 
@@ -16520,6 +16717,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: West
   - type: Clickable
   - type: InteractionOutline
 
@@ -16549,6 +16748,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: West
   - type: Clickable
   - type: InteractionOutline
 
@@ -16578,6 +16779,8 @@
       visuals: {}
   - type: Strap
     position: Stand
+  - type: YautjaChairFacing
+    direction: West
   - type: Clickable
   - type: InteractionOutline
 
@@ -18163,6 +18366,30 @@
   description: "A fancy bed with built-in injectors, a dialysis machine, and a limited health scanner."
   suffix: Hunter Ship CMU exact wrapper
   components:
+  - type: CMUAutodocPod
+    availableChemicals:
+    - thwei
+    - CMInaprovaline
+    - CMUOxycodone
+    - CMDylovene
+    - CMDexalinPlus
+    - CMTricordrazine
+    - CMAlkysine
+    - CMImidazoline
+    emergencyChemicals:
+    - thwei
+    - CMInaprovaline
+    - CMUOxycodone
+    - CMDylovene
+    - CMDexalinPlus
+    - CMTricordrazine
+    - CMBicaridine
+    - CMKelotane
+    - CMMeralyne
+    - CMDermaline
+    - CMAlkysine
+    - CMImidazoline
+    dialysisRatePerSecond: 8
   - type: Sprite
     sprite: _CMU14/HunterShip/obj/structures/machinery/yautja_machines.rsi
     drawdepth: Mobs
@@ -31139,7 +31366,7 @@
 
 
 - type: entity
-  parent: CMUYautjaSpikeLauncher
+  parent: CMUYautjaHarpoon
   id: CMUHunterShipPlacedCMUYautjaSpikeLauncherSpikeSouthOffset0x9
   name: "Large harpoon"
   description: "A huge metal spike with a hook at the end. It's carved with mysterious alien writing."
@@ -31184,7 +31411,7 @@
 
 
 - type: entity
-  parent: CMUYautjaSpikeLauncher
+  parent: CMUYautjaHarpoon
   id: CMUHunterShipPlacedCMUYautjaSpikeLauncherSpikeSouthOffset0xNeg9
   name: "Large harpoon"
   description: "A huge metal spike with a hook at the end. It's carved with mysterious alien writing."
@@ -31229,7 +31456,7 @@
 
 
 - type: entity
-  parent: CMUYautjaSpikeLauncher
+  parent: CMUYautjaHarpoon
   id: CMUHunterShipPlacedCMUYautjaSpikeLauncherSpikeSouthOffset1xNeg11
   name: "Large harpoon"
   description: "A huge metal spike with a hook at the end. It's carved with mysterious alien writing."
@@ -31274,7 +31501,7 @@
 
 
 - type: entity
-  parent: CMUYautjaSpikeLauncher
+  parent: CMUYautjaHarpoon
   id: CMUHunterShipPlacedCMUYautjaSpikeLauncherSpikeSouthOffset9x0
   name: "Large harpoon"
   description: "A huge metal spike with a hook at the end. It's carved with mysterious alien writing."
@@ -31319,7 +31546,7 @@
 
 
 - type: entity
-  parent: CMUYautjaSpikeLauncher
+  parent: CMUYautjaHarpoon
   id: CMUHunterShipPlacedCMUYautjaSpikeLauncherSpikeSouthOffsetNeg12x7
   name: "Large harpoon"
   description: "A huge metal spike with a hook at the end. It's carved with mysterious alien writing."
@@ -31364,7 +31591,7 @@
 
 
 - type: entity
-  parent: CMUYautjaSpikeLauncher
+  parent: CMUYautjaHarpoon
   id: CMUHunterShipPlacedCMUYautjaSpikeLauncherSpikeSouthOffsetNeg3x2
   name: "Large harpoon"
   description: "A huge metal spike with a hook at the end. It's carved with mysterious alien writing."
@@ -31409,7 +31636,7 @@
 
 
 - type: entity
-  parent: CMUYautjaSpikeLauncher
+  parent: CMUYautjaHarpoon
   id: CMUHunterShipPlacedCMUYautjaSpikeLauncherSpikeSouthOffsetNeg5x6
   name: "Large harpoon"
   description: "A huge metal spike with a hook at the end. It's carved with mysterious alien writing."
@@ -31454,7 +31681,7 @@
 
 
 - type: entity
-  parent: CMUYautjaSpikeLauncher
+  parent: CMUYautjaHarpoon
   id: CMUHunterShipPlacedCMUYautjaSpikeLauncherSpikeSouthOffsetNeg9x0
   name: "Large harpoon"
   description: "A huge metal spike with a hook at the end. It's carved with mysterious alien writing."

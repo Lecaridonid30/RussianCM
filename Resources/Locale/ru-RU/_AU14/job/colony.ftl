@@ -181,6 +181,10 @@ au14-job-description-leoleader = Правоохранительные орган
 au14-job-name-leo = Офицер правоохранительных органов
 au14-job-description-leo = Правоохранительные органы колонии (зависит от карты)
 
+au14-job-name-3rdparty9handler = Кинолог
+au14-job-description-3rdpartyk9handler = Оказывайте специализированную помощь там, где нужны ваши навыки поиска и спасения, обучайте своего напарника и знакомьтесь с новыми людьми.
+au14-job-prefix-3rdpartyk9handler = К9
+
 au14-job-name-workingjoe = Рабочий Джо
 au14-job-description-workingjoe = Ты Рабочий Джо! Ты обязан соблюдать более высокие стандарты и подчиняться не только правилам сервера, но и законам, а также правилам для синтетиков. Твоя основная задача — поддерживать чистоту на корабле, раскладывая вещи по своим местам. Твои возможности ограничены, но у тебя есть всё необходимое оборудование, а у центрального ИИ есть план! (ВНИМАНИЕ: ЭТА РОЛЬ ТРЕБУЕТ ВЫСОКОГО УРОВНЯ ОТЫГРЫША)
 AU14JobWorkingJoe = Рабочий Джо
@@ -220,9 +224,9 @@ au14-job-name-civilianambassadorupp = Посол СПН
 au14-job-description-civilianambassadorupp = Руководи дипломатической миссией СПН в колонии.
 au14-job-prefix-civilianambassadorupp = Пос. СПН
 
-au14-job-name-civilianambassadorua = Посол США
-au14-job-description-civilianambassadorua = Руководи дипломатической миссией США в колонии.
-au14-job-prefix-civilianambassadorua = Пос. США
+au14-job-name-civilianambassadorua = Посол ОА
+au14-job-description-civilianambassadorua = Руководи дипломатической миссией ОА в колонии.
+au14-job-prefix-civilianambassadorua = Пос. ОА
 
 au14-job-name-civilianambassadortwe = Посол ИТМ
 au14-job-description-civilianambassadortwe = Руководи дипломатической миссией ИТМ в колонии.

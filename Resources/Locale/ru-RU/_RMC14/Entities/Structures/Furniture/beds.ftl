@@ -5,8 +5,23 @@ ent-RMCBedAlien = инопланетная кровать
     .desc = {ent-CMBed.desc}
     .suffix = Инопланетная
 
+ent-RMCBedAlt = {ent-CMBed}
+    .desc = {ent-CMBed.desc}
+    .suffix = Альтернативная
+
+ent-RMCBedPsych = {ent-CMBed}
+    .desc = {ent-CMBed.desc}
+    .suffix = Психиатрическая
+
+ent-RMCBedDingy = {ent-CMBed}
+    .desc = {ent-CMBed.desc}
+    .suffix = Обшарпанная
+
 ent-Bedroll = спальный мешок
-    .desc = Складная кровать — чуть ли не единственное удобство в полевых условиях.
+    .desc = Единственное удобство в полевых условиях.
+ent-BedrollFolded = {ent-Bedroll}
+    .desc = {ent-Bedroll.desc}
+    .suffix = Сложенный
 
 ent-RMCBedBunk = чёрная двухъярусная кровать
     .desc = Двухъярусная кровать на металлическом каркасе. Верхнее место — для смелых.

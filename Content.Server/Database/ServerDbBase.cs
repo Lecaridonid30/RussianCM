@@ -13,6 +13,7 @@ using Content.Server.IP;
 using Content.Shared._CMU14.BalanceRating;
 using Content.Shared._CMU14.Yautja;
 using Content.Shared._RMC14.NamedItems;
+using Content.Shared._RMC14.DonorCapes;
 using Content.Shared.Administration.Logs;
 using Content.Shared.AU14.Allegiance;
 using Content.Shared.AU14.Origin;
@@ -251,6 +252,9 @@ namespace Content.Server.Database
             var gamemodeAntagPreferences = ConvertGamemodeAntagPreferences(profile.GamemodeAntagPreferences);
             var gamemodeThreatPreferences = ConvertGamemodeThreatPreferences(profile.GamemodeThreatPreferences);
             var yautjaProfile = DeserializeYautjaProfile(profile.YautjaProfile);
+            ProtoId<RMCDonorCapePrototype>? selectedDonorCape = profile.SelectedDonorCape is { } capeId
+                ? new ProtoId<RMCDonorCapePrototype>(capeId)
+                : (ProtoId<RMCDonorCapePrototype>?) null;
 
             var gender = sex == Sex.Male ? Gender.Male : Gender.Female;
             if (Enum.TryParse<Gender>(profile.Gender, true, out var genderVal))
@@ -351,7 +355,17 @@ namespace Content.Server.Database
                 gamemodeJobPriorities,
                 gamemodeAntagPreferences,
                 gamemodeThreatPreferences,
-                yautjaProfile
+                yautjaProfile,
+                profile.ShortExamine,
+                profile.FullDescription,
+                profile.MedicalRecord,
+                profile.CriminalRecord,
+                profile.GeneralRecord,
+                profile.Height,
+                profile.Weight,
+                Enum.TryParse<BuildType>(profile.Build, out var build) ? build : BuildType.Average,
+                profile.HideMetaInformation,
+                selectedDonorCape
             );
         }
 
@@ -383,6 +397,7 @@ namespace Content.Server.Database
             public YautjaInvisibilitySound? InvisibilitySound { get; set; }
             public YautjaLegacySet? Legacy { get; set; }
             public YautjaUniqueSet? Unique { get; set; }
+            public YautjaProfileStatus? Status { get; set; }
             public YautjaCapeStyle? CapeStyle { get; set; }
             public string CapeColor { get; set; } = string.Empty;
             public string FlavorText { get; set; } = string.Empty;
@@ -443,6 +458,7 @@ namespace Content.Server.Database
                 .WithInvisibilitySound(parsed.InvisibilitySound ?? YautjaCharacterProfile.Default.InvisibilitySound)
                 .WithLegacy(parsed.Legacy ?? YautjaCharacterProfile.Default.Legacy)
                 .WithUnique(parsed.Unique ?? YautjaCharacterProfile.Default.Unique)
+                .WithStatus(parsed.Status ?? YautjaCharacterProfile.Default.Status)
                 .WithCapeStyle(parsed.CapeStyle ?? YautjaCharacterProfile.Default.CapeStyle)
                 .WithCapeColor(ReadColor(parsed.CapeColor, YautjaCharacterProfile.Default.CapeColor))
                 .WithFlavorText(parsed.FlavorText ?? string.Empty);
@@ -487,6 +503,7 @@ namespace Content.Server.Database
                 InvisibilitySound = profile.InvisibilitySound,
                 Legacy = profile.Legacy,
                 Unique = profile.Unique,
+                Status = profile.Status,
                 CapeStyle = profile.CapeStyle,
                 CapeColor = profile.CapeColor.ToHex(),
                 FlavorText = profile.FlavorText,
@@ -780,6 +797,15 @@ namespace Content.Server.Database
             profile.Origin = humanoid.Origin?.Id;
             profile.Platoon = humanoid.Platoon?.Id;
             profile.Synthetic = humanoid.Synthetic;
+            profile.ShortExamine = humanoid.ShortExamine;
+            profile.FullDescription = humanoid.FullDescription;
+            profile.MedicalRecord = humanoid.MedicalRecord;
+            profile.CriminalRecord = humanoid.CriminalRecord;
+            profile.GeneralRecord = humanoid.GeneralRecord;
+            profile.Height = humanoid.Height;
+            profile.Weight = humanoid.Weight;
+            profile.Build = humanoid.Build.ToString();
+            profile.HideMetaInformation = humanoid.HideMetaInformation;
             profile.ThreatPreference = humanoid.ThreatPreferences.Count == 0
                 ? null
                 : JsonSerializer.Serialize(humanoid.ThreatPreferences.Select(t => t.Id).OrderBy(id => id));
@@ -787,6 +813,7 @@ namespace Content.Server.Database
             profile.GamemodeAntagPreferences = SerializeGamemodeSetPreferences(humanoid.GamemodeAntagPreferences);
             profile.GamemodeThreatPreferences = SerializeGamemodeSetPreferences(humanoid.GamemodeThreatPreferences);
             profile.YautjaProfile = SerializeYautjaProfile(humanoid.YautjaProfile);
+            profile.SelectedDonorCape = humanoid.SelectedDonorCape?.Id;
 
             return profile;
         }
@@ -1109,6 +1136,31 @@ namespace Content.Server.Database
                 .SingleOrDefaultAsync(p => p.UserId == userId.UserId, cancel);
 
             return record == null ? null : MakePlayerRecord(record);
+        }
+
+        public async Task<YautjaRank?> GetYautjaRank(Guid userId)
+        {
+            await using var db = await GetDb();
+
+            return await db.DbContext.Player
+                .Where(player => player.UserId == userId)
+                .Select(player => player.YautjaRank.HasValue
+                    ? (YautjaRank?)player.YautjaRank.Value
+                    : null)
+                .SingleOrDefaultAsync();
+        }
+
+        public async Task SetYautjaRank(Guid userId, YautjaRank rank)
+        {
+            await using var db = await GetDb();
+
+            var player = await db.DbContext.Player
+                .SingleOrDefaultAsync(entry => entry.UserId == userId);
+            if (player == null)
+                throw new InvalidOperationException($"Cannot set Yautja rank for unknown player {userId}.");
+
+            player.YautjaRank = (int) rank;
+            await db.DbContext.SaveChangesAsync();
         }
 
         protected async Task<bool> PlayerRecordExists(DbGuard db, NetUserId userId)

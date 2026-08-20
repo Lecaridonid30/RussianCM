@@ -1,3 +1,4 @@
+using Content.Shared._CMU14.Hiveless; // RuMC edit
 using Content.Shared._RMC14.Dropship;
 using Content.Shared._RMC14.Marines;
 using Content.Shared._RMC14.NightVision;
@@ -13,6 +14,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Prototypes;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Prototypes;
 using Content.Shared.Stunnable;
@@ -47,10 +49,12 @@ public abstract partial class SharedXenoHiveSystem : EntitySystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private XenoSystem _xeno = default!;
     [Dependency] private SharedXenoAnnounceSystem _xenoAnnounce = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
 
     private EntityQuery<HiveComponent> _query;
     private EntityQuery<HiveMemberComponent> _memberQuery;
 
+    private static readonly ProtoId<NpcFactionPrototype> RmcXenoFaction = "RMCXeno";
     private readonly HashSet<EntityUid> _contacting = new();
 
     public override void Initialize()
@@ -156,8 +160,15 @@ public abstract partial class SharedXenoHiveSystem : EntitySystem
             if (!prototype.TryComp(out XenoComponent? xeno, _compFactory))
                 continue;
 
-            if (xeno.UnlockAt == TimeSpan.Zero || prototype.HasComponent<XenoHiddenComponent>(_compFactory))
+            // RuMC edit start
+            if (xeno.UnlockAt == TimeSpan.Zero ||
+                prototype.HasComponent<XenoHiddenComponent>(_compFactory) ||
+                prototype.HasComponent<HivelessComponent>(_compFactory) ||
+                prototype.HideSpawnMenu)
+            {
                 continue;
+            }
+            // RuMC edit end
 
             ent.Comp.Unlocks.GetOrNew(xeno.UnlockAt).Add(prototype.ID);
 
@@ -330,6 +341,27 @@ public abstract partial class SharedXenoHiveSystem : EntitySystem
             return; // invalid hive was passed, prevent it breaking anything else
         }
 
+        var oldFaction = old is { } oldHive && _query.TryComp(oldHive, out var previousHiveComp)
+            ? previousHiveComp.NpcFaction
+            : null;
+        var newFaction = hiveEnt?.Comp.NpcFaction;
+
+        if (oldFaction != newFaction)
+        {
+            if (oldFaction is { } oldFactionId)
+                _npcFaction.RemoveFaction(member.Owner, oldFactionId);
+
+            if (newFaction is { } newFactionId)
+            {
+                _npcFaction.RemoveFaction(member.Owner, RmcXenoFaction);
+                _npcFaction.AddFaction(member.Owner, newFactionId);
+            }
+            else if (oldFaction is not null)
+            {
+                _npcFaction.AddFaction(member.Owner, RmcXenoFaction);
+            }
+        }
+
         comp.Hive = hive;
         Dirty(member, comp);
         UpdateHiveAppearance(member.Owner, hiveEnt);
@@ -394,11 +426,13 @@ public abstract partial class SharedXenoHiveSystem : EntitySystem
         if (hive.Comp.CurrentQueen == queen)
             return true;
 
+        var oldQueen = hive.Comp.CurrentQueen;
+
         hive.Comp.CurrentQueen = queen;
         Dirty(hive);
 
-        var ev = new XenoHiveQueenChangedEvent();
-        RaiseLocalEvent(hive.Owner, ref ev);
+        var ev = new XenoHiveQueenChangedEvent(oldQueen, queen);
+        RaiseLocalEvent(hive.Owner, ev, true);
         return true;
     }
 
@@ -412,6 +446,7 @@ public abstract partial class SharedXenoHiveSystem : EntitySystem
 
     private void ClearHiveQueen(Entity<HiveComponent> hive, bool died = false)
     {
+        var oldQueen = hive.Comp.CurrentQueen;
         hive.Comp.CurrentQueen = null;
 
         if (died)
@@ -423,8 +458,8 @@ public abstract partial class SharedXenoHiveSystem : EntitySystem
 
         Dirty(hive);
 
-        var ev = new XenoHiveQueenChangedEvent();
-        RaiseLocalEvent(hive.Owner, ref ev);
+        var ev = new XenoHiveQueenChangedEvent(oldQueen, null);
+        RaiseLocalEvent(hive.Owner, ev, true);
     }
 
     public bool HasHiveCore(Entity<HiveComponent> hive)
@@ -481,8 +516,7 @@ public abstract partial class SharedXenoHiveSystem : EntitySystem
         hive.Comp.GotOvipositorPopup = true;
         Dirty(hive);
 
-        // TODO: loc
-        var msg = "Enough time has passed, we require the Queen in oviposition for evolution.";
+        var msg = Loc.GetString("rmc-xeno-hive-needs-ovipositor-announce"); // RuMC edit
         var xenos = EntityQueryEnumerator<XenoComponent, HiveMemberComponent, ActorComponent>();
         while (xenos.MoveNext(out var uid, out _, out var member, out _))
         {
@@ -682,8 +716,8 @@ public abstract partial class SharedXenoHiveSystem : EntitySystem
 
     public bool FromSameHiveOrAlly(Entity<HiveMemberComponent?> a, Entity<HiveMemberComponent?> b)
     {
-        // TODO RMC14
-        return FromSameHive(a, b);
+        return FromSameHive(a, b) ||
+               (GetHive(a) is { } hive && IsAllyOfHive(b.Owner, hive.Owner));
     }
 
     private void UpdateHiveAppearance(EntityUid member, Entity<HiveComponent>? hive)

@@ -51657,7 +51657,7 @@ entities:
     - type: Transform
       pos: 3.5,-1.5
       parent: 1
-- proto: fetchobjectivemarkergenericspawnpoint
+- proto: fetchgenericmarker
   entities:
   - uid: 26782
     components:
@@ -52888,7 +52888,7 @@ entities:
     - type: Transform
       pos: 5.4797134,-161.4341
       parent: 1
-- proto: RMCAegisCorpseSpawner
+- proto: CMUAegisCorpseSpawner
   entities:
   - uid: 2164
     components:
@@ -52910,7 +52910,7 @@ entities:
     - type: Transform
       pos: 130.5,-52.5
       parent: 1
-- proto: RMCAegisSpawner
+- proto: CMUAegisSpawner
   entities:
   - uid: 2168
     components:
@@ -179643,7 +179643,7 @@ entities:
     - type: MetaData
       name: Kutjevo ground relay
     - type: Transform
-      pos: 114.5,-81.5
+      pos: 91.5,-138.5
       parent: 1
     - type: YautjaRelayDestination
       kind: Ground

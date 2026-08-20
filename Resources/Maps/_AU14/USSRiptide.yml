@@ -21506,6 +21506,8 @@ entities:
       parent: 1
     - type: FaxMachine
       name: com. officer
+      groups:
+      - military-command
   - uid: 1242
     components:
     - type: Transform
@@ -52896,7 +52898,7 @@ entities:
     - type: Transform
       pos: 63.5,8.5
       parent: 1
-- proto: WallmountTelevisionFrame
+- proto: CMUMonitorCameraColonyCMBFrame
   entities:
   - uid: 6414
     components:

@@ -27,7 +27,6 @@ public sealed partial class BarricadeSystem : EntitySystem
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private INetManager _net = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
@@ -363,7 +362,7 @@ public sealed partial class BarricadeSystem : EntitySystem
         var user = args.User;
         args.Verbs.Add(new AlternativeVerb
         {
-            Text = "Disassemble",
+            Text = Loc.GetString("rmc-entrenching-hesco-verb-disassemble"), // RuMC edit
             Act = () =>
             {
                 if (ent.Comp.Progress <= 0)

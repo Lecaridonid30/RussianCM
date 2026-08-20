@@ -14,6 +14,7 @@ using Content.Shared._RMC14.Xenonids;
 using Robust.Shared.Audio.Systems;
 using System.Linq;
 using Content.Shared._CMU14.Medical.Anatomy.BodyParts;
+using Content.Shared._CMU14.Yautja;
 using Content.Server._RMC14.Decals;
 using Content.Server.Spawners.Components;
 using Content.Shared.Body.Events;
@@ -63,6 +64,8 @@ public sealed partial class AcidBloodSplashSystem : EntitySystem
 
     private void ActivateSplash(Entity<AcidBloodSplashComponent> ent, float splashRadius)
     {
+        if (splashRadius <= 0) // so server wont crash when there's no acid blood
+            return;
         // Parent to the grid (mover coordinates), not to ent itself. If ent is mid-gib
         // (e.g. dropship landing on top of the xeno via Smimsh), self-parenting the decal
         // hits a transform-init assert.
@@ -90,6 +93,9 @@ public sealed partial class AcidBloodSplashSystem : EntitySystem
 
             if (closeRangeTargets.Contains(target))
                 hitProbability += 30;
+
+            if (HasComp<YautjaComponent>(target))
+                hitProbability -= 70;
 
             hitProbability /= 100f; // Reduce the value to decimal
 

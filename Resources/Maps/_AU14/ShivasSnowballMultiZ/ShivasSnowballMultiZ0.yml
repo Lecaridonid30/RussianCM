@@ -36664,7 +36664,6 @@ entities:
     - type: Transform
       pos: 99.5,79.5
       parent: 1
-    - type: MarkedForDestroy
 - proto: AU14SensorTower
   entities:
   - uid: 15952
@@ -48928,7 +48927,7 @@ entities:
   - uid: 2186
     components:
     - type: Transform
-      pos: 68.5,46.5
+      pos: 23.5,30.5
       parent: 1
   - uid: 2187
     components:
@@ -54241,7 +54240,7 @@ entities:
     - type: Transform
       pos: 6.5,0.5
       parent: 1
-- proto: fetchobjectivemarkergenericspawnpoint
+- proto: fetchgenericmarker
   entities:
   - uid: 3185
     components:
@@ -106625,7 +106624,7 @@ entities:
     - type: Transform
       pos: 116.55853,56.606167
       parent: 1
-- proto: RMCAegisCorpseSpawner
+- proto: CMUAegisCorpseSpawner
   entities:
   - uid: 13242
     components:
@@ -106652,7 +106651,7 @@ entities:
     - type: Transform
       pos: 146.5,11.5
       parent: 1
-- proto: RMCAegisSpawner
+- proto: CMUAegisSpawner
   entities:
   - uid: 13247
     components:
@@ -131942,12 +131941,12 @@ entities:
       parent: 1
 - proto: CMUYautjaGroundRelayDestination
   entities:
-  - uid: 17501
+  - uid: 999002
     components:
     - type: MetaData
       name: Shivas Snowball ground relay
     - type: Transform
-      pos: 68.5,46.5
+      pos: 23.5,30.5
       parent: 1
     - type: YautjaRelayDestination
       kind: Ground

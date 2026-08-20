@@ -2,7 +2,7 @@
 engine_version = "v278.0.0"
 
 [game]
-defaultpreset = "ColonyFall"
+defaultpreset = "Insurgency"
 # Straight in-game baby
 map = "USSBushRedux"
 lobbyenabled = false
@@ -44,7 +44,7 @@ preload = false
 expedition_cooldown = 30.0
 
 [shuttle]
-grid_fill = false
+grid_fill = true # Lifeboat & Escape Pods
 auto_call_time = 0
 emergency = false
 arrivals = false

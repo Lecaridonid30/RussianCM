@@ -91,6 +91,7 @@ cm-xeno-plasma-transferred-to-other = Вы передали {$plasma} плазм
 cm-xeno-plasma-transferred-to-self = {$target} передал вам {$plasma} плазмы. Теперь у вас {$total}
 cm-xeno-plasma-cannot-self = Нельзя передавать плазму себе!
 cm-xeno-plasma-other-max-zero = {CAPITALIZE($target)} не нуждается в плазме!
+cm-xeno-plasma-other-max-full = У этого ксено уже максимум плазмы!
 rmc-xeno-plasma-ovipositor = Нельзя передавать плазму Королеве на яйцекладе.
 cm-xeno-watch = Наблюдать за ксеноморфом
 cm-xeno-charge-spit = Наш следующий плевок будет мощнее.
@@ -99,11 +100,14 @@ cm-xeno-invisibility-expire = Мы снова стали видимы!
 rmc-xeno-invisibility-expire-bump = Мы столкнулись с кем-то и потеряли невидимость!
 cm-xeno-ovipositor-attach = Мы начинаем прикрепляться к яйцекладу.
 cm-xeno-ovipositor-detach = Мы начинаем открепляться от яйцеклада.
+rmc-xeno-hive-needs-ovipositor-announce = Прошло достаточно времени, нам нужна Королева на яйцекладе для эволюции.
+rmc-xeno-hive-needs-ovipositor-popup = Пора осесть и дать своим детям расти.
 cm-xeno-retrieve-egg-no-eggs = У нас нет яиц!
 cm-xeno-retrieve-egg-too-many-eggs = Мы не можем нести больше яиц!
 cm-xeno-retrieve-egg-stash-egg = Мы сохраняем яйцо. Теперь несём: {$cur_eggs}/{$max_eggs}.
 cm-xeno-retrieve-egg-unstash-egg = Мы берём яйцо из хранилища. Теперь несём: {$cur_eggs}/{$max_eggs}.
 rmc-xeno-retrieve-egg-current = {CAPITALIZE(SUBJECT($xeno))} несёт: {$cur_eggs}/{$max_eggs} яиц.
+cm-xeno-throw-parasite-on-fire = Пока мы горим, доставать спрятанного паразита нельзя — он сгорит!
 cm-xeno-throw-parasite-no-parasites = У нас нет паразитов!
 cm-xeno-throw-parasite-too-many-parasites = Мы не можем нести больше паразитов!
 cm-xeno-throw-parasite-stash-parasite = Мы сохраняем паразита. Теперь несём: {$cur_parasites}/{$max_parasites}.
@@ -388,3 +392,17 @@ rmc-xeno-psychic-message-alien = [color=#921992][font size=14][bold]Вы слы�
 rmc-xeno-psychic-message-order = [color=#921992][font size=14][bold]{$queen} приказывает вам:[/bold] "{$message}"[/font][/color]
 
 rmc-xeno-psychic-message-xeno = [color=#921992][font size=14][bold]Голос {$queen} резонирует в вашей голове:[/bold] "{$message}"[/font][/color]
+
+rmc-xeno-psychic-whisper-message = Прошептать {$target}.
+rmc-xeno-psychic-whisper-sent = Мы шепчем {$target}.
+rmc-xeno-psychic-target-unknown = тому разуму
+rmc-xeno-psychic-radiance-message = Излучить мысленное сообщение.
+rmc-xeno-psychic-radiance-no-targets = Поблизости нет разумов, которым можно излучить сообщение.
+rmc-xeno-psychic-radiance-sent = Мы излучаем свои мысли {$count} ближайшим разумам.
+rmc-xeno-psychic-give-order-message = Отдать приказ {$target}.
+rmc-xeno-psychic-give-order-must-watch = Мы должны наблюдать за сестрой, чтобы отдать приказ.
+rmc-xeno-psychic-give-order-sent = Мы отдаём приказ {$target}.
+rmc-xeno-psychic-target-invalid = Тот разум больше вне нашей досягаемости.
+rmc-xeno-psychic-ghost-whisper = [color=#921992][font size=14][bold]Мысленный шёпот ({$queen} -> {$target}):[/bold] "{$message}"[/font][/color]
+rmc-xeno-psychic-ghost-radiance = [color=#921992][font size=14][bold]Мысленное излучение ({$queen}, получателей: {$count}):[/bold] "{$message}"[/font][/color]
+rmc-xeno-psychic-ghost-order = [color=#921992][font size=14][bold]Мысленный приказ ({$queen} -> {$target}):[/bold] "{$message}"[/font][/color]

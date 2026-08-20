@@ -1,5 +1,6 @@
 using Content.Shared._RMC14.Armor.ThermalCloak;
 using Content.Shared._RMC14.Atmos;
+using Content.Shared._CMU14.Yautja;
 using Content.Shared._RMC14.Stun;
 using Content.Shared._RMC14.Xenonids;
 using Content.Shared._RMC14.Xenonids.Hive;
@@ -42,6 +43,19 @@ public abstract partial class SharedOnCollideSystem : EntitySystem
 
         SubscribeLocalEvent<DamageOnCollideComponent, StartCollideEvent>(OnStartCollide);
         SubscribeLocalEvent<DamageOnCollideComponent, EndCollideEvent>(OnEndCollide);
+        SubscribeLocalEvent<EntityTerminatingEvent>(OnEntityTerminating);
+    }
+
+    private void OnEntityTerminating(ref EntityTerminatingEvent args)
+    {
+        var terminating = args.Entity.Owner;
+
+        var chains = EntityQueryEnumerator<CollideChainComponent>();
+        while (chains.MoveNext(out var chainUid, out var chain))
+        {
+            if (chain.Hit.Remove(terminating))
+                Dirty(chainUid, chain);
+        }
     }
 
     private void OnStartCollide(Entity<DamageOnCollideComponent> ent, ref StartCollideEvent args)
@@ -96,7 +110,9 @@ public abstract partial class SharedOnCollideSystem : EntitySystem
             var damage = ent.Comp.Damage;
             if (ent.Comp.Acidic)
                 damage = _xeno.TryApplyXenoAcidDamageMultiplier(other, damage);
-            _damageable.TryChangeDamage(other, damage, ent.Comp.IgnoreResistances, armorPiercing: ent.Comp.ArmorPenetration);
+            var ignoreResistances = ent.Comp.IgnoreResistances
+                && !(ent.Comp.Fire && HasComp<YautjaComponent>(other));
+            _damageable.TryChangeDamage(other, damage, ignoreResistances, armorPiercing: ent.Comp.ArmorPenetration);
             DoEmote(ent, other);
             didEmote = true;
         }
@@ -105,7 +121,9 @@ public abstract partial class SharedOnCollideSystem : EntitySystem
             var damage = ent.Comp.ChainDamage;
             if (ent.Comp.Acidic)
                 damage = _xeno.TryApplyXenoAcidDamageMultiplier(other, damage);
-            _damageable.TryChangeDamage(other, damage, ent.Comp.IgnoreResistances);
+            var ignoreResistances = ent.Comp.IgnoreResistances
+                && !(ent.Comp.Fire && HasComp<YautjaComponent>(other));
+            _damageable.TryChangeDamage(other, damage, ignoreResistances);
         }
 
         _xenoSpit.SetAcidCombo(other, ent.Comp.AcidComboDuration, ent.Comp.AcidComboDamage, ent.Comp.AcidComboParalyze, ent.Comp.AcidComboResists);

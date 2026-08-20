@@ -55,7 +55,6 @@ public abstract partial class SharedXenoWeedsSystem : EntitySystem
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private SharedGameTicker _gameTicker = default!;
     [Dependency] private SharedXenoHiveSystem _hive = default!;
-    [Dependency] private IMapManager _map = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private INetManager _net = default!;
@@ -602,13 +601,13 @@ public abstract partial class SharedXenoWeedsSystem : EntitySystem
         {
             if (oldWeeds.Comp.IsSource)
             {
-                _popup.PopupClient("There's a pod here already!", oldWeeds, xeno, PopupType.SmallCaution);
+                _popup.PopupClient(Loc.GetString("cm-xeno-construction-weeds-pod-here"), oldWeeds, xeno, PopupType.SmallCaution); // RuMC edit
                 return false;
             }
 
             if (oldWeeds.Comp.BlockOtherWeeds)
             {
-                _popup.PopupClient("These weeds are too strong to plant a node on!",
+                _popup.PopupClient(Loc.GetString("cm-xeno-construction-weeds-too-strong"), // RuMC edit
                     oldWeeds,
                     xeno,
                     PopupType.SmallCaution);
@@ -618,14 +617,14 @@ public abstract partial class SharedXenoWeedsSystem : EntitySystem
 
         if (limitDistance && !HasWeedsNearby(grid, coordinates))
         {
-            _popup.PopupClient("We can only plant weed nodes near other weed nodes our hive owns!",
+            _popup.PopupClient(Loc.GetString("cm-xeno-construction-weeds-needs-nearby"), // RuMC edit
                 popupAt ?? xeno.ToCoordinates(),
                 xeno,
                 PopupType.SmallCaution);
             return false;
         }
 
-        var entities = _mapSystem.GetAnchoredEntities(grid, coordinates.ToVector2i(EntityManager, _map, _transform));
+        var entities = _mapSystem.GetAnchoredEntities(grid, coordinates.ToVector2i(EntityManager, _transform));
         {
             foreach (var entity in entities)
             {

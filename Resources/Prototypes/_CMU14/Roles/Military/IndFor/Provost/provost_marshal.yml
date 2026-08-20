@@ -7,7 +7,11 @@
   startingGear: CMUGearProvostMarshal
   playTimeTracker: CMJobProvostMarshal
   ranks:
-    CMURankProvostMarshal: []
+    RMCRankCivilian: []
+  chevrons:
+    CMURankProvostMarshal:
+      entity: AU14ChevronProvostMarshall
+      requirements: []
   roundComponents:
   - type: Skills
     skills:
@@ -85,6 +89,9 @@
     back: CMSatchelSecurityFilledProvostMarshal
     pocket1: RMCUniversalRecorder
     pocket2: RMCPouchMagazinePistolFilledMateba
+  storage:
+    back:
+    - CMUStampProvost
 
 # Guidebook
 - type: entity
@@ -96,3 +103,9 @@
   components:
   - type: Sprite
     state: provost_marshal
+
+- type: roleLoadout
+  id: JobCMUJobINDFORProvostMarshal
+  points: 7
+  groups:
+  - ProvostStampGroupCMU

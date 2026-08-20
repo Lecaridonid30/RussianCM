@@ -27,7 +27,6 @@ public sealed partial class CMUZLevelsSystem
     [Dependency] private IConfigurationManager _config = default!;
     [Dependency] private ExamineSystemShared _examine = default!;
     [Dependency] private SharedContainerSystem _containers = default!;
-    [Dependency] private IMapManager _viewMapManager = default!;
 
     private readonly EntProtoId _zEyeProto = "CMUZLevelEye";
     private const int ZProbeOpeningTileRadius = 24;
@@ -70,11 +69,13 @@ public sealed partial class CMUZLevelsSystem
     private int _profilePvsOpeningNearTileBoundsChecks;
     private EntityQuery<MapGridComponent> _viewGridQuery;
     private EntityQuery<CMUZLevelHighGroundComponent> _viewHighGroundQuery;
+    private EntityQuery<CMUZLevelStairsComponent> _viewStairsQuery;
 
     private void InitView()
     {
         _viewGridQuery = GetEntityQuery<MapGridComponent>();
         _viewHighGroundQuery = GetEntityQuery<CMUZLevelHighGroundComponent>();
+        _viewStairsQuery = GetEntityQuery<CMUZLevelStairsComponent>();
 
         Subs.CVar(_config, CMUZLevelsCVars.Enabled, OnZLevelsEnabledChanged, true);
         Subs.CVar(_config, CMUZLevelsCVars.MaxRenderDepth, OnMaxRenderDepthChanged, true);
@@ -778,19 +779,36 @@ public sealed partial class CMUZLevelsSystem
                     if (profiling)
                         _profilePvsStairAnchored++;
 
-                    if (uid is not { } highGroundUid ||
-                        !_viewHighGroundQuery.TryComp(highGroundUid, out var highGround) ||
-                        !highGround.PreviewUpLevel ||
-                        highGround.SupportOnlyFromAbove ||
-                        highGround.PreviewRange <= 0f)
+                    if (uid is not { } highGroundUid)
                     {
                         continue;
                     }
 
+                    var hasHighGround = _viewHighGroundQuery.TryComp(highGroundUid, out var highGround);
+                    var isUpperZStair = _viewStairsQuery.TryComp(highGroundUid, out var stairs) && stairs.Offset > 0;
+                    if (!isUpperZStair && !hasHighGround)
+                        continue;
+
+                    float range;
+                    if (hasHighGround && highGround is { } highGroundComp)
+                    {
+                        if (!highGroundComp.PreviewUpLevel ||
+                            highGroundComp.SupportOnlyFromAbove ||
+                            highGroundComp.PreviewRange <= 0f)
+                        {
+                            continue;
+                        }
+
+                        range = Math.Min(highGroundComp.PreviewRange + 0.05f, ExamineSystemShared.MaxRaycastRange);
+                        if (highGroundComp.PreviewRange + 0.05f > ExamineSystemShared.MaxRaycastRange)
+                            Logger.GetSawmill("content").Warning($"CanPreviewUpperZFromStairCore: range ({highGroundComp.PreviewRange + 0.05f}) exceeds max raycast range ({ExamineSystemShared.MaxRaycastRange})!");
+                    }
+                    else
+                    {
+                        range = Math.Min(StairPreviewProbeRadius, ExamineSystemShared.MaxRaycastRange);
+                    }
+
                     var target = _transform.GetMapCoordinates(highGroundUid);
-                    var range = Math.Min(highGround.PreviewRange + 0.05f, ExamineSystemShared.MaxRaycastRange);
-                    if (highGround.PreviewRange + 0.05f > ExamineSystemShared.MaxRaycastRange)
-                        Logger.GetSawmill("content").Warning($"CanPreviewUpperZFromStairCore: range ({highGround.PreviewRange + 0.05f}) exceeds max raycast range ({ExamineSystemShared.MaxRaycastRange})!");
 
                     if (Vector2.DistanceSquared(origin.Position, target.Position) > range * range)
                         continue;
@@ -980,7 +998,6 @@ public sealed partial class CMUZLevelsSystem
                 ZProbeOpeningTileRadius * grid.TileSize,
                 _probeOpeningCandidates,
                 _probeOpeningGrids,
-                _viewMapManager,
                 _map,
                 _transform,
                 TilDefMan);
@@ -993,7 +1010,6 @@ public sealed partial class CMUZLevelsSystem
                 ZProbeOpeningTileRadius * grid.TileSize,
                 _probeOpeningCandidates,
                 _probeOpeningGrids,
-                _viewMapManager,
                 _map,
                 _transform,
                 TilDefMan);

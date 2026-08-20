@@ -26,7 +26,6 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private SharedTransformSystem _transformSystem = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private TurfSystem _turfSystem = default!;
 
@@ -238,6 +237,15 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
     #endregion
 
     #region: Grid functions
+
+    /// <summary>
+    /// Ensures that a grid has current nav-map geometry even when it was loaded outside station setup.
+    /// </summary>
+    public void EnsureNavMap(Entity<MapGridComponent> grid)
+    {
+        var component = EnsureComp<NavMapComponent>(grid);
+        RefreshGrid(grid, component, grid.Comp);
+    }
 
     private void RefreshGrid(EntityUid uid, NavMapComponent component, MapGridComponent mapGrid)
     {

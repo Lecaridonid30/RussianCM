@@ -10,10 +10,16 @@ rmc-vending-machine-hack-finish-restore = You have restored access restrictions 
 # Stock line shown on each vendor item. "remaining" is the total left to buy, "infinite" when uncapped.
 rmc-vending-stock-remaining = x{$count}
 rmc-vending-stock-infinite = ∞
+rmc-vending-stock-personal = {$stock} (personal: {$count} left)
 
 rmc-vendor-points-token-redeem = You insert {THE($token)} into {THE($vendor)}. {$points} points are added to your account.
 rmc-vendor-points-token-wrong-vendor = {CAPITALIZE(THE($token))} does not fit into {THE($vendor)}.
 
 rmc-vendor-section-take-all = (TAKE ALL)
 rmc-vendor-section-take-one = (TAKE ONE)
-rmc-vendor-section-choose = (CHOOSE { $amount })
+rmc-vendor-section-choose = (CHOOSE {$amount})
+
+rmc-vendor-entry-mandatory = Mandatory: {$name}
+rmc-vendor-entry-recommended = Recommended: {$name}
+rmc-vendor-win-points = {$faction} Win Points: {$points}
+rmc-vendor-points-remaining = Points Remaining: {$points}

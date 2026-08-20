@@ -4,12 +4,14 @@ stamp-component-stamped-name-au14-we-yu = We-Yu
 stamp-component-stamped-name-au14-marine = Marine High Command
 stamp-component-stamped-name-au14-cmb = Colony Marshal Bureau
 stamp-component-stamped-name-au14-provost = Provost Marshal Office
+stamp-component-stamped-name-cmu-aegis-high-command = High Command
+stamp-component-stamped-name-au14-aegis = AEGIS Armaments
 stamp-component-stamped-name-au14-clf = Colony Liberation Front
 stamp-component-stamped-name-au14-upp = Union of Progressive Peoples
 stamp-component-stamped-name-au14-free-press = Free Press
 stamp-component-stamped-name-au14-twe = Three World Empire
 
-stamp-component-stamped-name-au14-ao = Adjutant Officer
+stamp-component-stamped-name-au14-ao = Executive Officer
 stamp-component-stamped-name-au14-co = Commanding Officer
 stamp-component-stamped-name-au14-so = Staff Officer
 stamp-component-stamped-name-au14-io = Intelligence Officer
@@ -25,6 +27,9 @@ stamp-component-stamped-name-au14-sea = Senior Enlisted Advisor
 stamp-component-stamped-name-au14-cl = Corporation Liaison
 stamp-component-stamped-name-au14-cs = Corporation Scientist
 
+stamp-component-stamped-name-cmu14-prodigy-liaison = Prodigy Liaison
+stamp-component-stamped-name-cmu14-prodigy-supervisor = Prodigy Supervisor
+stamp-component-stamped-name-cmu14-prodigy-lawyer = Prodigy Lawyer
 stamp-component-stamped-name-au14-ll = Laselle Liaison
 stamp-component-stamped-name-au14-uaa = UA Ambassador
 stamp-component-stamped-name-au14-uppa = UPP Ambassador

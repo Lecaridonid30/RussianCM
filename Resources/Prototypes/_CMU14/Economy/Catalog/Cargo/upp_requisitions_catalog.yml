@@ -51,6 +51,8 @@
         crate: AU14CrateGrenadesHighExplosiveUPP
       - cost: 700
         crate: AU14CrateGrenadesIncendiaryUPP
+      - cost: 1500
+        crate: RuMCCrateRG35F #TERMOBAR
       - cost: 5000
         crate: AU14CrateGrenadesSmokeUPP
       - cost: 4000
@@ -167,10 +169,26 @@
         crate: RMCCrateSupplyJanitor
     - name: Vehicle Ammo
       entries:
-      - cost: 2000
-        crate: RMCCrateVehicleAmmoLTBCannon
+      - cost: 1900
+        crate: CMUCrateVehicleAmmoLTBCannonMixed
         maxStock: 2
         stockReplenishDelay: 300
+      - cost: 1900
+        crate: CMUCrateVehicleAmmoLTBCannonAPFSDS
+        maxStock: 2
+      - cost: 1900
+        crate: CMUCrateVehicleAmmoLTBCannonHEAT
+        maxStock: 2
+        stockReplenishDelay: 300
+      - cost: 1900
+        crate: CMUCrateVehicleAmmoLTBCannonHE
+        maxStock: 2
+      - cost: 1900
+        crate: CMUCrateVehicleAmmoLTBCannonCanister
+        maxStock: 2
+      - cost: 1900
+        crate: CMUCrateVehicleAmmoLTBCannonNapalm
+        maxStock: 2
       - cost: 1800
         crate: RMCCrateVehicleAmmoLTAAAP
         maxStock: 2
@@ -188,7 +206,7 @@
         maxStock: 2
         stockReplenishDelay: 300
       - cost: 900
-        crate: RMCCrateVehicleAmmoGrenadeLauncher
+        crate: CMUCrateVehicleAmmoGrenadeLauncherMixed
         maxStock: 2
         stockReplenishDelay: 300
       - cost: 700
@@ -199,8 +217,12 @@
         crate: RMCCrateVehicleAmmoTowLauncher
         maxStock: 2
         stockReplenishDelay: 300
-      - cost: 1000
-        crate: RMCCrateVehicleAmmoCupola
+      - cost: 1025
+        crate: CMUCrateVehicleAmmoCupolaMixed
+        maxStock: 2
+        stockReplenishDelay: 300
+      - cost: 1050
+        crate: CMUCrateVehicleAmmoCupolaTracer
         maxStock: 2
         stockReplenishDelay: 300
       - cost: 1200
@@ -228,8 +250,8 @@
       - cost: 400
         crate: RMCCrateXM88
       - cost: 800
-        crate: RMCCrateMOU53
-      - cost: 400
+        crate: CMUCrateOlympiets
+      - cost: 600
         crate: RMCCrateM85A1
       - cost: 200
         crate: AU14CrateAssortedKnives
@@ -239,8 +261,14 @@
         crate: AU14CrateHJRA12
       - cost: 1200
         crate: AU14CrateOG60
+      - cost: 2500
+        crate: RuMCCrateAH12
+      - cost: 2500
+        crate: RuMCCrateVAL
       - cost: 1500
         crate: RuMCCrateRPG_36
+      - cost: 3500
+        crate: RuMCCrateRPG_36_T #TERMOBAR
       - cost: 3000
         crate: RuMCCrateRPO_Pchela
       - cost: 1000
@@ -273,6 +301,8 @@
         crate: AU14CrateHJRA12HERocket
       - cost: 1500
         crate: AU14CrateHJRA12EIIRocket
+      - cost: 2000
+        crate: RuMCCrateRPG_32 #TERMOBAR
       - cost: 400
         crate: AU14CrateMagazineType88
       - cost: 250

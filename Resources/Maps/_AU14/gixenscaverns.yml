@@ -1804,7 +1804,7 @@ entities:
       pos: 62.5,234.5
       parent: 2
     - type: CaptureObjective
-      pointincrementtime: 360
+      pointIncrementTime: 360
 - proto: Cigarette
   entities:
   - uid: 76
@@ -39591,7 +39591,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 32.5,78.5
       parent: 2
-- proto: RMCIDCardAegis
+- proto: CMUIDCardAegis
   entities:
   - uid: 6944
     components:
@@ -44821,7 +44821,7 @@ entities:
     - type: MetaData
       name: Gixens Caverns ground relay
     - type: Transform
-      pos: 78.43822,32.16383
+      pos: -16.5,272.5
       parent: 2
     - type: YautjaRelayDestination
       kind: Ground

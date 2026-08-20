@@ -1,6 +1,6 @@
 - type: announcementPreset
   id: MarineCommand
-  name: "Marine Command"
+  name: rmc-announcement-preset-marine-command
   description: "Official announcements from Marine Command"
   target: Marines
   defaultVariant: MarineCommandDefault
@@ -69,7 +69,7 @@
       spriteScale: 1
     title:
       showTitle: true
-      title: ">> COMMAND <<"
+      title: rmc-announcement-title-command
       titleColor: "#4a9eff"
       titleFontSize: 30
       titleFont: "CozetteBold"
@@ -87,7 +87,7 @@
 
 - type: announcementPreset
   id: MarineOverwatch
-  name: "Marine Overwatch"
+  name: rmc-announcement-preset-marine-overwatch
   description: "Overwatch squad announcements"
   target: Marines
   defaultVariant: MarineCommandDefault
@@ -156,7 +156,7 @@
       spriteScale: 1
     title:
       showTitle: true
-      title: ">> OVERWATCH <<"
+      title: rmc-announcement-title-overwatch
       titleColor: "#4a9eff"
       titleFontSize: 28
       titleFont: "CozetteBold"
@@ -174,7 +174,7 @@
 
 - type: announcementPreset
   id: MarineCommandDefault
-  name: "Marine Command (Default)"
+  name: rmc-announcement-preset-marine-command-default
   description: "Standard marine announcements"
   target: Marines
   style:
@@ -225,7 +225,7 @@
       spriteScale: 1
     title:
       showTitle: true
-      title: ">> COMMAND <<"
+      title: rmc-announcement-title-command
       titleColor: "#4a9eff"
       titleFontSize: 30
       titleFont: "CozetteBold"
@@ -243,7 +243,7 @@
 
 - type: announcementPreset
   id: MarineCommandSimplified
-  name: "Marine Command (Simplified)"
+  name: rmc-announcement-preset-marine-command-simplified
   description: "Clean, low-effect marine announcements"
   target: Marines
   showSprite: false
@@ -277,7 +277,7 @@
       spriteScale: 0.85
     title:
       showTitle: true
-      title: ">> COMMAND <<"
+      title: rmc-announcement-title-command
       titleColor: "#4a9eff"
       titleFontSize: 30
       titleFont: "CozetteBold"

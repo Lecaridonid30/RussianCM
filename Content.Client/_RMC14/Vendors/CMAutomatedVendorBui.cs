@@ -124,7 +124,7 @@ public sealed partial class CMAutomatedVendorBui : BoundUserInterface
 
                     if (section.TakeAll != null || section.TakeOne != null || entry.Mandatory)
                     {
-                        name = $"Mandatory: {name}";
+                        name = Loc.GetString("rmc-vendor-entry-mandatory", ("name", name)); // RuMC edit
                         color = vendor.UiStyle == CMVendorUiStyle.Yautja ? Color.FromHex("#240909") : Color.FromHex("#251A0C");
                         borderColor = vendor.UiStyle == CMVendorUiStyle.Yautja ? YautjaBracerUiStyle.HotRed : Color.FromHex("#805300");
                         hoverColor = borderColor;
@@ -132,7 +132,7 @@ public sealed partial class CMAutomatedVendorBui : BoundUserInterface
                     else if (entry.Recommended)
                     {
                         uiEntry.Panel.Button.TextLabel.Text = $"★ {uiEntry.Panel.Button.TextLabel.Text}";
-                        name = $"Recommended: {name}";
+                        name = Loc.GetString("rmc-vendor-entry-recommended", ("name", name)); // RuMC edit
                         color = vendor.UiStyle == CMVendorUiStyle.Yautja ? Color.FromHex("#200606") : Color.FromHex("#102919");
                         borderColor = vendor.UiStyle == CMVendorUiStyle.Yautja ? YautjaBracerUiStyle.Red : Color.FromHex("#3A9B52");
                         hoverColor = borderColor;
@@ -300,14 +300,14 @@ public sealed partial class CMAutomatedVendorBui : BoundUserInterface
         if (vendor.UseObjectivePoints)
         {
             userPoints = vendor.CachedFactionWinPoints;
-            pointsLabel = $"{vendor.Faction.ToUpperInvariant()} Win Points: {userPoints}";
+            pointsLabel = Loc.GetString("rmc-vendor-win-points", ("faction", vendor.Faction.ToUpperInvariant()), ("points", userPoints)); // RuMC edit
         }
         else
         {
             userPoints = vendor.PointsType == null
                 ? user?.Points ?? 0
                 : user?.ExtraPoints?.GetValueOrDefault(vendor.PointsType) ?? 0;
-            pointsLabel = $"Points Remaining: {userPoints}";
+            pointsLabel = Loc.GetString("rmc-vendor-points-remaining", ("points", userPoints)); // RuMC edit
         }
 
         if (NeedsSectionRebuild(vendor))
@@ -334,7 +334,10 @@ public sealed partial class CMAutomatedVendorBui : BoundUserInterface
             {
                 var entry = section.Entries[entryIndex];
                 var uiEntry = (CMAutomatedVendorEntry) uiSection.Entries.GetChild(entryIndex);
-                var disabled = sectionDisabled || entry.Amount <= 0;
+                var personalRemaining = entry.MaxPerUser is { } maxPerUser
+                    ? maxPerUser - (user?.PurchaseCounts.GetValueOrDefault(entry.Id.Id) ?? 0)
+                    : (int?) null;
+                var disabled = sectionDisabled || entry.Amount <= 0 || personalRemaining <= 0;
                 if (section.TakeAll is { } takeAllId)
                 {
                     var takeAll = user?.TakeAll;
@@ -375,14 +378,19 @@ public sealed partial class CMAutomatedVendorBui : BoundUserInterface
                 // column above, so our "x5" would just repeat the number next to itself. Hide it in that
                 // case - Visible (not an empty string) so the label surrenders its MinWidth instead of
                 // leaving a blank gap in the row.
-                var amountAlreadyShowsStock = entry.Points == null && entry.Amount != null;
+                var amountAlreadyShowsStock = entry.Points == null && entry.Amount != null &&
+                                              personalRemaining == null;
                 uiEntry.Stock.Visible = !amountAlreadyShowsStock;
 
                 if (!amountAlreadyShowsStock)
                 {
-                    uiEntry.Stock.Text = entry.Amount is { } stockLeft
+                    var stockText = entry.Amount is { } stockLeft
                         ? Loc.GetString("rmc-vending-stock-remaining", ("count", stockLeft))
                         : Loc.GetString("rmc-vending-stock-infinite");
+                    uiEntry.Stock.Text = personalRemaining is { } remaining
+                        ? Loc.GetString("rmc-vending-stock-personal", ("count", Math.Max(0, remaining)),
+                            ("stock", stockText))
+                        : stockText;
                     uiEntry.Stock.Modulate = disabled ? Color.Red : Color.White;
                 }
 

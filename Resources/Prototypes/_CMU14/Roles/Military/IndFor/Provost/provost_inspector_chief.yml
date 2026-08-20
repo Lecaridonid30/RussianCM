@@ -8,9 +8,13 @@
   playTimeTracker: CMJobProvostChiefInspector
   supervisors: cm-job-supervisors-staff
   whitelisted: true
-  whitelistParent: CMUJobCommandWhitelist
+  whitelistParent: RMCWhitelistHard
   ranks:
-    CMURankProvostChiefInspector: []
+    RMCRankCivilian: []
+  chevrons:
+    CMURankProvostChiefInspector:
+      entity: AU14ChevronProvostChiefInspector
+      requirements: []
   roundComponents:
   - type: Skills
     skills:
@@ -89,5 +93,11 @@
     pocket2: RMCPouchGeneralLarge
   storage:
     back:
-    - AU14StampProvostInspector
+    - CMUStampProvostInspector
     - AU14RadioJammer
+
+- type: roleLoadout
+  id: JobCMUJobINDFORProvostInspectorChief
+  points: 7
+  groups:
+  - ProvostStampGroupCMU

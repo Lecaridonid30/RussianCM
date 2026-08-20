@@ -1,4 +1,8 @@
+rmc-xeno-construction-cost = ({$cost} plasma)
 cm-xeno-construction-failed-weeds = Bad place for a garden!
+cm-xeno-construction-weeds-pod-here = There's a pod here already!
+cm-xeno-construction-weeds-too-strong = These weeds are too strong to plant a node on!
+cm-xeno-construction-weeds-needs-nearby = We can only plant weed nodes near other weed nodes our hive owns!
 ent-XenoResinSpikes = resin spikes
     .desc = A small cluster of bone spikes. Ouch.
 cm-xeno-construction-failed-need-weeds = We can only shape on weeds. Find some resin before you start building!
@@ -9,6 +13,7 @@ cm-xeno-construction-failed-requires-support = {CAPITALIZE(MAKEPLURAL($choice))}
 
 rmc-xeno-construction-remote-failed-need-line-of-sight = We need direct line of sight to build!
 rmc-xeno-construction-remote-failed-need-on-weeds = We must be standing on weeds to establish a connection to the resin.
+rmc-resin-whisperer-verb-open-door = Open Door
 rmc-xeno-construction-remote-construct = We focus our plasma into the weeds below us and force the weeds to secrete resin!
 rmc-xeno-construction-remote-open-door = We focus our connection to the resin and remotely open the resin door.
 rmc-xeno-construction-remote-close-door = We focus our connection to the resin and remotely close the resin door.
@@ -114,6 +119,7 @@ rmc-xeno-designer-delete-node-none = There's no design node here.
 rmc-xeno-designer-delete-node-not-owned = We can only delete our own design nodes.
 rmc-xeno-designer-use-node-wrong-hive = This node does not belong to your hive!
 rmc-xeno-designer-node-needs-weed = There are no weeds to create a connection!
+rmc-xeno-designer-node-no-walls = This design node cannot be used to build walls.
 
 rmc-xeno-designer-thicken-none = There's no resin structure here to thicken.
 rmc-xeno-designer-thicken-weedbound = We can't thicken weedbound resin.

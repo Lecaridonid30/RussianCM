@@ -62,7 +62,6 @@ public abstract partial class SharedGunSystem : EntitySystem
 {
     [Dependency] private   ActionBlockerSystem _actionBlockerSystem = default!;
     [Dependency] protected IGameTiming Timing = default!;
-    [Dependency] protected IMapManager MapManager = default!;
     [Dependency] protected SharedMapSystem MapSystem = default!;
     [Dependency] private   INetManager _netManager = default!;
     [Dependency] protected IPrototypeManager ProtoManager = default!;
@@ -1225,6 +1224,15 @@ public abstract partial class SharedGunSystem : EntitySystem
             comp.ProjectileSpeedModified = ev.ProjectileSpeed;
             DirtyField(gun, nameof(GunComponent.ProjectileSpeedModified));
         }
+    }
+
+    public void SetFireRate(Entity<GunComponent> gun, float fireRate)
+    {
+        if (MathHelper.CloseTo(gun.Comp.FireRate, fireRate))
+            return;
+
+        gun.Comp.FireRate = fireRate;
+        Dirty(gun.Owner, gun.Comp);
     }
 
     protected abstract void CreateEffect(EntityUid gunUid, MuzzleFlashEvent message, EntityUid? user = null, EntityUid? player = null, Vector2 offset = default, Vector2 originOffset = default);

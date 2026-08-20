@@ -36,6 +36,7 @@ public sealed partial class CmuTab : Control
         Control.AddOptionCheckBox(CCVars.ExamineLogInChat, ExamineLogInChatCheckBox);
         Control.AddOptionCheckBox(CCVars.ExamineFullTextInChat, ExamineFullTextInChatCheckBox);
         Control.AddOptionCheckBox(CMUMedicalCCVars.TargetedHealingEnabled, TargetedHealingCheckBox);
+        Control.AddOptionCheckBox(CMUMedicalCCVars.AutoReapplyKitsEnabled, AutoReapplyKitsCheckBox);
         Control.AddOptionCheckBox(CMUMedicalCCVars.UiLessSurgeryEnabled, UiLessSurgeryCheckBox);
         Control.AddOptionCheckBox(CCVars.CMUScreamOnHotbarEnabled, ScreamOnHotbarCheckBox);
         Control.AddOptionPercentSlider(CMUZLevelsCVars.BlurStrength, ZLevelBlurSlider, scale: OldZLevelBlurStrength);
@@ -213,9 +214,8 @@ public sealed partial class CmuTab : Control
 
         private static Color ResolveCrtColor(string value)
         {
-            var color = Color.TryFromHex(value);
-            if (color != null)
-                return color.Value;
+            if (Color.TryFromHex(value, out var color))
+                return color;
 
             return value switch
             {

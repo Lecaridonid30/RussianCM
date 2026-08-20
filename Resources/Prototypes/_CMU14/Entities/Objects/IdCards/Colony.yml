@@ -198,6 +198,14 @@
   components:
   - type: JobTitleChanger
     jobTitle: Colony Administration Advisor Synthetic
+    
+- type: entity
+  parent: AU14IDCardColonySynthetic
+  id: AU14IDCardColonySyntheticResearch
+  name: colony research synthetic ID card
+  components:
+  - type: JobTitleChanger
+    jobTitle: Colony Research Synthetic
 
 # ├──[ LEADERS ]─────────────────────────────────────────────────────┤
 - type: entity
@@ -222,6 +230,17 @@
   - type: ItemIFF
     factions:
     - FactionWEYU
+    
+- type: entity
+  parent: AU14IDCardBaseCivilianNoIFF
+  id: CMU14IDCardColonyProdigyLiaison
+  name: prodigy liaison ID card
+  components:
+  - type: PresetIdCard
+    job: CMU14JobCivilianProdigyLiaison
+  - type: ItemIFF
+    factions:
+    - FactionProdigy
 
 - type: entity
   parent: AU14IDCardBaseCivilianNoIFF

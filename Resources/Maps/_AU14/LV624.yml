@@ -78307,7 +78307,7 @@ entities:
   - uid: 165
     components:
     - type: Transform
-      pos: 14.5,-83.5
+      pos: -119.5,-27.5
       parent: 1
 - proto: AU14SpawnPointCivilianCMBMarshal
   entities:
@@ -83388,6 +83388,9 @@ entities:
       parent: 1
     - type: FaxMachine
       name: LV-624 Colonial Administration
+      groups:
+      - marshal-bureau
+      - colony-command
 - proto: CMFaxCLF
   entities:
   - uid: 901
@@ -215966,7 +215969,7 @@ entities:
     - type: Transform
       pos: 75.5,-237.5
       parent: 1
-- proto: ComputerTelevision
+- proto: CMUMonitorCameraColonyCMB
   entities:
   - uid: 25864
     components:
@@ -217149,7 +217152,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 91.5,-49.5
       parent: 1
-- proto: fetchobjectivemarkergenericspawnpoint
+- proto: fetchgenericmarker
   entities:
   - uid: 26033
     components:
@@ -263442,7 +263445,7 @@ entities:
     - type: Transform
       pos: 2.5,-233.5
       parent: 1
-- proto: WallmountTelescreen
+- proto: CMUMonitorCameraColonyCMB
   entities:
   - uid: 33592
     components:
@@ -263597,12 +263600,12 @@ entities:
       parent: 1
 - proto: CMUYautjaGroundRelayDestination
   entities:
-  - uid: 33609
+  - uid: 33610
     components:
     - type: MetaData
       name: LV624 ground relay
     - type: Transform
-      pos: 14.5,-83.5
+      pos: -119.5,-27.5
       parent: 1
     - type: YautjaRelayDestination
       kind: Ground

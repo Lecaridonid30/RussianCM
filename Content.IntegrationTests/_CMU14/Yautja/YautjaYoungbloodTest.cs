@@ -2329,6 +2329,9 @@ public sealed class YautjaYoungbloodTest
 
                 AssertEquippedPrototype(entMan, inventory, youngblood, "gloves", "CMUYautjaBracer");
                 AssertEquippedPrototype(entMan, inventory, youngblood, "ears", "CMUYautjaCommunicator");
+                AssertEquippedPrototype(entMan, inventory, youngblood, "mask", "CMUYautjaMask");
+                Assert.That(entMan.HasComponent<YautjaHudViewerComponent>(youngblood), Is.True,
+                    "The F7 Youngblood must receive the mask HUD used to see Yautja ranks.");
             }
             finally
             {
@@ -3540,7 +3543,8 @@ public sealed class YautjaYoungbloodTest
         Assert.That(entry.Name, Is.EqualTo(name), $"{id} display name");
         Assert.That(entry.Recommended, Is.EqualTo(recommended), $"{id} recommended flag");
         Assert.That(entry.Points, Is.Null, $"{id} regular equipment row should cost 0 source points");
-        Assert.That(entry.Amount, Is.EqualTo((int?) 1), $"{id} source regular row vends one item/bundle");
+        Assert.That(entry.Amount, Is.Null, $"{id} regular row uses infinite shared stock");
+        Assert.That(entry.MaxPerUser, Is.EqualTo((int?) 1), $"{id} source regular row is limited per hunter");
         Assert.That(entry.ReplaceSlot, Is.Null, $"{id} replace slot");
     }
 

@@ -1,16 +1,31 @@
-ent-RMCCartridgeRifleL83AAP = БП патрон (5.56x45)
-  .desc = Бронебойный винтовочный патрон 5.56x45
-ent-RMCMagazineRifleL83A2Incendiary = магазин L83A2 зажигательных (5.56x45мм)
-  .desc = Магазин зажигательных патронов 5.56x45мм для винтовки L83A2.
-ent-RMCMagazineRifleL83A2HEAP = магазин L83A2 КБП (5.56x45мм)
-  .desc = Магазон кумулятивно-осколочных патронов 5.56x45мм для винтовки L83A2.
-ent-RMCMagazineRifleL83A2extended = удлинённый магазин L83A2 (5.56x45мм)
-  .desc = Удлинённый магазин для винтовки L83A2.
-ent-RMCMagazineRifleL83A2AP = магазин L83A2 БП (5.56x45мм)
-  .desc = Магазин бронебойных патронов 5.56x45мм для винтовки L83A2.
-ent-RMCCartridgeRifleL83A = патрон (5.56x45)
-  .desc = Винтовочный патрон 5.56x45
-ent-RMCMagazineRifleL83A2 = магазин L83A2 (5.56x45мм)
-  .desc = Магазин патронов 5.56x45мм для винтовки L83A2.
-ent-WeaponRifleL83A2 = винтовка L83A2
-  .desc = Винтовка гражданского класса с безгильзовыми патронами, используемая офицерами ТСЭПА.
+# Оружие
+ent-RMCWeaponRifleL83A2 = винтовка L83A2
+    .desc = Винтовка, используемая офицерами ПДСН. Использует патроны 5,56x45мм.
+    .suffix = Тактикульная
+
+ent-RMCWeaponRifleL83A2Stripped = {ent-RMCWeaponRifleL83A2}
+    .desc = {ent-RMCWeaponRifleL83A2.desc}
+    .suffix = Стандартная
+
+# Магазины
+ent-RMCMagazineRifleL83A2 = магазин L83A2 (5,56x45мм)
+    .desc = Магазин патронов 5,56x45мм для винтовки L83A2.
+
+ent-RMCMagazineRifleL83A2Incendiary = магазин L83A2 ЗЖГ (5,56x45мм)
+    .desc = Магазин зажигательных патронов 5,56x45мм для винтовки L83A2.
+
+ent-RMCMagazineRifleL83A2HEAP = магазин L83A2 БФ (5,56x45мм)
+    .desc = Магазин бронебойно-фугасных патронов 5,56x45мм для винтовки L83A2.
+
+ent-RMCMagazineRifleL83A2extended = увеличенный магазин L83A2 (5,56x45мм)
+    .desc = Увеличенный магазин для винтовки L83A2.
+
+ent-RMCMagazineRifleL83A2AP = магазин L83A2 ББ (5,56x45мм)
+    .desc = Магазин бронебойных патронов 5,56x45мм для винтовки L83A2.
+
+# Патроны
+ent-RMCCartridgeRifleL83A = патрон (5,56x45мм)
+    .desc = Винтовочный патрон 5,56x45мм.
+
+ent-RMCCartridgeRifleL83AAP = патрон ББ (5,56x45мм)
+    .desc = Бронебойный винтовочный патрон 5,56x45мм.

@@ -36,12 +36,6 @@
   ranks:
     RMCRankCivilian: []
   chevrons:
-    RMCRankFirstLT:
-      entity: AU14ChevronFirstLT
-      requirements:
-      - !type:RoleTimeRequirement
-        role: AU14JobGOVFORMilitaryDoctor
-        time: 86400 # 24 hours
     RMCRankSecondLT:
       entity: AU14ChevronSecondLT
       requirements: []
@@ -56,6 +50,7 @@
     shoes: CMBootsBlackFilled
     ears: AU14HeadsetGovforAuxiliary
     ears2: RMCM5CameraGear
+    back: CMSatchelMarine # RuMC edit
   inhand:
     - AU14StampMO
 

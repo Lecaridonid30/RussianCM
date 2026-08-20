@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared._CMU14.ZLevels.Core.EntitySystems;
+using Content.Shared._CMU14.Yautja;
 using Content.Shared._RMC14.Armor;
 using Content.Shared._RMC14.Chemistry;
 using Content.Shared._RMC14.Chemistry.Reagent;
@@ -52,7 +53,6 @@ public abstract partial class SharedRMCFlammableSystem : EntitySystem
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
-    [Dependency] private IMapManager _map = default!;
     [Dependency] private INetManager _net = default!;
     [Dependency] private SharedOnCollideSystem _onCollide = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
@@ -280,7 +280,7 @@ public abstract partial class SharedRMCFlammableSystem : EntitySystem
         var coords = _transform.GetMoverCoordinates(ent);
         _audio.PlayPvs(ent.Comp.Sound, coords);
 
-        var tile = coords.SnapToGrid(EntityManager, _map);
+        var tile = coords.SnapToGrid(EntityManager);
         SpawnFireDiamond(ent.Comp.Spawn, tile, ent.Comp.Range, ent.Comp.Intensity, ent.Comp.Duration);
         QueueDel(ent);
     }
@@ -308,7 +308,7 @@ public abstract partial class SharedRMCFlammableSystem : EntitySystem
 
     private void OnTileFireOnTriggerExplosive(Entity<TileFireOnTriggerComponent> ent, ref CMExplosiveTriggeredEvent args)
     {
-        var coords = _transform.GetMoverCoordinates(ent).SnapToGrid(EntityManager, _map);
+        var coords = _transform.GetMoverCoordinates(ent).SnapToGrid(EntityManager);
         SpawnFireDiamond(ent.Comp.Spawn, coords, ent.Comp.Range, ent.Comp.Intensity, ent.Comp.Duration);
     }
 
@@ -895,7 +895,14 @@ public abstract partial class SharedRMCFlammableSystem : EntitySystem
             {
                 stepping.Distance = 0;
                 if (CanFireBypassImmunity(fireEntity, uid))
-                    _damageable.TryChangeDamage(uid, tile * ignite.Intensity, true);
+                {
+                    // CMSS13 applies the Yautja species burn modifier to fire
+                    // ticks. Most RMC tile-fire damage intentionally bypasses
+                    // resistances, but doing that for hunters made even light
+                    // flames deal full damage.
+                    var ignoreResistances = !HasComp<YautjaComponent>(uid);
+                    _damageable.TryChangeDamage(uid, tile * ignite.Intensity, ignoreResistances);
+                }
             }
         }
 
@@ -933,7 +940,8 @@ public abstract partial class SharedRMCFlammableSystem : EntitySystem
 
             if (ent.Comp.UpdateAt <= timing)
             {
-                _damageable.TryChangeDamage(uid, ignite.Intensity / 5f * flammable.Damage * ev.Multiplier, true, false);
+                var ignoreResistances = !HasComp<YautjaComponent>(uid);
+                _damageable.TryChangeDamage(uid, ignite.Intensity / 5f * flammable.Damage * ev.Multiplier, ignoreResistances, false);
                 ent.Comp.UpdateAt = timing + ent.Comp.UpdateTime;
             }
         }

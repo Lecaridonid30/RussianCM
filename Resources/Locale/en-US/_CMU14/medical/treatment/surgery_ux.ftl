@@ -81,6 +81,7 @@ cmu-medical-surgery-category-reattach = Reattach Limb
 cmu-medical-surgery-category-parasite = Parasite Removal
 cmu-medical-surgery-category-close_up = Close Up
 cmu-medical-surgery-category-general = Other
+cmu-medical-surgery-category-yautja_medicomp = Yautja Medicomp
 
 # ---- Examine surface (CMUSurgeryStateExamineSystem) ------------------
 
@@ -163,6 +164,9 @@ cmu-medical-surgery-tool-category-scalpel_or_burn_kit = Scalpel or burn kit
 cmu-medical-surgery-tool-category-severed_limb = Matching Limb
 cmu-medical-surgery-tool-category-blowtorch = Lit Welder
 cmu-medical-surgery-tool-category-cable_coil = Cable Coil
+cmu-medical-surgery-tool-category-yautja_medicomp_stabilizer = Stabilizer Gel
+cmu-medical-surgery-tool-category-yautja_medicomp_healing_gun = Healing Gun
+cmu-medical-surgery-tool-category-yautja_medicomp_clamp = Wound Clamp
 
 # ---- Per-step labels -------------------------------------------------
 
@@ -249,6 +253,12 @@ cmu-autodoc-start-button = Start
 cmu-autodoc-stop-button = Stop
 cmu-autodoc-clear-button = Clear
 cmu-autodoc-eject-button = Eject Patient
+cmu-autodoc-dialysis-start = Start Dialysis
+cmu-autodoc-dialysis-stop = Stop Dialysis
+cmu-autodoc-chemicals-heading = Sleeper Chemicals
+cmu-autodoc-no-chemicals = No configured chemicals.
+cmu-autodoc-dose-small = 5u
+cmu-autodoc-dose-large = 10u
 cmu-autodoc-remove-button = Remove
 cmu-autodoc-queue-button = Queue
 cmu-autodoc-queue-heading = Queue

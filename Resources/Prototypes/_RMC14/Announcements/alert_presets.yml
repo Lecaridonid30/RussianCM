@@ -1,6 +1,6 @@
 - type: announcementPreset
   id: MarineAlertLevel
-  name: "Evacuation Alert"
+  name: rmc-announcement-preset-evacuation-alert
   description: "Alert level announcement styling"
   target: All
   visibleInSettings: false
@@ -35,7 +35,7 @@
       spriteScale: 1
     title:
       showTitle: true
-      title: "ALERT LEVEL"
+      title: rmc-announcement-title-alert-level
       titleColor: "#4a9eff"
       titleFontSize: 40
       titleFont: "CozetteBold"
@@ -49,7 +49,7 @@
 
 - type: announcementPreset
   id: RedAlertAnimated
-  name: "Red Alert"
+  name: rmc-announcement-preset-red-alert
   description: "Animated red alert display"
   target: All
   visibleInSettings: false
@@ -82,7 +82,7 @@
       showSpriteBox: false
       spriteScale: 1
     title:
-      title: "RED ALERT"
+      title: rmc-announcement-title-red-alert
       titleColor: "#ff4d4d"
       titleFontSize: 28
       titleFont: "DefaultBold"

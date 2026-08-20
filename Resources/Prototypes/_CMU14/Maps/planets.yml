@@ -14,11 +14,13 @@
     platoonsOpfor:
     - UPP
     - VAIPO
+    - BEAR
     - ProdigySF
     platoonsGovfor:
     - LACN
     - USCM
     - WEYU
+    - BEAR #временно
     - RMC
     - HAZOPS
     defaultgovfor: USCM
@@ -31,6 +33,8 @@
     - cultistThreat
     - XenoThreat
     - XenoThreatCF
+    - NeomorphsThreat
+    - NeomorphsThreatCF
     - wendigoThreat
     - abominationsThreatDistress
 #    - badBloodClanThreat
@@ -91,6 +95,7 @@
     - UPP
     - HAZOPS
     - VAIPO
+    - BEAR
     - ProdigySF
     platoonsGovfor:
     - LACN
@@ -99,7 +104,7 @@
     - RMC
     - UPP
     - HAZOPS
-    - VAIPO
+    - BEAR
     - ProdigySF
     defaultgovfor: USCM
     defaultopfor: UPP
@@ -145,6 +150,8 @@
     - cultistThreat
     - XenoThreat
     - XenoThreatCF
+    - NeomorphsThreat
+    - NeomorphsThreatCF
     - wendigoThreat
     - abominationsThreat
     - abominationsThreatDistress
@@ -157,12 +164,12 @@
     jobScalingIns: DefaultInsurgencyScale
 
 - type: entity
-  id: AUPlanetStableGarrison
-  name: Stable Garrison
+  id: CMUPlanetStableGarrisonRedux
+  name: Stable Garrison Redux
   components:
   - type: RMCPlanetMapPrototype
-    votename: "Stable Garrison"
-    mapId: stablegarrison
+    votename: "Stable Garrison Redux"
+    mapId: StableGarrisonRedux
     lorePrimer: AU14PrimerPlanetStableGarrison
     Allegiance: UA
     camouflage: Desert
@@ -170,6 +177,7 @@
     platoonsOpfor:
     - UPP
     - VAIPO
+    - BEAR
     - ProdigySF
     platoonsGovfor:
     - WEYU
@@ -225,6 +233,76 @@
     jobScalingIns: DefaultInsurgencyScale
 
 - type: entity
+  id: AUPlanetStableGarrison
+  name: Stable Garrison
+  components:
+  - type: RMCPlanetMapPrototype
+    votename: "Stable Garrison"
+    mapId: stablegarrison
+    lorePrimer: AU14PrimerPlanetStableGarrison
+    Allegiance: UA
+    camouflage: Desert
+    announcement: "A remote research outpost, Shepherd's Pride, has gone silent. The UNS Almayer is dispatched to investigate the mysterious circumstances."
+    platoonsOpfor:
+    - UPP
+    - VAIPO
+    - ProdigySF
+    platoonsGovfor:
+    - WEYU
+    - BEAR #временно
+    - USCM
+    - RMC
+    defaultgovfor: USCM
+    defaultopfor: UPP
+    govforinship: false
+    opforinship: true
+    daycycleenabled: true
+    thirdparties:
+    - ICRCReliefParty
+    - TimeSharesSalesman
+    - UPPGROM
+    - UPPGROMAlt
+    - UPPGROMAlt2
+    - USArmyTank
+    - UACGLostTeam
+    - LACNSniperteam
+    - cultistThirdParty
+    - CMBInvestigationParty
+    - CMBInvestigationPartyAlt
+    - cultistThirdPartyNoQueen
+    - ProfessorVonBandolier
+    - XenoParasiteRunnerParty
+    - ApeThirdParty
+    - IPIE
+    - IPIESynth
+    - WYHT
+    - WYPMCParty
+    - WYPMCPartyAlt
+    - abominationThirdParty
+    - tribalThirdParty
+    - DrugSmuggler
+    - CMBParoleeTransport
+    - CMBParoleeTransportBig
+    - ForeignCrimeGang
+    - MigratingCivs
+    - MigratingCivsMedium
+    - MigratingCivsLarge
+    - MissionariesParty
+    - MissionariesPartyMedium
+    threats:
+    - cultistThreat
+    - XenoThreatCF
+    - NeomorphsThreatCF
+    - wendigoThreat
+    - abominationsThreat
+    - abominationsThreatDistress
+    joboverrides:
+      AU14JobLEOLeaderBase: AU14JobCivilianCMBMarshal
+      AU14JobLEOBase: AU14JobCivilianCMBDeputy
+    jobScalingFof: DefaultGovforOpforScale
+    jobScalingIns: DefaultInsurgencyScale
+
+- type: entity
   id: AUPlanetLV624
   name: LV624
   components:
@@ -240,11 +318,13 @@
     - WEYU
     - ProdigySF
     - VAIPO
+    - BEAR
     platoonsGovfor:
     - LACN
     - USCM
     - CMBCIU
     - RMC
+    - BEAR #временно
     defaultgovfor: USCM
     defaultopfor: UPP
     govforinship: false
@@ -317,6 +397,7 @@
     - ProdigySF
     - HAZOPS
     - VAIPO
+    - BEAR #временно
     defaultgovfor: HAZOPS
     defaultopfor: UPP
     govforinship: true
@@ -344,6 +425,7 @@
     - ProdigySF
     platoonsGovfor:
     - LACN
+    - BEAR #временно
     - CMBCIU
     - USCM
     - RMC
@@ -355,6 +437,7 @@
     daycycleenabled: true
     threats:
     - XenoThreat
+    - NeomorphsThreat
     - abominationsThreatDistress
     thirdparties:
     - USArmy
@@ -386,6 +469,7 @@
     platoonsGovfor:
     - USCM
     - ProdigySF
+    - BEAR
     - UPP
     - RMC
     defaultgovfor: USCM
@@ -396,6 +480,7 @@
     faction: ua
     threats:
     - XenoThreatCF
+    - NeomorphsThreatCF
     - wendigoThreat
     - abominationsThreatDistress
 
@@ -450,6 +535,7 @@
     - UPP
     platoonsGovfor:
     - LACN
+    - BEAR #временно
     - CMBCIU
     - USCM
     - RMC
@@ -463,11 +549,16 @@
     - cultistThreat
     - XenoThreat
     - XenoThreatCF
+    - NeomorphsThreat
+    - NeomorphsThreatCF
     - wendigoThreat
     - abominationsThreatDistress
 #    - badBloodClanThreat
 
     thirdparties:
+    - ProdigySurvLarge
+    - ProdigySurvMedium
+    - ProdigySurvSmall
     - WEYUSurvLarge
     - WEYUSurvMedium
     - WEYUSurvSmall
@@ -519,6 +610,7 @@
     - USCM
     - RMC
     - UPP
+    - BEAR
     - HAZOPS
     defaultgovfor: USCM
     defaultopfor: WEYU
@@ -530,6 +622,8 @@
     - cultistThreat
     - XenoThreat
     - XenoThreatCF
+    - NeomorphsThreat
+    - NeomorphsThreatCF
 #    - badBloodClanThreat
 
     thirdparties:
@@ -570,6 +664,7 @@
     - UPP
     - ProdigySF
     - VAIPO
+    - BEAR
     - LACN
     defaultgovfor: WEYU
     defaultopfor: ProdigySF
@@ -606,6 +701,8 @@
     - cultistThreatOnMarker
     - XenoThreat
     - XenoThreatCF
+    - NeomorphsThreat
+    - NeomorphsThreatCF
     - wendigoThreat
     - abominationsThreat
     - abominationsThreatDistress
@@ -634,6 +731,7 @@
     - RMC
     platoonsGovfor:
     - UPP
+    - BEAR
     - ProdigySF
     defaultgovfor: RMC
     defaultopfor: UPP
@@ -642,6 +740,9 @@
     daycycleenabled: true
     faction: ua
     thirdparties:
+    - ProdigySurvLarge
+    - ProdigySurvMedium
+    - ProdigySurvSmall
     - ICRCReliefParty
     - cultistThirdParty
     - UPPGROM
@@ -669,6 +770,7 @@
     threats:
     - cultistThreat
     - XenoThreat
+    - NeomorphsThreat
     - wendigoThreat
  #   - TribalsThreat
     - abominationsThreatDistress
@@ -696,6 +798,7 @@
     platoonsGovfor:
     - LACN
     - USCM
+    - BEAR
     - RMC
     defaultgovfor: RMC
     defaultopfor: VAIPO
@@ -704,6 +807,9 @@
     daycycleenabled: true
     faction: ua
     thirdparties:
+    - ProdigySurvLarge
+    - ProdigySurvMedium
+    - ProdigySurvSmall
     - IASFSurvLarge
     - IASFSurvMedium
     - IASFSurvSmall
@@ -732,6 +838,7 @@
     - abominationThirdParty
     threats:
     - XenoThreat
+    - NeomorphsThreat
     #- TribalsThreat
 #    - badBloodClanThreat
 
@@ -753,6 +860,7 @@
     - USCM
     - WEYU
     - VAIPO
+    - BEAR
     - RMC
     - UPP
     - HAZOPS
@@ -762,6 +870,9 @@
     opforinship: true
     daycycleenabled: true
     thirdparties:
+    - ProdigySurvLarge
+    - ProdigySurvMedium
+    - ProdigySurvSmall
     - USArmy
     - USArmyAlt
     - USArmyAlt2
@@ -790,6 +901,7 @@
     - abominationThirdParty
     threats:
     - XenoThreat
+    - NeomorphsThreat
  #   - TribalsThreat
 #    - badBloodClanThreat
 
@@ -815,12 +927,16 @@
     - HAZOPS
     - ProdigySF
     - VAIPO
+    - BEAR
     defaultgovfor: USCM
     defaultopfor: UPP
     govforinship: true
     opforinship: true
     daycycleenabled: true
     thirdparties:
+    - ProdigySurvLarge
+    - ProdigySurvMedium
+    - ProdigySurvSmall
     - USArmy
     - USArmyAlt
     - USArmyAlt2
@@ -848,6 +964,7 @@
     - abominationThirdParty
     threats:
     - XenoThreat
+    - NeomorphsThreat
 #    - TribalsThreat
 #    - badBloodClanThreat
 
@@ -869,6 +986,7 @@
     - USCM
     - WEYU
     - VAIPO
+    - BEAR
     - UPP
     - HAZOPS
     defaultgovfor: USCM
@@ -877,6 +995,9 @@
     opforinship: true
     daycycleenabled: false
     thirdparties:
+    - ProdigySurvLarge
+    - ProdigySurvMedium
+    - ProdigySurvSmall
     - USArmy
     - USArmyAlt
     - USArmyAlt2
@@ -908,6 +1029,7 @@
     threats:
     - abominationsThreatDistress
     - XenoThreat
+    - NeomorphsThreat
 #    - badBloodClanThreat
     jobScalingFof: DefaultGovforOpforScale
     jobScalingIns: DefaultInsurgencyScale
@@ -928,6 +1050,7 @@
     - USCM
     - WEYU
     - VAIPO
+    - BEAR
     - UPP
     - HAZOPS
     - ProdigySF
@@ -939,6 +1062,9 @@
     opforinship: true
     daycycleenabled: false
     thirdparties:
+    - ProdigySurvLarge
+    - ProdigySurvMedium
+    - ProdigySurvSmall
     - USArmy
     - USArmyAlt
     - USArmyAlt2
@@ -964,6 +1090,7 @@
     threats:
     - abominationsThreatDistress
     - XenoThreat
+    - NeomorphsThreat
 #    - badBloodClanThreat
 
     jobScalingFof: DefaultGovforOpforScale
@@ -975,7 +1102,7 @@
 
 - type: lorePrimer
   id: AU14PrimerPlanetChances
-  planetText: "Date 2182 - Chances Claim, a Weyland-Yutani Administrated Frontier Mining Colony entangled in the middle of a horrible crime wave."
+  planetText: cmu-lore-primer-chances
 
 - type: lorePrimer
   id: AU14PrimerPlanetLV747
@@ -983,11 +1110,11 @@
 
 - type: lorePrimer
   id: AU14PrimerPlanetShepherdsPride
-  planetText: "Date 2180 - Shepherds' Pride, a wildlife reserve on the fringes of the Neroid Sector."
+  planetText: cmu-lore-primer-shepherds-pride
 
 - type: lorePrimer
   id: AU14PrimerPlanetStableGarrison
-  planetText: "Date 2183 - Stable Garrison, a UA controlled frontier world with a joint base and sizeable urban community."
+  planetText: cmu-lore-primer-stable-garrison
 
 - type: lorePrimer
   id: AU14PrimerPlanetLV624
@@ -1007,11 +1134,11 @@
 
 - type: lorePrimer
   id: AU14PrimerPlanetLV327
-  planetText: "Date 2181 - Port Nereid, a valuable waterport, atmospheric processor and transit hub on the Neroid Sector frontier world LV-109, named 'Elgin's Folley'. Port Nereid is a joint-venture colony established by the United Americas Colonial Administration and Weyland-Yutani."
+  planetText: cmu-lore-primer-port-nereid
 
 - type: lorePrimer
   id: AU14PrimerPlanetCorsatStation
-  planetText: "Date 2181 - Corsat Station, a Weyland-Yutani operated research and prison station."
+  planetText: cmu-lore-primer-corsat
 
 - type: lorePrimer
   id: AU14PrimerPlanetLament
@@ -1019,7 +1146,7 @@
 
 - type: lorePrimer
   id: AU14PrimerPlanetSorokyne
-  planetText: "Date 2186 - Sorokyne Strata. A major Union of Progressive People's research outpost in the Neroid Sector."
+  planetText: cmu-lore-primer-sorokyne
 
 - type: lorePrimer
   id: AU14PrimerPlanetTrijent
@@ -1027,15 +1154,15 @@
 
 - type: lorePrimer
   id: AU14PrimerPlanetShivasSnowball
-  planetText: "Date 2177 - Shivas' Snowball. A United Americas mining and research colony."
+  planetText: cmu-lore-primer-shivas-snowball
 
 - type: lorePrimer
   id: AU14PrimerPlanetKutjevo
-  planetText: "Date 2181 - Kutjevo Biolab. A level three biohazard containment and research facility operated by the Weyland-Yutani Corporation."
+  planetText: cmu-lore-primer-kutjevo
 
 - type: lorePrimer
   id: AU14PrimerPlanetFiorina
-  planetText: "Date 2181 - Fiorina Prison. Privately owned and operated by the Weyland-Yutani corporation, Fiorina 161 is a maximum security prison for the most dangerous criminals in the system."
+  planetText: cmu-lore-primer-fiorina
 
 
 - type: entity
@@ -1060,6 +1187,7 @@
     - HAZOPS
     - ProdigySF
     - VAIPO
+    - BEAR
     defaultgovfor: WEYU
     defaultopfor: ProdigySF
     govforinship: false
@@ -1098,6 +1226,7 @@
     - WEYUSurvSmall
     threats:
     - XenoThreat
+    - NeomorphsThreat
     - cultistThreatOnMarker
     - abominationsThreat
     - abominationsThreatDistress
@@ -1110,4 +1239,4 @@
 
 - type: lorePrimer
   id: CMUPrimerHopesRetreat
-  planetText: "Date - 2181. Tidally-locked planet JE-1758 Ascanius, locally referred to as Hope's Retreat by colonists. Nominally under an ICSC charter but host to various facilities of various allegiances, including the United Americas, Union of Progressive Peoples and Three-World Empire."
+  planetText: cmu-lore-primer-hopes-retreat
